@@ -1,0 +1,65 @@
+.form-colorinput {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.form-colorinput-input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.bg-dark {
+    background: #232e3c;
+        background-color: rgb(35, 46, 60);
+}
+
+.form-colorinput-color {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #fff;
+    border: 1px solid rgba(101,109,119,.16);
+    border-radius: 3px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.bg-dark {
+    background-color: #a93226  !important;
+}
+
+.form-colorinput-color::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: no-repeat center center/1rem;
+        background-image: none;
+    background-image: url("assets/images/check.svg");
+    opacity: 0;
+    transition: .3s opacity;
+}
+.form-colorinput-color::after, ::before {
+    box-sizing: border-box;
+}
+
+.bg-blue {
+    background:  #f5b7b1;
+}
+
+.bg-white {
+    background:  #ebffad;
+}
+
+.bg-espu{
+    background:  #909497;
+}
