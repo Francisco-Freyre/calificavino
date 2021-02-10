@@ -388,7 +388,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <h4 class="card-title">Calificacion</h4>
+                                                            <h4 class="card-title">Calificación</h4>
                                                             <h6 class="card-subtitle">Valores del 0 al 1 (se incluyen
                                                                 valores decimales)</h6>
                                                             <div class="form-group">
@@ -469,7 +469,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <h4 class="card-title">Calificacion</h4>
+                                                            <h4 class="card-title">Calificación</h4>
                                                             <h6 class="card-subtitle">Valores del 0 al 2 (se
                                                                 incluyen valores decimales)</h6>
                                                             <div class="form-group">
@@ -569,7 +569,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <h4 class="card-title">Calificacion</h4>
+                                                            <h4 class="card-title">Calificación</h4>
                                                             <h6 class="card-subtitle">Valores del 0 al 3 (se
                                                                 incluyen valores decimales)</h6>
                                                             <div class="form-group">
@@ -625,7 +625,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <h4 class="card-title">Calificacion</h4>
+                                                            <h4 class="card-title">Calificación</h4>
                                                             <h6 class="card-subtitle">Valores del 0 al 4 (se
                                                                 incluyen valores decimales)</h6>
                                                             <div class="form-group">
@@ -644,7 +644,7 @@
 
                             <div class="row">
                                 <div class="col-lg-12 ">
-                                    <button type="submit" class="btn btn-block btn-primary">submit</button>
+                                    <button type="submit" class="btn btn-block btn-primary">Crear</button>
                                 </div>
                             </div>
                         </form>

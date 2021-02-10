@@ -71,14 +71,14 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 class="card-title">Calificacion - <?= $vis->calificacion ?></h3>
+                            <h3 class="card-title">Calificación - <?= $vis->calificacion ?></h3>
                             <p class="card-text">Capa: <?= $vis->capa ?></p>
                             <p class="card-text">Color: <?= $vis->color ?></p>
                             <p class="card-text">Brillo: <?= $vis->brillo ?></p>
                             <p class="card-text">Viscocidad: <?= $vis->viscosidad ?></p>
                         </div>
                         <div class="col-md-6">
-                            <h3 class="card-title">Calificacion - <?= $aro->calificacion ?></h3>
+                            <h3 class="card-title">Calificación - <?= $aro->calificacion ?></h3>
                             <p class="card-text">Intensidad: <?= $aro->intensidad ?></p>
                             <p class="card-text">Complejidad: <?= $aro->complejidad ?></p>
                             <p class="card-text">Aromas: <?= $aro->aromas ?></p>
@@ -109,7 +109,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 class="card-title">Calificacion - <?= $gus->calificacion ?></h3>
+                            <h3 class="card-title">Calificación - <?= $gus->calificacion ?></h3>
                             <p class="card-text">Dulce: <?= $gus->dulce ?></p>
                             <p class="card-text">Acidez: <?= $gus->acidez ?></p>
                             <p class="card-text">Tanino: <?= $gus->tanino ?></p>
@@ -119,7 +119,7 @@
                             <p class="card-text">Retrogusto: <?= $gus->retrogusto ?></p>
                         </div>
                         <div class="col-md-6">
-                            <h3 class="card-title">Calificacion - <?= $perso->calificacion ?></h3>
+                            <h3 class="card-title">Calificación - <?= $perso->calificacion ?></h3>
                             <p class="card-text">Comentarios: <?= $perso->comentario ?></p>
                             <p class="card-text">Meridaje: <?= $perso->meridaje ?></p>
                         </div>
@@ -135,7 +135,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                <h3 class="card-title text-center">Calificacion final - <?= $total ?></h3>
+                <h3 class="card-title text-center">Calificación final - <?= $total ?></h3>
                 </div>
             </div>
         </div>
