@@ -11,6 +11,14 @@ class cataController{
         require_once 'views/catas/formulario.php';
     }
 
+    public function listaCatas(){
+        Utils::isCatador();
+        $vino = new vinos();
+        $cata = $vino->getCatasUser($_SESSION['identity']->id);
+        $tamaño = count($cata);
+        require_once 'views/catas/cataList.php';
+    }
+
     public function resumen(){
         Utils::isCatador();
         if(isset($_GET['id'])){
@@ -79,7 +87,6 @@ class cataController{
             $_SESSION['vino'] = "Failed";
         }
         echo "<script>";
-        echo "alert('Vino guardado!!!');";
         echo "window.location.replace('".base_url."cata/calificaciones');";
         echo "</script>";
     }
@@ -131,7 +138,6 @@ class cataController{
 
                 if($save && $save2 && $save3 && $save4){
                     echo "<script>";
-                    echo "alert('Calificacion guardada, la calificacion de tu vino es $calificacionTotal');";
                     echo "window.location.replace('".base_url."cata/resumen&id=$id->id');";
                     echo "</script>";
                 }

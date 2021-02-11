@@ -7,12 +7,12 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li class="sidebar-item"> <a class="sidebar-link" href="#"
+                        <li class="sidebar-item"> <a class="sidebar-link" href="<?=base_url?>"
                                 aria-expanded="false"><i data-feather="user" class="feather-icon"></i><span
                                     class="hide-menu">Inicio
                                 </span></a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?=base_url?>"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?=base_url?>cata/index"
                                 aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
                                     class="hide-menu">Nueva Cata</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"

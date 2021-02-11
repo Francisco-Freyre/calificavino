@@ -63,3 +63,7 @@
 .bg-espu{
     background:  #909497;
 }
+
+.imagen-tabla > img{
+    max-width: 100px !important;
+}

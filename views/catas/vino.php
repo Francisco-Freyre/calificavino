@@ -346,8 +346,7 @@
                                             </div>
                                             <div class="form-actions">
                                                 <div class="text-right">
-                                                    <button type="submit" class="btn btn-info">Submit</button>
-                                                    <button type="reset" class="btn btn-dark">Reset</button>
+                                                    <button type="submit" class="btn btn-info">Guardar</button>
                                                 </div>
                                             </div>
                                         

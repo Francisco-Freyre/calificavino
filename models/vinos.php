@@ -43,6 +43,26 @@
             return $response = $this->db->query($sql);
         }
 
+        public function getCatasUser($user){
+            $sql = "SELECT * FROM catas WHERE id_user = $user";
+            $catas = $this->db->query($sql);
+            $result = [];
+            while ($cat = $catas->fetch_object()) {
+                $sql2 = "SELECT nombre, cosecha, url_img FROM vinos WHERE id = $cat->id_vino";
+                $vino = $this->db->query($sql2);
+                $vi = $vino->fetch_object();
+                $AVino = array(
+                    "id_cata" => $cat->id,
+                    "img" => $vi->url_img,
+                    "nombre" => $vi->nombre,
+                    "cosecha" => $vi->cosecha
+                );
+                array_push($result, $AVino);
+            }
+
+            return $result;
+        }
+
         public function getCataId($id){
             $sql = "SELECT * FROM catas WHERE id = $id";
             return $response = $this->db->query($sql);
