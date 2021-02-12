@@ -17,7 +17,7 @@ class Utils{
             }
             else{
                 echo "<script>";
-                echo "window.location.replace('http://localhost:8080/segundapuesta.shop/');";
+                echo "window.location.replace('".base_url_tienda."');";
                 echo "</script>";
             }
         }

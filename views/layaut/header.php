@@ -53,7 +53,7 @@
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
                         <!-- Logo icon -->
-                        <a href="index.html">
+                        <a href="<?=base_url_tienda?>">
                             <b class="logo-icon">
                                 <!-- Dark Logo icon -->
                                 <img src="<?= base_url ?>assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
@@ -111,7 +111,7 @@
                             <!-- User profile and search -->
                             <!-- ============================================================== -->
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     <img src="<?= base_url ?>assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle"
                                         width="40">
@@ -120,26 +120,12 @@
                                             class="svg-icon"></i></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                    <a class="dropdown-item" href="javascript:void(0)"><i data-feather="user"
+                                    <a class="dropdown-item" href="<?=base_url_tienda?>usuario/cuenta"><i data-feather="user"
                                             class="svg-icon mr-2 ml-1"></i>
                                         Mi perfil</a>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i data-feather="credit-card"
-                                            class="svg-icon mr-2 ml-1"></i>
-                                        Mis Catas</a>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i data-feather="mail"
-                                            class="svg-icon mr-2 ml-1"></i>
-                                        Notas</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i data-feather="settings"
-                                            class="svg-icon mr-2 ml-1"></i>
-                                        Configuración de cuenta</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i data-feather="power"
+                                    <a class="dropdown-item" href="#"><i data-feather="power"
                                             class="svg-icon mr-2 ml-1"></i>
                                         Salir</a>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">ver
-                                            perfil</a></div>
                                 </div>
                             </li>
                             <!-- ============================================================== -->
