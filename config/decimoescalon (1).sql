@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-02-2021 a las 00:51:05
+-- Tiempo de generación: 12-02-2021 a las 19:57:37
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.5
 
@@ -44,9 +44,9 @@ CREATE TABLE `apreciacion_personal` (
 CREATE TABLE `aromatica` (
   `id` int(10) NOT NULL,
   `id_cata` int(10) NOT NULL,
-  `intensidad` varchar(50) NOT NULL,
-  `complejidad` varchar(50) NOT NULL,
-  `aromas` varchar(30) NOT NULL,
+  `intensidad` varchar(100) NOT NULL,
+  `complejidad` varchar(100) NOT NULL,
+  `aromas` text NOT NULL,
   `calificacion` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -71,13 +71,13 @@ CREATE TABLE `catas` (
 CREATE TABLE `gustativo` (
   `id` int(11) NOT NULL,
   `id_cata` int(11) NOT NULL,
-  `dulce` varchar(20) NOT NULL,
-  `acidez` varchar(20) NOT NULL,
-  `tanino` varchar(20) NOT NULL,
-  `alcohol` varchar(20) NOT NULL,
-  `cuerpo` varchar(20) NOT NULL,
-  `permanencia` varchar(20) NOT NULL,
-  `retrogusto` varchar(20) NOT NULL,
+  `dulce` varchar(100) NOT NULL,
+  `acidez` varchar(100) NOT NULL,
+  `tanino` varchar(100) NOT NULL,
+  `alcohol` varchar(100) NOT NULL,
+  `cuerpo` varchar(100) NOT NULL,
+  `permanencia` varchar(100) NOT NULL,
+  `retrogusto` text NOT NULL,
   `calificacion` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -89,14 +89,14 @@ CREATE TABLE `gustativo` (
 
 CREATE TABLE `vinos` (
   `id` int(10) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `region` varchar(50) NOT NULL,
-  `pais` varchar(30) NOT NULL,
-  `uva` varchar(50) NOT NULL,
-  `productor` varchar(50) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `region` varchar(100) NOT NULL,
+  `pais` varchar(100) NOT NULL,
+  `uva` text NOT NULL,
+  `productor` varchar(100) NOT NULL,
   `cosecha` varchar(15) NOT NULL,
-  `alcohol` int(5) NOT NULL,
-  `url_img` varchar(50) NOT NULL
+  `alcohol` decimal(10,2) NOT NULL,
+  `url_img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -108,10 +108,10 @@ CREATE TABLE `vinos` (
 CREATE TABLE `visual` (
   `id` int(10) NOT NULL,
   `id_cata` int(10) NOT NULL,
-  `capa` varchar(10) NOT NULL,
-  `color` varchar(10) NOT NULL,
-  `brillo` varchar(10) NOT NULL,
-  `viscosidad` varchar(10) NOT NULL,
+  `capa` varchar(100) NOT NULL,
+  `color` varchar(100) NOT NULL,
+  `brillo` varchar(100) NOT NULL,
+  `viscosidad` varchar(100) NOT NULL,
   `calificacion` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
