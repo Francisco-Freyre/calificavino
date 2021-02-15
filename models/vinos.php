@@ -43,6 +43,32 @@
             return $response = $this->db->query($sql);
         }
 
+        public function deleteCata($id_cata, $id_vino){
+            $sql = "DELETE FROM catas WHERE id = $id_cata";
+            $response = $this->db->query($sql);
+            $sql = "DELETE FROM vinos WHERE id = $id_vino";
+            $response2 = $this->db->query($sql);
+
+            if($response && $response2){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        public function updateVino($id_vino, $nombre, $region, $pais, $uva, $productor, $cosecha, $alcohol, $url_img){
+            $sql = "UPDATE vinos SET nombre = '$nombre', region = '$region', pais = '$pais', uva = '$uva', productor = '$productor', cosecha = $cosecha, alcohol = $alcohol, url_img = '$url_img' WHERE id = $id_vino";
+            $response = $this->db->query($sql);
+            
+            if($response){
+                return $response;
+            }
+            else{
+                return false;
+            }
+        }
+
         public function getCatasUser($user){
             $sql = "SELECT * FROM catas WHERE id_user = $user";
             $catas = $this->db->query($sql);
@@ -55,7 +81,8 @@
                     "id_cata" => $cat->id,
                     "img" => $vi->url_img,
                     "nombre" => $vi->nombre,
-                    "cosecha" => $vi->cosecha
+                    "cosecha" => $vi->cosecha,
+                    "id_vino" => $cat->id_vino
                 );
                 array_push($result, $AVino);
             }

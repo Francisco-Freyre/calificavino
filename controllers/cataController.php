@@ -19,6 +19,73 @@ class cataController{
         require_once 'views/catas/cataList.php';
     }
 
+    public function deleteCata(){
+        if(isset($_GET['id_vino']) && isset($_GET['id_cata'])){
+            $vino = new vinos();
+            $result = $vino->deleteCata($_GET['id_cata'], $_GET['id_vino']);
+            if($result){
+                echo "<script>";
+                echo "alert('Se elimino el registro exitosamente');";
+                echo "window.location.replace('".base_url."');";
+                echo "</script>";
+            }
+        }
+    }
+
+    public function editVino(){
+        if(isset($_GET['id_vino'])){
+            $vino = new vinos();
+            $vinos = $vino->getVinoId($_GET['id_vino']);
+            require_once 'views/catas/updateVino.php';
+        }
+    }
+
+    public function updateVino(){
+        if(isset($_GET['id_vino'])){
+            if(isset($_POST)){
+                
+                $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
+                $region = isset($_POST['region']) ? $_POST['region'] : false;
+                $pais = isset($_POST['pais']) ? $_POST['pais'] : false;
+                $uva = isset($_POST['uva']) ? $_POST['uva'] : false;
+                $productor = isset($_POST['productor']) ? $_POST['productor'] : false;
+                $cosecha = isset($_POST['cosecha']) ? $_POST['cosecha'] : false;
+                $alcohol = isset($_POST['alcohol']) ? $_POST['alcohol'] : false;
+                
+                $file = $_FILES['img'];
+                $filename = $file['name'];
+                $mimetype = $file['type'];
+
+                if($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "img/png"){
+                    if(!is_dir('uploads/images')){
+                        mkdir('uploads/images', 0777, true);
+                    }
+
+                    move_uploaded_file($file['tmp_name'], 'uploads/images/'.$filename);
+                    $url_img = 'uploads/images/'.$filename;
+                }
+
+                if($nombre && $region && $pais && $uva && $productor && $cosecha && $alcohol && $url_img){
+                    $vino = new vinos();
+                    $id = $vino->updateVino($_GET['id_vino'], $nombre, $region, $pais, $uva, $productor, $cosecha, $alcohol, $url_img);
+                    if($id){
+                        echo "<script>";
+                        echo "alert('Se actualizo correctamente el vino');";
+                        echo "window.location.replace('".base_url."cata/listaCatas');";
+                        echo "</script>";
+                    }
+                }
+                else{
+                    echo "<script>";
+                        echo "alert('No se actualizo');";
+                        echo "window.location.replace('".base_url."cata/listaCatas');";
+                        echo "</script>";
+                }
+        
+            }
+        }
+    }
+
     public function resumen(){
         Utils::isCatador();
         if(isset($_GET['id'])){
@@ -52,7 +119,6 @@ class cataController{
             $cosecha = isset($_POST['cosecha']) ? $_POST['cosecha'] : false;
             $alcohol = isset($_POST['alcohol']) ? $_POST['alcohol'] : false;
             
-
             $file = $_FILES['img'];
             $filename = $file['name'];
             $mimetype = $file['type'];

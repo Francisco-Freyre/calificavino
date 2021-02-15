@@ -4,12 +4,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Nueva Cata</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Editar vino</h4>
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb m-0 p-0">
                                     <li class="breadcrumb-item"><a href="index.html" class="text-muted">Vinos</a></li>
-                                    <li class="breadcrumb-item text-muted active" aria-current="page">Registro</li>
+                                    <li class="breadcrumb-item text-muted active" aria-current="page">Edicion</li>
                                 </ol>
                             </nav>
                         </div>
@@ -23,7 +23,7 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                <form action="<?=base_url?>cata/save" method="POST" enctype="multipart/form-data">
+                <form action="<?=base_url?>cata/updateVino&id_vino=<?=$_GET['id_vino']?>" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
                             <div class="card">
@@ -35,21 +35,21 @@
                                 </div>
                             </div>
                         </div>
+                        <?php while($vin = $vinos->fetch_object()): ?>
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Información de la etiqueta</h4>
-                                        
+                                        <h4 class="card-title">Información de la etiqueta</h4>             
                                             <div class="form-body">
                                                 <div class="row">
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <input type="text" name="nombre" class="form-control"
-                                                                placeholder="Nombre" required>
+                                                                placeholder="Nombre" value="<?=$vin->nombre?>" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <input list="paises" type="text" name="pais" class="form-control"
-                                                                placeholder="Pais" required>
+                                                                placeholder="Pais" value="<?=$vin->pais?>" required>
                                                             <datalist id="paises">
                                                                 <option value="ARGENTINA"></option>
                                                                 <option value="AUSTRALIA"></option>
@@ -72,7 +72,7 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <input list="regiones" type="text" name="region" class="form-control"
-                                                                placeholder="Region" required>
+                                                                placeholder="Region" value="<?=$vin->region?>" required>
                                                             <datalist id="regiones">
                                                                 <option value="VALLE DE UCO"></option>
                                                                 <option value="LUJAN DE CUYO"></option>
@@ -268,7 +268,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <input list="uvas" type="text" name="uva" class="form-control"
-                                                                placeholder="Uva" required>
+                                                                placeholder="Uva" value="<?=$vin->uva?>" required>
                                                             <datalist id="uvas">
                                                                 <option value="CHARDONNAY"></option>
                                                                 <option value="SAUVIGNON BLANC"></option>
@@ -325,13 +325,13 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <input type="text" name="productor" class="form-control"
-                                                                placeholder="Productor" required>
+                                                                placeholder="Productor" value="<?=$vin->productor?>" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <input type="text" name="cosecha" class="form-control"
-                                                                placeholder="Cosecha" pattern="(^[0-9]{1,4})" required>
+                                                                placeholder="Cosecha" pattern="(^[0-9]{1,4})" value="<?=$vin->cosecha?>" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -339,7 +339,7 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <input type="text" name="alcohol" class="form-control"
-                                                               pattern="(^[0-9]{1,3}$|^[0-9]{1,2}\.[0-9]{1,2}$)" placeholder="% del Alcohol" required>
+                                                               pattern="(^[0-9]{1,3}$|^[0-9]{1,2}\.[0-9]{1,2}$)" value="<?=$vin->alcohol?>" placeholder="% del Alcohol" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -349,10 +349,10 @@
                                                     <button type="submit" class="btn btn-info">Guardar</button>
                                                 </div>
                                             </div>
-                                        
                                     </div>
                                 </div>
                             </div>
+                        <?php endwhile; ?>
                         </div>
                     </div>
                 </form>

@@ -67,3 +67,8 @@
 .imagen-tabla > img{
     max-width: 100px !important;
 }
+
+.img-mediana{
+    width: 100px;
+    height: 100px;
+}

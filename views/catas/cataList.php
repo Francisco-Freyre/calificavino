@@ -34,6 +34,7 @@
                                         <table id="zero_config" class="table table-striped table-bordered no-wrap">
                                             <thead>
                                                 <tr>
+                                                    <th>Vino</th>
                                                     <th>Nombre</th>
                                                     <th>Cosecha</th>
                                                     <th>Acciones</th>
@@ -42,10 +43,19 @@
                                             <tbody>
                                             <?php foreach($cata as $indice => $dato): ?>   
                                                 <tr>
+                                                    <td><img  src="<?=base_url.$dato['img']?>" alt="imagen" style="width: 80px; height:auto"></td>
                                                     <td><?=$dato['nombre']?></td>
                                                     <td><?=$dato['cosecha']?></td>
                                                     <td>
-                                                        <a href="<?=base_url?>cata/resumen&id=<?=$dato['id_cata']?>" class="btn btn-info"> Ver resumen</a>
+                                                        <a href="<?=base_url?>cata/resumen&id=<?=$dato['id_cata']?>" class="btn btn-info">
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
+                                                        <a href="<?=base_url?>cata/editVino&id_vino=<?=$dato['id_vino']?>" class="btn waves-effect waves-light btn-success">
+                                                            <i class="far fa-edit"></i>
+                                                        </a>
+                                                        <a href="<?=base_url?>cata/deleteCata&id_cata=<?=$dato['id_cata']?>&id_vino=<?=$dato['id_vino']?>" class="btn waves-effect waves-light btn-danger">
+                                                            <i class="ti-trash"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
