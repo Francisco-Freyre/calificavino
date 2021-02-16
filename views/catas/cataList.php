@@ -37,6 +37,7 @@
                                                     <th>Vino</th>
                                                     <th>Nombre</th>
                                                     <th>Cosecha</th>
+                                                    <th>Calificacion</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
@@ -46,15 +47,19 @@
                                                     <td><img  src="<?=base_url.$dato['img']?>" alt="imagen" style="width: 80px; height:auto"></td>
                                                     <td><?=$dato['nombre']?></td>
                                                     <td><?=$dato['cosecha']?></td>
+                                                    <td><?=$dato['calif']?></td>
                                                     <td>
-                                                        <a href="<?=base_url?>cata/resumen&id=<?=$dato['id_cata']?>" class="btn btn-info">
+                                                        <a href="<?=base_url?>cata/resumen&id=<?=$dato['id_cata']?>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title data-original-title="Ver resumen">
                                                             <i class="fas fa-eye"></i>
                                                         </a>
-                                                        <a href="<?=base_url?>cata/editVino&id_vino=<?=$dato['id_vino']?>" class="btn waves-effect waves-light btn-success">
+                                                        <a href="<?=base_url?>cata/editVino&id_vino=<?=$dato['id_vino']?>" class="btn waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title data-original-title="Editar vino">
                                                             <i class="far fa-edit"></i>
                                                         </a>
-                                                        <a href="<?=base_url?>cata/deleteCata&id_cata=<?=$dato['id_cata']?>&id_vino=<?=$dato['id_vino']?>" class="btn waves-effect waves-light btn-danger">
-                                                            <i class="ti-trash"></i>
+                                                        <a href="<?=base_url?>cata/editCalif&id_cata=<?=$dato['id_cata']?>" class="btn waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title data-original-title="Editar cata">
+                                                            <i class="far fa-edit"></i>
+                                                        </a>
+                                                        <a href="<?=base_url?>cata/deleteCata&id_cata=<?=$dato['id_cata']?>&id_vino=<?=$dato['id_vino']?>" class="btn waves-effect waves-light btn-danger" data-toggle="tooltip" data-placement="top" title data-original-title="Eliminar">
+                                                            <i class="fas fa-trash"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
