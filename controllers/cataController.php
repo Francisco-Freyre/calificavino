@@ -202,6 +202,27 @@ class cataController{
         
     }
 
+    public function abstract(){
+        if(isset($_GET['id'])){
+            $vino = new vinos();
+            $cata = $vino->getCataId($_GET['id']);
+            $OCata = $cata->fetch_object();
+            $vine = $vino->getVinoId($OCata->id_vino);
+            $vin = $vine->fetch_object();
+            $visual = $vino->getVisual($OCata->id);  
+            $vis = $visual->fetch_object();
+            $aroma = $vino->getAroma($OCata->id);  
+            $aro = $aroma->fetch_object();
+            $gusto = $vino->getGusto($OCata->id);  
+            $gus = $gusto->fetch_object();
+            $personal = $vino->getPersonal($OCata->id);  
+            $perso = $personal->fetch_object();
+
+            $total = $perso->calificacion + $gus->calificacion + $aro->calificacion + $vis->calificacion;
+            require_once 'views/catas/abstract.php';
+        }
+    }
+
     public function save(){
         if(isset($_POST)){
             $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
