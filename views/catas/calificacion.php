@@ -151,7 +151,7 @@
             </div>
         </div>
         <div class="col-md-12 text-center">
-            <div class="fb-share-button" data-href="<?=base_url?>cata/abstract&id=<?=$_GET['id']?>" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
+            <div class="fb-share-button" data-href="<?=base_url?>cata/resumen_inv&id=<?=$_GET['id']?>" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
         </div>
     </div>
     <!-- End Row -->

@@ -202,7 +202,7 @@ class cataController{
         
     }
 
-    public function abstract(){
+    public function resumen_inv(){
         if(isset($_GET['id'])){
             $vino = new vinos();
             $cata = $vino->getCataId($_GET['id']);
