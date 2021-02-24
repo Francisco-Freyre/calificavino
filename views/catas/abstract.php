@@ -10,7 +10,7 @@
     <title>Decimo-Escalón</title>
     <meta property="og:url"           content="<?=base_url?>cata/resumen_inv&id=<?=$_GET['id']?>" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Decimo Escalon" />
+    <meta property="og:title"         content="<?= $vin->nombre ?> - <?= $vin->cosecha ?>" />
     <meta property="og:description"   content="<?= $perso->comentario ?>" />
     <meta property="og:image"         content="<?= base_url ?><?= $vin->url_img ?>" />
     <!-- Custom CSS -->
@@ -47,24 +47,6 @@
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
-<div class="page-breadcrumb">
-    <div class="row">
-        <div class="col-7 align-self-center">
-            <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Cata</h4>
-            <div class="d-flex align-items-center">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb m-0 p-0">
-                        <li class="breadcrumb-item"><a href="index.html" class="text-muted">Inicio</a></li>
-                        <li class="breadcrumb-item text-muted active" aria-current="page">Resumen</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- ============================================================== -->
 <!-- End Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
