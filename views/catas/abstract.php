@@ -11,7 +11,7 @@
     <meta property="og:url"           content="<?=base_url?>cata/resumen_inv&id=<?=$_GET['id']?>" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="<?= $vin->nombre ?> - <?= $vin->cosecha ?>" />
-    <meta property="og:description"   content="<?= $perso->comentario ?>" />
+    <meta property="og:description"   content="Este vino tiene una calificacion final de <?=$total?>" />
     <meta property="og:image"         content="<?= base_url ?><?= $vin->url_img ?>" />
     <!-- Custom CSS -->
     <link href="<?= base_url ?>assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
