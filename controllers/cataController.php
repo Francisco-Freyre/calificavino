@@ -224,6 +224,7 @@ class cataController{
     }
 
     public function save(){
+        include "helpers/class.upload.php";
         if(isset($_POST)){
             $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
             $region = isset($_POST['region']) ? $_POST['region'] : false;
@@ -237,13 +238,22 @@ class cataController{
             $filename = $file['name'];
             $mimetype = $file['type'];
 
-            if($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "img/png"){
-                if(!is_dir('uploads/images')){
-                    mkdir('uploads/images', 0777, true);
+            if(isset($_FILES["img"])){
+                $up = new Upload($_FILES["img"]);
+                if($up->uploaded){
+                    $up->Process("uploads/");
+                    if($up->processed){
+                        $up->image_resize = true;
+                        $up->image_x = $up->image_src_x/2;
+                        $up->image_ratio_y = true;
+                        $up->jpeg_quality = 50;
+                    
+                        $up->Process("uploads/images/");
+                        if($up->processed){
+                            $url_img = 'uploads/images/'.$filename;
+                        }
+                    }
                 }
-
-                move_uploaded_file($file['tmp_name'], 'uploads/images/'.$filename);
-                $url_img = 'uploads/images/'.$filename;
             }
 
             if($nombre && $region && $pais && $uva && $productor && $cosecha && $alcohol && $url_img){
