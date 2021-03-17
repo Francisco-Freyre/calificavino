@@ -13,6 +13,18 @@
                     </ol>
                 </nav>
             </div>
+
+            <div class="text-right">
+                <a href="<?=base_url?>cata/editVino&id_vino=<?=$OCata->id_vino?>" class="btn waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title data-original-title="Editar vino">
+                    <i class="far fa-edit"></i>
+                </a>
+                <a href="<?=base_url?>cata/editCalif&id_cata=<?=$OCata->id?>" class="btn waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title data-original-title="Editar cata">
+                    <i class="far fa-edit"></i>
+                </a>
+                <a href="<?=base_url?>cata/deleteCata&id_cata=<?=$OCata->id?>&id_vino=<?=$OCata->id_vino?>" class="btn waves-effect waves-light btn-danger" data-toggle="tooltip" data-placement="top" title data-original-title="Eliminar">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
         </div>
     </div>
 </div>

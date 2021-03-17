@@ -236,7 +236,6 @@ class cataController{
             
             $file = $_FILES['img'];
             $filename = $file['name'];
-            $mimetype = $file['type'];
 
             if(isset($_FILES["img"])){
                 $up = new Upload($_FILES["img"]);
