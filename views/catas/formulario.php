@@ -391,7 +391,7 @@
                                         <h6 class="card-subtitle"></h6>
 
                                         <div class="form-group">
-                                            <input type="search" class="form-control" name="aromas" required>
+                                            <input type="search" class="form-control" name="aromas">
                                         </div>
 
                                     </div>
@@ -484,7 +484,7 @@
                                         <h6 class="card-subtitle"></h6>
 
                                         <div class="form-group">
-                                            <input type="search" class="form-control" name="sabores" required>
+                                            <input type="search" class="form-control" name="sabores">
                                         </div>
 
                                     </div>
@@ -525,7 +525,7 @@
                                         <h4 class="card-title">Comentarios</h4>
 
                                         <div class="form-group">
-                                            <textarea class="form-control" rows="3" placeholder="Comentario" name="comentarios" required></textarea>
+                                            <textarea class="form-control" rows="3" placeholder="Comentario" name="comentarios"></textarea>
                                         </div>
 
                                     </div>
@@ -537,7 +537,7 @@
                                         <h4 class="card-title">Maridaje</h4>
 
                                         <div class="form-group">
-                                            <textarea class="form-control" rows="3" placeholder="Comentario" name="meridaje" required></textarea>
+                                            <textarea class="form-control" rows="3" placeholder="Comentario" name="meridaje"></textarea>
                                         </div>
 
                                     </div>

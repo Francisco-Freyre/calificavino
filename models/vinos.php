@@ -118,7 +118,13 @@
         }
 
         public function saveVisual($id, $capa, $color, $brillo, $viscosidad, $calificacion){
-            $sql = "INSERT INTO visual VALUES (NULL, $id, '$capa', '$color', '$brillo', '$viscosidad', '$calificacion');";
+            if($color){
+                $sql = "INSERT INTO visual VALUES (NULL, $id, '$capa', '$color', '$brillo', '$viscosidad', '$calificacion');";
+            }
+            else{
+                $sql = "INSERT INTO visual VALUES (NULL, $id, '$capa', '', '$brillo', '$viscosidad', '$calificacion');";
+            }
+            
             $save = $this->db->query($sql);
 
             $result = false;
