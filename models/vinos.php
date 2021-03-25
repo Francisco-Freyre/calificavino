@@ -16,6 +16,47 @@
             $this->db = Database::connect();
         }
 
+        public function getNewVinos(){
+            $sql = "SELECT * FROM new_vinos";
+            $result = $this->db->query($sql);
+            return $result;
+        }
+
+        public function getNewVinoId($id){
+            $sql = "SELECT * FROM new_vinos WHERE id = $id";
+            return $response = $this->db->query($sql);
+        }
+
+        public function saveNewVino($nombre, $region, $pais, $uva, $productor, $url_img){
+            $sql = "INSERT INTO new_vinos VALUES (null, '$nombre', '$pais', '$region', '$uva', '$productor', '$url_img');";
+            $save = $this->db->query($sql);
+            $result = false;
+            if($save){
+                $result = $this->db->insert_id;
+            }
+
+            return $result;
+        }
+
+        public function updateNewVino($id, $nombre, $region, $pais, $uva, $productor, $url_img){
+            $sql = "UPDATE new_vinos SET nombre = '$nombre', pais = '$pais', region = '$region', uva = '$uva', productor = '$productor', url_img = '$url_img' WHERE id = $id";
+            $response = $this->db->query($sql);
+            
+            if($response){
+                return $response;
+            }
+            else{
+                return false;
+            }
+        }
+
+        public function deleteNewVino($id){
+            $sql = "DELETE FROM new_vinos WHERE id = $id";
+            $respuesta = $this->db->query($sql);
+
+            return $respuesta;
+        }
+
         public function save($nombre, $region, $pais, $uva, $productor, $cosecha, $alcohol, $url_img){
             $sql = "INSERT INTO vinos VALUES (null, '$nombre', '$region', '$pais', '$uva', '$productor', '$cosecha', '$alcohol', '$url_img');";
             $save = $this->db->query($sql);
