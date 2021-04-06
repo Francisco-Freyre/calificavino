@@ -1,4 +1,16 @@
-<div class="page-breadcrumb">
+<?php
+    include_once 'config/parameters.php';
+    include_once 'helpers/session.php';
+    include_once 'views/layaut/header.php';
+    include_once 'views/layaut/sidebar.php';
+    require_once 'models/vinos.php';
+    require_once 'config/db.php';
+    $vino = new vinos();
+    $cata = $vino->getCatasUser($_SESSION['identity']->id);
+    $tamaño = count($cata);
+?>
+
+            <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
                         <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Mis catas</h4>
@@ -44,7 +56,7 @@
                                             <?php foreach($cata as $indice => $dato): ?>   
                                                 <tr class="text-center">
                                                     <td><img  src="<?=base_url.$dato['img']?>" alt="imagen" class="rounded-circle" width="50" height="50"></td>
-                                                    <td><a href="<?=base_url?>cata/resumen&id=<?=$dato['id_cata']?>" style="color: #ba2e53;"><?=$dato['nombre']?></a></td>
+                                                    <td><a href="resumen.php?id=<?=$dato['id_cata']?>" style="color: #ba2e53;"><?=$dato['nombre']?></a></td>
                                                     <td><?=$dato['cosecha']?></td>
                                                     <td><?=$dato['calif']?></td>
                                                 </tr>
@@ -61,3 +73,5 @@
                         <h4 class="card-title">Aun no has calificado vinos</h4>
                     </div>
                 <?php endif; ?>
+
+<?php include_once 'views/layaut/footer.php'; ?>

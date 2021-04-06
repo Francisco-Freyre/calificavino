@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<?php if(isset($_SESSION['identity'])): ?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,13 +8,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url ?>assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
     <title>Decimo-Escalón</title>
     <!-- Custom CSS -->
-    <link href="<?= base_url ?>assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
+    <link href="assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
-    <link href="<?= base_url ?>assets/dist/css/style.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url ?>assets/dist/css/miCss.css">
+    <link href="assets/dist/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/dist/css/miCss.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,17 +57,17 @@
                         <a href="<?=base_url_tienda?>">
                             <b class="logo-icon">
                                 <!-- Dark Logo icon -->
-                                <img src="<?= base_url ?>assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                                <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
                                 <!-- Light Logo icon -->
-                                <img src="<?= base_url ?>assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+                                <img src="assets/images/logo-icon.png" alt="homepage" class="light-logo" />
                             </b>
                             <!--End Logo icon -->
                             <!-- Logo text -->
                             <span class="logo-text">
                                 <!-- dark Logo text -->
-                                <img src="<?= base_url ?>assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                                <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo" />
                                 <!-- Light Logo text -->
-                                <img src="<?= base_url ?>assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                                <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
                             </span>
                         </a>
                     </div>
@@ -115,17 +114,17 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
-                                    <img src="<?= base_url ?>assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle"
+                                    <img src="assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle"
                                         width="40">
-                                    <span class="ml-2 d-none d-lg-inline-block"><span>Hola,</span> <span
-                                            class="text-dark"><?=$_SESSION['identity']->nombre?></span> <i data-feather="chevron-down"
+                                    <span class="ml-2 d-none d-lg-inline-block"><span>Hola, <?=$_SESSION['identity']->nombre?></span> <span
+                                            class="text-dark"></span> <i data-feather="chevron-down"
                                             class="svg-icon"></i></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                                     <a class="dropdown-item" href="<?=base_url_tienda?>usuario/cuenta"><i data-feather="user"
                                             class="svg-icon mr-2 ml-1"></i>
                                         Mi perfil</a>
-                                    <a class="dropdown-item" href="#"><i data-feather="power"
+                                    <a class="dropdown-item" href="<?=base_url_tienda?>usuario/logout"><i data-feather="power"
                                             class="svg-icon mr-2 ml-1"></i>
                                         Salir</a>
                                 </div>
@@ -140,4 +139,3 @@
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
-<?php endif; ?>

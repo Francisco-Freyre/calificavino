@@ -22,13 +22,8 @@
             return $result;
         }
 
-        public function getNewVinoId($id){
-            $sql = "SELECT * FROM new_vinos WHERE id = $id";
-            return $response = $this->db->query($sql);
-        }
-
-        public function saveNewVino($nombre, $region, $pais, $uva, $productor, $url_img){
-            $sql = "INSERT INTO new_vinos VALUES (null, '$nombre', '$pais', '$region', '$uva', '$productor', '$url_img');";
+        public function saveNewVinos($nombre, $region, $pais, $uva, $productor, $url_img){
+            $sql = "INSERT INTO new_vinos VALUES (null, '$nombre', '$region', '$pais', '$uva', '$productor', '$url_img');";
             $save = $this->db->query($sql);
             $result = false;
             if($save){
@@ -57,6 +52,80 @@
             return $respuesta;
         }
 
+        public function promedioCataVino($id_vino){
+            $sql = "SELECT AVG(calificacion) AS promedio, id_vino FROM catas GROUP BY id_vino HAVING id_vino = $id_vino;";
+            return $respuesta = $this->db->query($sql);
+        }
+
+        public function getNewVinoId($id){
+            $sql = "SELECT * FROM new_vinos WHERE id = $id";
+            return $response = $this->db->query($sql);
+        }
+
+        public function getCosecha($id){
+            $sql = "SELECT * FROM cosechas WHERE id_vino = $id";
+            return $response = $this->db->query($sql);
+        }
+
+        public function getPalabrasAromas($id_cata){
+            $sql = "SELECT * FROM palabras_aromas WHERE id_cata = $id_cata";
+            return $response = $this->db->query($sql);
+        }
+
+        public function getPalabrasGustos($id_cata){
+            $sql = "SELECT * FROM palabras_gustos WHERE id_cata = $id_cata";
+            return $response = $this->db->query($sql);
+        }
+
+        public function saveCosecha($cosecha, $alcohol, $id_vino, $id_cata){
+            $sql = "INSERT INTO cosechas VALUES (null, $cosecha, $alcohol, $id_vino, $id_cata);";
+            return $save = $this->db->query($sql);
+        }
+
+        public function savePalabraAromas($palabra, $id_cata){
+            $sql = "INSERT INTO palabras_aromas VALUES (null, '$palabra', $id_cata);";
+            $save = $this->db->query($sql);
+            if($save){
+                $save = $this->db->insert_id;
+            }
+
+            return $save;
+        }
+
+        public function savePalabraGustos($palabra, $id_cata){
+            $sql = "INSERT INTO palabras_gustos VALUES (null, '$palabra', $id_cata);";
+            $save = $this->db->query($sql);
+            if($save){
+                $save = $this->db->insert_id;
+            }
+
+            return $save;
+        }
+
+        public function deletePalabraAromas($id){
+            $sql = "DELETE FROM palabras_aromas WHERE id = $id";
+            return $respuesta = $this->db->query($sql);
+        }
+
+        public function deletePalabraGustos($id){
+            $sql = "DELETE FROM palabras_gustos WHERE id = $id";
+            return $respuesta = $this->db->query($sql);
+        }
+
+        public function calificacionCata($id_cata){
+            $sql = "SELECT visual.calificacion AS calif1, aromatica.calificacion AS calif2, gustativo.calificacion AS calif3, apreciacion_personal.calificacion AS calif4 FROM visual, aromatica, gustativo, apreciacion_personal WHERE visual.id_cata = $id_cata AND aromatica.id_cata = $id_cata AND gustativo.id_cata = $id_cata AND apreciacion_personal.id_cata = $id_cata";
+            $respuesta = $this->db->query($sql);
+            if($respuesta){
+                $res = $respuesta->fetch_object();
+                $total = $res->calif1 + $res->calif2 + $res->calif3 + $res->calif4;
+                return $total;
+            }
+            else{
+                return false;
+            }
+            
+        }
+
         public function save($nombre, $region, $pais, $uva, $productor, $cosecha, $alcohol, $url_img){
             $sql = "INSERT INTO vinos VALUES (null, '$nombre', '$region', '$pais', '$uva', '$productor', '$cosecha', '$alcohol', '$url_img');";
             $save = $this->db->query($sql);
@@ -73,7 +142,7 @@
             $save = $this->db->query($sql);
             $result = false;
             if($save){
-                $result = true;
+                $result = $this->db->insert_id;
             }
 
             return $result;
@@ -95,13 +164,11 @@
             return $response = $this->db->query($sql);
         }
 
-        public function deleteCata($id_cata, $id_vino){
+        public function deleteCata($id_cata){
             $sql = "DELETE FROM catas WHERE id = $id_cata";
             $response = $this->db->query($sql);
-            $sql = "DELETE FROM vinos WHERE id = $id_vino";
-            $response2 = $this->db->query($sql);
 
-            if($response && $response2){
+            if($response){
                 return true;
             }
             else{
@@ -126,7 +193,7 @@
             $catas = $this->db->query($sql);
             $result = [];
             while ($cat = $catas->fetch_object()) {
-                $sql2 = "SELECT nombre, cosecha, url_img FROM vinos WHERE id = $cat->id_vino";
+                $sql2 = "SELECT new_vinos.nombre, cosechas.cosecha, new_vinos.url_img FROM new_vinos, cosechas WHERE new_vinos.id = $cat->id_vino AND cosechas.id_vino = $cat->id_vino AND cosechas.id_cata = $cat->id";
                 $vino = $this->db->query($sql2);
                 $vi = $vino->fetch_object();
                 $AVino = array(
@@ -193,8 +260,8 @@
             return $response = $this->db->query($sql);
         }
 
-        public function saveAroma($id, $intensidad, $complejidad, $aromas, $calificacion){
-            $sql = "INSERT INTO aromatica VALUES (NULL, $id, '$intensidad', '$complejidad', '$aromas', '$calificacion');";
+        public function saveAroma($id, $intensidad, $complejidad, $calificacion){
+            $sql = "INSERT INTO aromatica VALUES (NULL, $id, '$intensidad', '$complejidad', '', '$calificacion');";
             $save = $this->db->query($sql);
 
             $result = false;
@@ -205,8 +272,8 @@
             return $result;
         }
 
-        public function updateAroma($id, $intensidad, $complejidad, $aromas, $calificacion){
-            $sql = "UPDATE aromatica SET intensidad = '$intensidad', complejidad = '$complejidad', aromas = '$aromas', calificacion = '$calificacion' WHERE id_cata = $id";
+        public function updateAroma($id, $intensidad, $complejidad, $calificacion){
+            $sql = "UPDATE aromatica SET intensidad = '$intensidad', complejidad = '$complejidad', aromas = '', calificacion = '$calificacion' WHERE id_cata = $id";
             $save = $this->db->query($sql);
 
             $result = false;
@@ -222,8 +289,8 @@
             return $response = $this->db->query($sql);
         }
 
-        public function saveGusto($id, $dulce, $acidez, $tanino, $alcohol, $cuerpo, $permanencia, $retrogusto, $calificacion){
-            $sql = "INSERT INTO gustativo VALUES (NULL, $id, '$dulce', '$acidez', '$tanino', '$alcohol', '$cuerpo', '$permanencia', '$retrogusto', '$calificacion');";
+        public function saveGusto($id, $dulce, $acidez, $tanino, $alcohol, $cuerpo, $permanencia, $calificacion){
+            $sql = "INSERT INTO gustativo VALUES (NULL, $id, '$dulce', '$acidez', '$tanino', '$alcohol', '$cuerpo', '$permanencia', '', '$calificacion');";
             $save = $this->db->query($sql);
 
             $result = false;
@@ -234,8 +301,8 @@
             return $result;
         }
 
-        public function updateGusto($id, $dulce, $acidez, $tanino, $alcohol, $cuerpo, $permanencia, $retrogusto, $calificacion){
-            $sql = "UPDATE gustativo SET dulce = '$dulce', acidez = '$acidez', tanino = '$tanino', alcohol = '$alcohol', cuerpo = '$cuerpo', permanencia = '$permanencia', retrogusto = '$retrogusto', calificacion = '$calificacion' WHERE id_cata = $id";
+        public function updateGusto($id, $dulce, $acidez, $tanino, $alcohol, $cuerpo, $permanencia, $calificacion){
+            $sql = "UPDATE gustativo SET dulce = '$dulce', acidez = '$acidez', tanino = '$tanino', alcohol = '$alcohol', cuerpo = '$cuerpo', permanencia = '$permanencia', retrogusto = '', calificacion = '$calificacion' WHERE id_cata = $id";
             $save = $this->db->query($sql);
 
             $result = false;
@@ -280,4 +347,6 @@
             return $response = $this->db->query($sql);
         }   
     }
+
+    //SELECT SUM(visual.calificacion+aromatica.calificacion+gustativo.calificacion+apreciacion_personal.calificacion) FROM visual, aromatica, gustativo, apreciacion_personal WHERE visual.id_cata = 60 AND aromatica.id_cata = 60 AND gustativo.id_cata = 60 AND apreciacion_personal.id_cata = 60
 ?>

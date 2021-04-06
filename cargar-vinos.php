@@ -1,15 +1,27 @@
-            <!-- ============================================================== -->
+<?php
+    include_once 'config/parameters.php';
+    include_once 'helpers/session.php';
+    include_once 'views/layaut/header.php';
+    include_once 'views/layaut/sidebar.php';
+    require_once 'models/vinos.php';
+    require_once 'config/db.php';
+
+    $vino = new vinos();
+    $cata = $vino->getNewVinos();
+?>
+
+ <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Editar vino</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Nuevo vino</h4>
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb m-0 p-0">
                                     <li class="breadcrumb-item"><a href="index.html" class="text-muted">Vinos</a></li>
-                                    <li class="breadcrumb-item text-muted active" aria-current="page">Edicion</li>
+                                    <li class="breadcrumb-item text-muted active" aria-current="page">Creacion</li>
                                 </ol>
                             </nav>
                         </div>
@@ -23,7 +35,7 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                <form action="<?=base_url?>vino/updateVino&id=<?=$_GET['id']?>" method="POST" enctype="multipart/form-data">
+                <form action="controllers/modelo_vinos.php" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
                             <div class="card">
@@ -35,21 +47,21 @@
                                 </div>
                             </div>
                         </div>
-                        <?php while($vin = $vinos->fetch_object()): ?>
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Información de la etiqueta</h4>             
+                                        <h4 class="card-title">Información de la etiqueta</h4>
+                                        
                                             <div class="form-body">
                                                 <div class="row">
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <input type="text" name="nombre" class="form-control"
-                                                                placeholder="Nombre" value="<?=$vin->nombre?>" required>
+                                                                placeholder="Nombre" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <input list="paises" type="text" name="pais" class="form-control"
-                                                                placeholder="Pais" value="<?=$vin->pais?>" required>
+                                                                placeholder="Pais" required>
                                                             <datalist id="paises">
                                                                 <option value="ARGENTINA"></option>
                                                                 <option value="AUSTRALIA"></option>
@@ -72,7 +84,7 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <input list="regiones" type="text" name="region" class="form-control"
-                                                                placeholder="Region" value="<?=$vin->region?>" required>
+                                                                placeholder="Region" required>
                                                             <datalist id="regiones">
                                                                 <option value="VALLE DE UCO"></option>
                                                                 <option value="LUJAN DE CUYO"></option>
@@ -268,7 +280,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <input list="uvas" type="text" name="uva" class="form-control"
-                                                                placeholder="Uva" value="<?=$vin->uva?>" required>
+                                                                placeholder="Uva" required>
                                                             <datalist id="uvas">
                                                                 <option value="CHARDONNAY"></option>
                                                                 <option value="SAUVIGNON BLANC"></option>
@@ -325,24 +337,68 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <input type="text" name="productor" class="form-control"
-                                                                placeholder="Productor" value="<?=$vin->productor?>" required>
+                                                                placeholder="Productor" required>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-actions">
                                                 <div class="text-right">
+                                                    <input type="text" value="guardar-vino" name="accion" style="display: none;">
                                                     <button type="submit" class="btn btn-info">Guardar</button>
                                                 </div>
                                             </div>
+                                        
                                     </div>
                                 </div>
                             </div>
-                        <?php endwhile; ?>
                         </div>
                     </div>
                 </form>
-                
+                    <!-- basic table -->
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Vinos en existencia</h4>
+                                    <div class="table-responsive">
+                                        <table id="zero_config" class="table table-striped no-wrap">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th>Img</th>
+                                                    <th>Nombre</th>
+                                                    <th>Uva</th>
+                                                    <th>Pais</th>
+                                                    <th>Region</th>
+                                                    <th>Productor</th>
+                                                    <th>Accion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php while($cat = $cata->fetch_object()): ?>   
+                                                <tr class="text-center">
+                                                    <td><img  src="<?=$cat->url_img?>" alt="imagen" class="rounded-circle" width="50" height="50"></td>
+                                                    <td><a href="editVino.php?id=<?=$cat->id?>" style="color: #ba2e53;"><?=$cat->nombre?></a></td>
+                                                    <td><?=$cat->uva?></td>
+                                                    <td><?=$cat->pais?></td>
+                                                    <td><?=$cat->region?></td>
+                                                    <td><?=$cat->productor?></td>
+                                                    <td>
+                                                    <a href="controllers/modelo_vinos.php?accion=elimina&&id=<?=$cat->id?>" class="btn waves-effect waves-light btn-danger" data-toggle="tooltip" data-placement="top" title data-original-title="Eliminar">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                    </td>
+                                                </tr>
+                                            <?php endwhile; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
+
+<?php include_once 'views/layaut/footer.php'; ?>
