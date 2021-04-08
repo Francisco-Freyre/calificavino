@@ -22,6 +22,12 @@
             return $result;
         }
 
+        public function getVinosCatados(){
+            $sql = "SELECT * FROM new_vinos WHERE id IN (SELECT id_vino FROM catas);";
+            $result = $this->db->query($sql);
+            return $result;
+        }
+
         public function saveNewVinos($nombre, $region, $pais, $uva, $productor, $url_img){
             $sql = "INSERT INTO new_vinos VALUES (null, '$nombre', '$region', '$pais', '$uva', '$productor', '$url_img');";
             $save = $this->db->query($sql);

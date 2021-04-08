@@ -7,17 +7,17 @@
     require_once 'config/db.php';
     $vino = new vinos();
 
-    $vinos = $vino->getNewVinos();
+    $vinos = $vino->getVinosCatados();
 ?>
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Cards</h4>
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Vinos</h4>
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb m-0 p-0">
-                                    <li class="breadcrumb-item"><a href="index.html" class="text-muted">Home</a></li>
-                                    <li class="breadcrumb-item text-muted active" aria-current="page">Library</li>
+                                    <li class="breadcrumb-item"><a href="index.html" class="text-muted">Inicio</a></li>
+                                    <li class="breadcrumb-item text-muted active" aria-current="page">Lista de vinos</li>
                                 </ol>
                             </nav>
                         </div>
@@ -45,7 +45,7 @@
                             <?php while($vin = $vinos->fetch_object()): ?>
                                 <div class="col-lg-3 col-md-6">
                                     <!-- Card -->
-                                    <div class="card">
+                                    <div class="card vinos" style="width: 232px; height: 450px;">
                                         <img class="card-img-top img-fluid" src="<?=base_url.$vin->url_img?>"
                                             alt="Card image cap">
                                         <div class="card-body">
@@ -54,7 +54,7 @@
                                                 $promedio = $vino->promedioCataVino($vin->id);
                                                 $prom = $promedio->fetch_object();
                                             ?>
-                                            <p class="card-text">Este vino tiene una calificacion promedio de: <?=$prom->promedio?></p>
+                                            <p class="card-text">Este vino tiene una calificacion promedio de: <?= bcdiv($prom->promedio, '1', 2);?></p>
                                             <!--<a href="javascript:void(0)" class="btn btn-primary">Go somewhere</a>-->
                                         </div>
                                     </div>

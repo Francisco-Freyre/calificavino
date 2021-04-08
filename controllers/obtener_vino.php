@@ -80,10 +80,9 @@
                     $saveCos = $vino->saveCosecha($cosecha, $alcohol, $id, $save);
                 }
                 else{
-                    $respuesta = array(
-                        'respuesta' => 'id es igual a falso'
-                    );
-                    die(json_encode($respuesta));
+                    echo "<script>";
+                    echo "alert('No se pudo guardar el vino');";
+                    echo "</script>";
                 }
                 if ($save != false && $saveCos) {
                     $respuesta = array(
@@ -93,14 +92,14 @@
                     echo "window.location.replace('".base_url."calificacion.php?id_cata=$save');";
                     echo "</script>";
                 } else {
-                    $respuesta = array(
-                        'respuesta' => 'No se pudo guardar'
-                    );
+                    echo "<script>";
+                    echo "alert('La cata o la cosecha no se pudieron guardar');";
+                    echo "</script>";
                 }
             } else {
-                $respuesta = array(
-                    'respuesta' => 'Lo datos estan vacios'
-                );
+                echo "<script>";
+                echo "alert('Algun dato da falso');";
+                echo "</script>";
             }
         }
     }

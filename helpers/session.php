@@ -8,7 +8,7 @@
     function revisar_usuario(){
         $calificador = false;
         if(isset($_SESSION['identity'])){
-            if($_SESSION['identity']->califcar == "on"){
+            if($_SESSION['identity']->calificaciones == "on"){
                 $calificador = true;
             }
         }

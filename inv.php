@@ -1,8 +1,5 @@
-<?php 
+<?php
     include_once 'config/parameters.php';
-    include_once 'helpers/session.php';
-    include_once 'views/layaut/header.php';
-    include_once 'views/layaut/sidebar.php';
     require_once 'models/vinos.php';
     require_once 'config/db.php';
 
@@ -26,36 +23,49 @@
         $gustos = $vino->getPalabrasGustos($OCata->id);
     }
 ?>
-<!-- ============================================================== -->
-<!-- Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
-<div class="page-breadcrumb">
-    <div class="row">
-        <div class="col-7 align-self-center">
-            <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Cata</h4>
-            <div class="d-flex align-items-center">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb m-0 p-0">
-                        <li class="breadcrumb-item"><a href="index.html" class="text-muted">Inicio</a></li>
-                        <li class="breadcrumb-item text-muted active" aria-current="page">Resumen</li>
-                    </ol>
-                </nav>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url ?>assets/images/favicon.png">
+    <title>Decimo-Escalón</title>
+    <meta property="og:url"           content="<?=base_url?>inv.php?id=<?=$_GET['id']?>" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="<?= $vin->nombre ?> - <?= $cos->cosecha ?>" />
+    <meta property="og:description"   content="Este vino tiene una calificacion final de <?=$OCata->calificacion?>" />
+    <meta property="og:image"         content="<?= base_url ?><?= $vin->url_img ?>" />
+    <!-- Custom CSS -->
+    <link href="<?= base_url ?>assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="<?= base_url ?>assets/dist/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url ?>assets/dist/css/miCss.css">
+</head>
 
-            <div class="text-right">
-                <a href="#" class="btn waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title data-original-title="Compartir">
-                    <i class="far fa-share-square"></i>
-                </a>
-                <a href="editCalif.php?id=<?=$OCata->id?>" class="btn waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title data-original-title="Editar cata">
-                    <i class="far fa-edit"></i>
-                </a>
-                <a href="controllers/obtener_vino.php?id_catado=<?=$OCata->id?>" class="btn waves-effect waves-light btn-danger" data-toggle="tooltip" data-placement="top" title data-original-title="Eliminar">
-                    <i class="fas fa-trash"></i>
-                </a>
-            </div>
+<body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v9.0" nonce="4wgy5dsD"></script>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
         </div>
     </div>
-</div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
 <!-- ============================================================== -->
 <!-- End Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
@@ -86,6 +96,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -131,11 +142,6 @@
                         <p class="card-text">Intensidad: <?= $aro->intensidad ?></p>
                         <p class="card-text">Complejidad: <?= $aro->complejidad ?></p>
                         <p class="card-text">Aromas: <?= $aro->aromas ?></p>
-                        <ul>
-                            <?php while($ar = $aromas->fetch_object()): ?>
-                            <li><?=$ar->palabra?></li>
-                            <?php endwhile; ?>
-                        </ul>
                     </div>
 
                 </div>
@@ -164,11 +170,6 @@
                     <p class="card-text">Cuerpo: <?= $gus->cuerpo ?></p>
                     <p class="card-text">Permanencia: <?= $gus->permanencia ?></p>
                     <p class="card-text">Retrogusto: <?= $gus->retrogusto ?></p>
-                    <ul>
-                        <?php while($gus = $gustos->fetch_object()): ?>
-                        <li><?=$gus->palabra?></li>
-                        <?php endwhile; ?>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -195,7 +196,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title text-center">Calificación final - <?= $vino->calificacionCata($OCata->id) ?></h3>
+                    <h3 class="card-title text-center">Calificación final - <?= $OCata->calificacion ?></h3>
                 </div>
             </div>
         </div>
