@@ -58,7 +58,8 @@
                                                                 placeholder="Nombre" required>
                                                             <datalist id="nombres">
                                                                 <?php while($vin = $newVinos->fetch_object()): ?>
-                                                                    <option data-id="<?=$vin->id?>" value="<?=$vin->nombre?> - <?=$vin->uva?>"></option>
+                                                                    <?php $uvas = $vinos->getUvas($vin->id); ?>
+                                                                    <option data-id="<?=$vin->id?>" value="<?=$vin->nombre?> - <?php while($uva = $uvas->fetch_object()){echo $uva->uva." - ";}?>"></option>
                                                                 <?php endwhile;?>
                                                             </datalist>
                                                         </div>
@@ -282,71 +283,8 @@
                                                             </datalist>
                                                         </div>
                                                         <div class="form-group">
-                                                            <input list="uvas" type="text" name="uva" id="uva2" class="form-control"
-                                                                placeholder="Uva" required>
-                                                            <datalist id="uvas">
-                                                                <option value="CHARDONNAY"></option>
-                                                                <option value="SAUVIGNON BLANC"></option>
-                                                                <option value="TORRONTES"></option>
-                                                                <option value="PINOT GRIGIO"></option>
-                                                                <option value="PINOT GRIS"></option>
-                                                                <option value="RIESLING"></option>
-                                                                <option value="GEWÜRZTRAMINER"></option>
-                                                                <option value="ALBARIÑO"></option>
-                                                                <option value="PALOMINO"></option>
-                                                                <option value="MACABEO"></option>
-                                                                <option value="VERDEJO"></option>
-                                                                <option value="VIOGNER"></option>
-                                                                <option value="CHENIN BLANC"></option>
-                                                                <option value="MOSCATEL"></option>
-                                                                <option value="SEMILLÓN"></option>
-                                                                <option value="PARELLADA"></option>
-                                                                <option value="XARELLO"></option>
-                                                                <option value="AGLIÁNICO"></option>
-                                                                <option value="BARBERA"></option>
-                                                                <option value="BONARDA"></option>
-                                                                <option value="CABERNET FRANC"></option>
-                                                                <option value="CABERNET SAUVIGNON"></option>
-                                                                <option value="CARMENERE"></option>
-                                                                <option value="CARIGNAN"></option>
-                                                                <option value="CORVINA"></option>
-                                                                <option value="DOLCETTO"></option>
-                                                                <option value="GAMAY"></option>
-                                                                <option value="GARNACHA"></option>
-                                                                <option value="GRACIANO"></option>
-                                                                <option value="MALBEC"></option>
-                                                                <option value="MERLOT"></option>
-                                                                <option value="MISIÓN"></option>
-                                                                <option value="MOURVEDRE"></option>
-                                                                <option value="NEBBIOLO"></option>
-                                                                <option value="NERO D' AVOLA"></option>
-                                                                <option value="PETIT SYRAH"></option>
-                                                                <option value="PETIT VERDOT"></option>
-                                                                <option value="PINOT NOIR"></option>
-                                                                <option value="PINOTAGE"></option>
-                                                                <option value="PRIMITIVO"></option>
-                                                                <option value="SANGIOVESE"></option>
-                                                                <option value="SYRAH"></option>
-                                                                <option value="TANNAT"></option>
-                                                                <option value="TEMPRANILLO"></option>
-                                                                <option value="TINTA DE TORO"></option>
-                                                                <option value="TINTA FINA"></option>
-                                                                <option value="ZINFANDEL"></option>
-                                                            </datalist>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-5">
-                                                        <div class="form-group">
                                                             <input type="text" name="productor" id="productor2" class="form-control"
                                                                 placeholder="Productor" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-5">
-                                                        <div class="form-group">
-                                                            <input type="text" name="cosecha" class="form-control"
-                                                                placeholder="Cosecha" pattern="(^[0-9]{1,4})" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -355,6 +293,12 @@
                                                         <div class="form-group">
                                                             <input type="text" name="alcohol" class="form-control"
                                                                pattern="(^[0-9]{1,3}$|^[0-9]{1,2}\.[0-9]{1,2}$)" placeholder="% del Alcohol" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <input type="text" name="cosecha" class="form-control"
+                                                                placeholder="Cosecha" pattern="(^[0-9]{1,4})" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -372,6 +316,14 @@
                 </form>
                 <div class="row">
                     <div class="col-12" id="busca-vino">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <img src="assets/images/users/botella.jpg" alt="user" id="img" class="rounded-circle" width="100" >
+                                <br>
+                                <br>                               
+                            </div>
+                        </div>
+                        
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Busca el vino que deseas catar</h4>  

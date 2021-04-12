@@ -28,8 +28,8 @@
             return $result;
         }
 
-        public function saveNewVinos($nombre, $region, $pais, $uva, $productor, $url_img){
-            $sql = "INSERT INTO new_vinos VALUES (null, '$nombre', '$region', '$pais', '$uva', '$productor', '$url_img');";
+        public function saveNewVinos($nombre, $region, $pais, $productor, $url_img){
+            $sql = "INSERT INTO new_vinos VALUES (null, '$nombre', '$pais', '$region', '', '$productor', '$url_img');";
             $save = $this->db->query($sql);
             $result = false;
             if($save){
@@ -78,6 +78,10 @@
             return $response = $this->db->query($sql);
         }
 
+        public function getUvas($id_vino){
+            return $response = $this->db->query("SELECT * FROM uvas WHERE id_vino = $id_vino");
+        }
+
         public function getPalabrasGustos($id_cata){
             $sql = "SELECT * FROM palabras_gustos WHERE id_cata = $id_cata";
             return $response = $this->db->query($sql);
@@ -108,6 +112,28 @@
             return $save;
         }
 
+        public function saveUva($uva, $id_vino){
+            $sql = "INSERT INTO uvas VALUES (null, '$uva', $id_vino);";
+            $save = $this->db->query($sql);
+            if($save){
+                $save = $this->db->insert_id;
+            }
+
+            return $save;
+        }
+
+        public function verifUva($id_vino){
+            $sql = "SELECT * FROM uvas WHERE id_vino = $id_vino";
+            $res = $this->db->query($sql);
+
+            if($res->num_rows > 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
         public function deletePalabraAromas($id){
             $sql = "DELETE FROM palabras_aromas WHERE id = $id";
             return $respuesta = $this->db->query($sql);
@@ -115,6 +141,11 @@
 
         public function deletePalabraGustos($id){
             $sql = "DELETE FROM palabras_gustos WHERE id = $id";
+            return $respuesta = $this->db->query($sql);
+        }
+
+        public function deleteUvas($id){
+            $sql = "DELETE FROM uvas WHERE id = $id";
             return $respuesta = $this->db->query($sql);
         }
 

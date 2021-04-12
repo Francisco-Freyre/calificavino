@@ -46,12 +46,14 @@ $(document).ready(function() {
             url:'controllers/obtener_vino.php',
             data:'id='+id,
             success:function(respuesta){
+                console.log(respuesta);
                 var resp = $.parseJSON(respuesta);
-                $('#nombre').val(resp.nombre);
-                $('#pais').val(resp.pais);
-                $('#region').val(resp.region);
-                $('#uva').val(resp.uva);
-                $('#productor').val(resp.productor);
+                $('#nombre').val(resp.vino.nombre);
+                $('#pais').val(resp.vino.pais);
+                $('#region').val(resp.vino.region);
+                $('#uva').val(resp.uvas);
+                $('#productor').val(resp.vino.productor);
+                $("#img").attr("src",resp.vino.url_img);
             }
         });
         $('#pregunta').show();
@@ -223,5 +225,116 @@ $(document).ready(function() {
                 console.log(data);
             }
         });
+    });
+
+    $('#uva').keypress(function(e){
+        let contenido = $('#uva').val();
+        let id = $('#uva').data('id');
+        if(e.which == 13){
+            e.preventDefault();
+            $.ajax({
+                type:'GET',
+                url:'controllers/modelo_palabras.php',
+                data:'accion=insertar-uva&&id='+id+'&&palabra='+contenido,
+                dataType: 'json',
+                success:function(respuesta){
+                    let resp = respuesta;
+                    if(resp.respuesta === "exito"){
+                        let chip = $(`<div class="chip" id="uva`+resp.id+`">`+contenido+`<span id="closebtn3" class="closebtn" data-id="`+resp.id+`">&times;</span></div>`);
+                        $('#chipss3').append(chip);
+                        $('#uva').val("");
+                    }
+                    else if(resp.respuesta === "error"){
+                        alert("No se pudo añadir el aroma: " + contenido);
+                    }
+                },
+                error:function(respuesta){
+                    console.log(respuesta);
+                }   
+            }); 
+        }
+    });
+
+    $(document).on('click', '#closebtn3',function(){
+        let id = $(this).data('id');
+        $.ajax({
+            type: 'GET',
+            url: 'controllers/modelo_palabras.php',
+            data: 'accion=borrar-uva&&id='+id,
+            dataType: 'json',
+            success:function(respuesta){
+                let resp = respuesta;
+                if(resp.respuesta === "exito"){
+                    $('#uva'+id).hide();
+                }
+                else if(resp.respuesta === "error"){
+                    alert("No se pudo eliminar el aroma");
+                }
+            },
+            error:function(respuesta){
+                console.log(respuesta);
+            }  
+        });
+    });
+
+    $('#guardar-uva').on('click', function(){
+        let id = $(this).data('id');
+        $(location).attr('href','controllers/modelo_palabras.php?accion=verif-uvas&&id_vino='+id);
+    });
+
+    $('#uva2').keypress(function(e){
+        let contenido = $('#uva2').val();
+        let id = $('#uva2').data('id');
+        if(e.which == 13){
+            e.preventDefault();
+            $.ajax({
+                type:'GET',
+                url:'controllers/modelo_palabras.php',
+                data:'accion=insertar-uva&&id='+id+'&&palabra='+contenido,
+                dataType: 'json',
+                success:function(respuesta){
+                    let resp = respuesta;
+                    if(resp.respuesta === "exito"){
+                        let chip = $(`<div class="chip" id="uva`+resp.id+`">`+contenido+`<span id="closebtn4" class="closebtn" data-id="`+resp.id+`">&times;</span></div>`);
+                        $('#chipss4').append(chip);
+                        $('#uva2').val("");
+                    }
+                    else if(resp.respuesta === "error"){
+                        alert("No se pudo añadir el aroma: " + contenido);
+                    }
+                },
+                error:function(respuesta){
+                    console.log(respuesta);
+                }   
+            }); 
+        }
+    });
+
+    $(document).on('click', '#closebtn4',function(){
+        let id = $(this).data('id');
+        $.ajax({
+            type: 'GET',
+            url: 'controllers/modelo_palabras.php',
+            data: 'accion=borrar-uva&&id='+id,
+            dataType: 'json',
+            success:function(respuesta){
+                let resp = respuesta;
+                if(resp.respuesta === "exito"){
+                    $('#uva'+id).hide();
+                }
+                else if(resp.respuesta === "error"){
+                    alert("No se pudo eliminar el aroma");
+                }
+            },
+            error:function(respuesta){
+                console.log(respuesta);
+            }  
+        });
+    });
+
+    $('#guardar-uva-dos').on('click', function(){
+        let id = $(this).data('id');
+        let id_cata = $(this).data('idcata');
+        $(location).attr('href','controllers/modelo_palabras.php?accion=verif-uvas-2&&id_vino='+id+'&&id_cata='+id_cata);
     });
 });

@@ -9,7 +9,16 @@
         $vinos = new vinos();
         $newVino = $vinos->getNewVinoId($_GET['id']);
         $vino = $newVino->fetch_object();
-        die(json_encode($vino));
+        $uvas = $vinos->getUvas($_GET['id']);
+        $enUva = "";
+        while($uva = $uvas->fetch_object()){
+            $enUva .= $uva->uva." - ";
+        }
+        $JVino = array(
+            'vino' => $vino,
+            'uvas' => $enUva
+        );
+        die(json_encode($JVino));
     }
 
     if(isset($_GET['id_catado'])){
@@ -46,7 +55,6 @@
             $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
             $region = isset($_POST['region']) ? $_POST['region'] : false;
             $pais = isset($_POST['pais']) ? $_POST['pais'] : false;
-            $uva = isset($_POST['uva']) ? $_POST['uva'] : false;
             $productor = isset($_POST['productor']) ? $_POST['productor'] : false;
             $cosecha = isset($_POST['cosecha']) ? $_POST['cosecha'] : false;
             $alcohol = isset($_POST['alcohol']) ? $_POST['alcohol'] : false;
@@ -72,9 +80,9 @@
                 }
             }
 
-            if ($nombre && $region && $pais && $uva && $productor && $cosecha && $alcohol && $url_img) {
+            if ($nombre && $region && $pais && $productor && $cosecha && $alcohol && $url_img) {
                 $vino = new vinos();
-                $id = $vino->saveNewVinos($nombre, $region, $pais, $uva, $productor, $url_img);
+                $id = $vino->saveNewVinos($nombre, $region, $pais, $productor, $url_img);
                 if ($id != false) {
                     $save = $vino->saveCata($id, $_SESSION['identity']->id);
                     $saveCos = $vino->saveCosecha($cosecha, $alcohol, $id, $save);
@@ -89,7 +97,7 @@
                         'respuesta' => 'exito'
                     );
                     echo "<script>";
-                    echo "window.location.replace('".base_url."calificacion.php?id_cata=$save');";
+                    echo "window.location.replace('".base_url."uva-vino.php?id_cata=$save&&id_vino=$id');";
                     echo "</script>";
                 } else {
                     echo "<script>";

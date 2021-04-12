@@ -85,6 +85,74 @@
                     die(json_encode($response));
                 }
             }
+
+            if($_GET['accion'] == "insertar-uva"){
+                $vino = new vinos();
+                $uva = $vino->saveUva($_GET['palabra'], $_GET['id']);
+
+                if($uva != false){
+                    $response = array(
+                        'respuesta' => 'exito',
+                        'id' => $uva
+                    );
+
+                    die(json_encode($response));
+                }
+                else{
+                    $response = array(
+                        'respuesta' => 'error'
+                    );
+
+                    die(json_encode($response));
+                }
+            }
+
+            if($_GET['accion'] == "borrar-uva"){
+                $vino = new vinos();
+                $palabraBorrada = $vino->deleteUvas($_GET['id']);
+
+                if($palabraBorrada){
+                    $response = array(
+                        'respuesta' => 'exito',
+                    );
+                    die(json_encode($response));
+                }
+                else{
+                    $response = array(
+                        'respuesta' => 'error'
+                    );
+
+                    die(json_encode($response));
+                }
+            }
+
+            if($_GET['accion'] == "verif-uvas"){
+                $vino = new vinos();
+                $existen = $vino->verifUva($_GET['id_vino']);
+
+                if($existen){
+                    header('Location:../cargar-vinos.php');
+                    exit();
+                }
+                else{
+                    header('Location:uva.php?id='.$_GET['id_vino']);
+                    exit();
+                }
+            }
+
+            if($_GET['accion'] == "verif-uvas-2"){
+                $vino = new vinos();
+                $existen = $vino->verifUva($_GET['id_vino']);
+
+                if($existen){
+                    header('Location:../calificacion.php?id_cata='.$_GET['id_cata']);
+                    exit();
+                }
+                else{
+                    header('Location:uva.php?id='.$_GET['id_vino']);
+                    exit();
+                }
+            }
         }
     }
 ?>

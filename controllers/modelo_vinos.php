@@ -11,7 +11,6 @@ if(isset($_POST)){
             $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
             $region = isset($_POST['region']) ? $_POST['region'] : false;
             $pais = isset($_POST['pais']) ? $_POST['pais'] : false;
-            $uva = isset($_POST['uva']) ? $_POST['uva'] : false;
             $productor = isset($_POST['productor']) ? $_POST['productor'] : false;
             
             $file = $_FILES['img'];
@@ -35,13 +34,13 @@ if(isset($_POST)){
                 }
             }
 
-            if($nombre && $region && $pais && $uva && $productor && $url_img){
+            if($nombre && $region && $pais && $productor && $url_img){
                 $vino = new vinos();
-                $id = $vino->saveNewVinos($nombre, $region, $pais, $uva, $productor, $url_img);
+                $id = $vino->saveNewVinos($nombre, $region, $pais, $productor, $url_img);
                 if($id != false){
                     echo "<script>";
                     echo "alert('Vino guardado correctamente');";
-                    echo "window.location.replace('".base_url."cargar-vinos.php');";
+                    echo "window.location.replace('".base_url."uva.php?id=$id');";
                     echo "</script>";
                 }
                 else{

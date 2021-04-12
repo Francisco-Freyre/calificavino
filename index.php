@@ -49,7 +49,8 @@
                                         <img class="card-img-top img-fluid" src="<?=base_url.$vin->url_img?>"
                                             alt="Card image cap">
                                         <div class="card-body">
-                                            <h4 class="card-title"><?=$vin->nombre?> - <?=$vin->uva?></h4>
+                                            <?php $uvas = $vino->getUvas($vin->id); ?>
+                                            <h4 class="card-title"><?=$vin->nombre?> - <?php while($uva = $uvas->fetch_object()){ echo $uva->uva.' - ';} ?></h4>
                                             <?php 
                                                 $promedio = $vino->promedioCataVino($vin->id);
                                                 $prom = $promedio->fetch_object();

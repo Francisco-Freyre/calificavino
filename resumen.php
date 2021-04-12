@@ -24,6 +24,7 @@
         $perso = $personal->fetch_object();
         $aromas = $vino->getPalabrasAromas($OCata->id);
         $gustos = $vino->getPalabrasGustos($OCata->id);
+        $uvas = $vino->getUvas($OCata->id_vino);
     }
 ?>
 <!-- ============================================================== -->
@@ -80,7 +81,7 @@
                         </div>
                         <div class="col-md-10">
                             <h3 class="card-title"><?= $vin->nombre ?> - <?= $cos->cosecha ?></h3>
-                            <p class="card-text">Uva: <?= $vin->uva ?></p>
+                            <p class="card-text">Uva: <?php while($uva = $uvas->fetch_object()){ echo $uva->uva.' - ';} ?> </p>
                             <p class="card-text">Productor: <?= $vin->productor ?></p>
                             <p class="card-text">Alcohol: <?= $cos->alcohol ?>%</p>
                         </div>
