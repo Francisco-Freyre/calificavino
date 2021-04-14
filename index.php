@@ -55,7 +55,7 @@
                                                 $promedio = $vino->promedioCataVino($vin->id);
                                                 $prom = $promedio->fetch_object();
                                             ?>
-                                            <p class="card-text">Este vino tiene una calificacion promedio de: <?= bcdiv($prom->promedio, '1', 2);?></p>
+                                            <p class="card-text">Calificacion promedio: <?= bcdiv($prom->promedio, '1', 2);?></p>
                                             <!--<a href="javascript:void(0)" class="btn btn-primary">Go somewhere</a>-->
                                         </div>
                                     </div>

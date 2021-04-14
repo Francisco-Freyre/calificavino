@@ -44,14 +44,17 @@
             </div>
 
             <div class="text-right">
-                <a href="#" class="btn waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title data-original-title="Compartir">
+                <a href="#" class="btn waves-effect waves-light btn-info" data-toggle="modal" data-target="#myModal">
                     <i class="far fa-share-square"></i>
+                    Compartir
                 </a>
-                <a href="editCalif.php?id=<?=$OCata->id?>" class="btn waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title data-original-title="Editar cata">
-                    <i class="far fa-edit"></i>
+                <a href="editCalif.php?id=<?=$OCata->id?>" class="btn waves-effect waves-light btn-success">
+                    <i class="far fa-edit"></i>    
+                    Editar
                 </a>
-                <a href="controllers/obtener_vino.php?id_catado=<?=$OCata->id?>" class="btn waves-effect waves-light btn-danger" data-toggle="tooltip" data-placement="top" title data-original-title="Eliminar">
+                <a href="controllers/obtener_vino.php?id_catado=<?=$OCata->id?>" class="btn waves-effect waves-light btn-danger">
                     <i class="fas fa-trash"></i>
+                    Eliminar
                 </a>
             </div>
         </div>
@@ -208,6 +211,35 @@
     <!-- ============================================================== -->
     <!-- End PAge Content -->
     <!-- ============================================================== -->
+    <!-- sample modal content -->
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <form action="controllers/modelo_compartir.php" method="post">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Compartir esta cata en el muro...</h4>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>¿Tienes algo mas que decir acerca de esta cata?</h6>
+                        <p>Compartelo con nosotros.</p>
+                        <hr>
+                        <textarea class="form-control" name="contenido" id="" cols="49" rows="10"></textarea>
+                        <input type="text" value="compartir-cata" name="accion" style="display: none;">
+                        <input type="text" value="<?=$_GET['id']?>" name="id_cata" style="display: none;">
+                        <input type="text" value="<?=$_SESSION['identity']->id?>" name="id_user" style="display: none;">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light"
+                            data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Compartir</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->

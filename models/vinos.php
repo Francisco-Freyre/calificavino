@@ -73,6 +73,11 @@
             return $response = $this->db->query($sql);
         }
 
+        public function getCosechas($id_vino, $id_cata){
+            $sql = "SELECT * FROM cosechas WHERE id_vino = $id_vino AND id_cata = $id_cata;";
+            return $response = $this->db->query($sql);
+        }
+
         public function getPalabrasAromas($id_cata){
             $sql = "SELECT * FROM palabras_aromas WHERE id_cata = $id_cata";
             return $response = $this->db->query($sql);
@@ -146,6 +151,11 @@
 
         public function deleteUvas($id){
             $sql = "DELETE FROM uvas WHERE id = $id";
+            return $respuesta = $this->db->query($sql);
+        }
+
+        public function compartirCata($id_usuario, $id_cata, $contenido){
+            $sql = "INSERT INTO publication VALUES (null, $id_usuario, $id_cata, '$contenido', CURTIME(), CURTIME());";
             return $respuesta = $this->db->query($sql);
         }
 
@@ -384,6 +394,4 @@
             return $response = $this->db->query($sql);
         }   
     }
-
-    //SELECT SUM(visual.calificacion+aromatica.calificacion+gustativo.calificacion+apreciacion_personal.calificacion) FROM visual, aromatica, gustativo, apreciacion_personal WHERE visual.id_cata = 60 AND aromatica.id_cata = 60 AND gustativo.id_cata = 60 AND apreciacion_personal.id_cata = 60
 ?>

@@ -18,7 +18,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="vino.php"
                                 aria-expanded="false"><i data-feather="check" class="feather-icon"></i><span
                                     class="hide-menu">Nueva Cata</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="network.php"
                                 aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
                                     class="hide-menu">Comunity</span></a></li>
                         <!-- End Sidebar navigation -->
