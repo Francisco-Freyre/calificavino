@@ -332,7 +332,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-group">
                                                     <input type="text" list="nombres" id="nombre" name="nombre" class="form-control"
-                                                        placeholder="Nombre">
+                                                        placeholder="Nombre" autocomplete="off">
                                                     <datalist id="nombres">
                                                         <?php while($vin = $newVinos->fetch_object()): ?>
                                                             <option data-id="<?=$vin->id?>" value="<?=$vin->nombre?> - <?=$vin->uva?>"></option>

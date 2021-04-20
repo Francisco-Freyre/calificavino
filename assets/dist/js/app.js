@@ -7,37 +7,6 @@ $(document).ready(function() {
     $('#gustativo').hide();
     $('#personal').hide();
 
-
-    /*$('#guardar-vino-').on('submit', function(e) {
-        e.preventDefault();
-
-        let datos = new FormData(this);
-
-        $.ajax({
-            type:$(this).attr('method'),
-            data: datos,
-            url: $(this).attr('action'),
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-            async: true,
-            cache: false,
-            success: function(data){
-                console.log(data);
-                let resultado = data;
-                if(resultado.respuesta == 'exito'){
-                    alert('bien');
-                }
-                else{
-                    alert('mal');
-                }
-            },
-            error: function(data){
-                console.log(data);
-            }
-        });
-    });*/
-
     $('#nombre').on('change', function(){
         let seleccion = $(this).val();
         let id = $('#nombres').find('option[value="'+seleccion+'"]').data('id');
@@ -86,6 +55,7 @@ $(document).ready(function() {
                 }
             }
         });
+        $('html, body').animate({scrollTop: 0}, 300);
     });
 
     $('#aromas').keypress(function(e){
@@ -154,6 +124,7 @@ $(document).ready(function() {
                 }
             }
         });
+        $('html, body').animate({scrollTop: 0}, 300);
     });
 
     $('#sabores').keypress(function(e){
@@ -225,6 +196,7 @@ $(document).ready(function() {
                 console.log(data);
             }
         });
+        $('html, body').animate({scrollTop: 0}, 300);
     });
 
     $('#uva').keypress(function(e){
@@ -337,4 +309,56 @@ $(document).ready(function() {
         let id_cata = $(this).data('idcata');
         $(location).attr('href','controllers/modelo_palabras.php?accion=verif-uvas-2&&id_vino='+id+'&&id_cata='+id_cata);
     });
+
+    $('#comentario').keypress(function(){
+        let id = $('#comentario').data('id');
+        $.ajax({
+            type:'GET',
+            url:'controllers/modelo_coment.php',
+            data:'accion=findcoment&&id='+id,
+            dataType: 'json',
+            success:function(respuesta){
+                let resp = respuesta;
+                if(resp.respuesta === "exito"){
+
+                }
+                else if(resp.respuesta === "error"){
+                    
+                }
+            },
+            error:function(respuesta){
+                console.log(respuesta);
+            }   
+        }); 
+    });
+
+    /*$('#guardar-vino-').on('submit', function(e) {
+        e.preventDefault();
+
+        let datos = new FormData(this);
+
+        $.ajax({
+            type:$(this).attr('method'),
+            data: datos,
+            url: $(this).attr('action'),
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
+            success: function(data){
+                console.log(data);
+                let resultado = data;
+                if(resultado.respuesta == 'exito'){
+                    alert('bien');
+                }
+                else{
+                    alert('mal');
+                }
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    });*/
 });

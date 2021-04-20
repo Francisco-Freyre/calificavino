@@ -37,6 +37,7 @@
                         <script src="assets/dist/js/pages/calendar/cal-init.js"></script>
                         <script src="assets/dist/js/mijs.js"></script>
                         <script src="assets/dist/js/app.js"></script>
+                        <script src="assets/dist/js/network.js"></script>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es-mx.min.js" integrity="sha512-Qy4cmZ6v7vnVEc0cn/BIj9q15eB98do4hMvu8xtc/H+v+YYpdpDrB35flHS3NPLbZUpe1npSYY/u+Gi3UB61vw==" crossorigin="anonymous"></script>
                         <script src="assets/dist/js/horas.js"></script>
                         </body>

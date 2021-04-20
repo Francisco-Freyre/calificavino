@@ -45,8 +45,8 @@
                             <?php while($vin = $vinos->fetch_object()): ?>
                                 <div class="col-lg-3 col-md-6">
                                     <!-- Card -->
-                                    <div class="card vinos" style="width: 232px; height: 450px;">
-                                        <img class="card-img-top img-fluid" src="<?=base_url.$vin->url_img?>"
+                                    <div class="card vinos" style="width: 232px; height: 550px;">
+                                        <img class="card-img-top img-fluid" width="232" height="288" src="<?=base_url.$vin->url_img?>"
                                             alt="Card image cap">
                                         <div class="card-body">
                                             <?php $uvas = $vino->getUvas($vin->id); ?>
@@ -55,7 +55,7 @@
                                                 $promedio = $vino->promedioCataVino($vin->id);
                                                 $prom = $promedio->fetch_object();
                                             ?>
-                                            <p class="card-text">Calificacion promedio: <?= bcdiv($prom->promedio, '1', 2);?></p>
+                                            <p class="card-text">Calificación: <?= bcdiv($prom->promedio, '1', 2);?></p>
                                             <!--<a href="javascript:void(0)" class="btn btn-primary">Go somewhere</a>-->
                                         </div>
                                     </div>

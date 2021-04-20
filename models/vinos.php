@@ -23,7 +23,7 @@
         }
 
         public function getVinosCatados(){
-            $sql = "SELECT * FROM new_vinos WHERE id IN (SELECT id_vino FROM catas);";
+            $sql = "SELECT * FROM new_vinos WHERE id IN (SELECT id_vino FROM catas) ORDER BY id DESC;";
             $result = $this->db->query($sql);
             return $result;
         }

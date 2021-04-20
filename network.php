@@ -53,12 +53,14 @@ $publicaciones = $networks->getCompartidos();
                         </div>
                     </div>
                     <div class="card-body">
+                        <?php if($public->contenido != ""): ?>
                         <div class="row">
                             <div class="col-md-12">
                                 <p class="card-text"><?=$public->contenido?></p>
                             </div>
                         </div>
                         <hr>
+                        <?php endif; ?>
                         <div class="row">
                             <div class="col-md-2">
                                 <img class="img-fluid" src="<?=$vine->url_img?>" alt="">
@@ -75,7 +77,7 @@ $publicaciones = $networks->getCompartidos();
                         <div class="row">
                             <div class="col-md-12">
                                 <button class="btn btn-light waves-effect waves-light"><img src="assets/images/dislike.png" alt="" srcset=""> Like</button>
-                                <button class="btn btn-light waves-effect waves-light"><i class="far fa-comment"></i> Comentar</button>
+                                <button data-id="<?=$public->id?>" class="btn btn-light waves-effect waves-light btncoment" data-toggle="modal" data-target="#myModal"><i class="far fa-comment"></i> Comentar</button>
                                 <button class="btn btn-light waves-effect waves-light"><i class="far fa-share-square"></i> Compartir</button>
                             </div>
                         </div>
@@ -89,6 +91,25 @@ $publicaciones = $networks->getCompartidos();
     <!-- ============================================================== -->
     <!-- End PAge Content -->
     <!-- ============================================================== -->
+    <!-- sample modal content -->
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Comentarios (0)</h4>
+                    <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                <textarea class="form-control" id="add-coment" data-iduser="<?=$_SESSION['identity']->id?>" data-name="<?=$_SESSION['identity']->nombre?>" placeholder="Escribe aqui un nuevo comentario"  cols="49" rows="2"></textarea>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
