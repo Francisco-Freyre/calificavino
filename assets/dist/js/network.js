@@ -27,19 +27,36 @@ $(document).ready(function() {
                 else{
                     $('.modal-body').empty();
                     for(data of resp){
-                        let comment = $(`
-                            <div class="comentario">
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <img src="assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle" width="30" height="30">
-                                    </div>
-                                    <div class="col-md-11">
-                                        <p><span>`+data.nombre_usuario+`</span></p>
-                                        <p>`+data.contenido+`</p>
+                        let comment = "";
+                        if(data.img === ""){
+                            comment = $(`
+                                <div class="comentario">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <img src="assets/images/usuariodefault.jpg" alt="user" class="rounded-circle" width="30" height="30">
+                                        </div>
+                                        <div class="col-md-11">
+                                            <p><span>`+data.nombre_usuario+`</span></p>
+                                            <p>`+data.contenido+`</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        `);
+                            `);
+                        }else{
+                            comment = $(`
+                                <div class="comentario">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <img src="`+data.img+`" alt="user" class="rounded-circle" width="30" height="30">
+                                        </div>
+                                        <div class="col-md-11">
+                                            <p><span>`+data.nombre_usuario+`</span></p>
+                                            <p>`+data.contenido+`</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `);
+                        }
                         $('.modal-body').append(comment);
                     }
                     $('.modal-title').text('Comentarios ('+ $('.comentario').length +')');
@@ -57,6 +74,7 @@ $(document).ready(function() {
         let contenido = $('#add-coment').val();
         let id = $('#add-coment').data('iduser');
         let nombre = $('#add-coment').data('name');
+        let img = $('#add-coment').data('img');
         let formdata = new FormData();
             formdata.append('accion', 'insertar-coment');
             formdata.append('id_user', id);
@@ -76,19 +94,38 @@ $(document).ready(function() {
                 success:function(respuesta){
                     let resp = respuesta;
                     if(resp.respuesta === "exito"){
-                        let comment = $(`
-                            <div class="comentario">
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <img src="assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle" width="30" height="30">
-                                    </div>
-                                    <div class="col-md-11">
-                                        <p><span>`+nombre+`</span></p>
-                                        <p>`+contenido+`</p>
+                        let comment = "";
+                        if(img === ""){
+                            comment = $(`
+                                <div class="comentario">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <img src="assets/images/usuariodefault.jpg" alt="user" class="rounded-circle" width="30" height="30">
+                                        </div>
+                                        <div class="col-md-11">
+                                            <p><span>`+nombre+`</span></p>
+                                            <p>`+contenido+`</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        `);
+                            `);
+                        }
+                        else{
+                            comment = $(`
+                                <div class="comentario">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <img src="`+img+`" alt="user" class="rounded-circle" width="30" height="30">
+                                        </div>
+                                        <div class="col-md-11">
+                                            <p><span>`+nombre+`</span></p>
+                                            <p>`+contenido+`</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `);
+                        }
+                        
                         $('.modal-body').append(comment);
                         $('.modal-title').text('Comentarios ('+ $('.comentario').length +')');
                         $('#add-coment').val("");

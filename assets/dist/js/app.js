@@ -217,7 +217,7 @@ $(document).ready(function() {
                         $('#uva').val("");
                     }
                     else if(resp.respuesta === "error"){
-                        alert("No se pudo añadir el aroma: " + contenido);
+                        alert("No se pudo añadir la uva: " + contenido);
                     }
                 },
                 error:function(respuesta){

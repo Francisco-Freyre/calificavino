@@ -3,6 +3,11 @@
     include_once 'helpers/session.php';
     include_once 'views/layaut/header.php';
     include_once 'views/layaut/sidebar.php';
+    require_once 'models/vinos.php';
+    require_once 'config/db.php';
+    $vinos = new vinos();
+
+    $uvas = $vinos->getUvas($_GET['id']);
 ?>
 
  <!-- ============================================================== -->
@@ -29,8 +34,7 @@
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <div class="container-fluid">
-                
+            <div class="container-fluid">             
                     <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -94,10 +98,12 @@
                                                             <br>
                                                             <div class="row">
                                                                 <div class="col-md-12" id="chipss3">
-                                                                    <!--<div class="chip">
-                                                                        Ejemplo
-                                                                        <span class="closebtn">&times;</span>
-                                                                    </div>-->
+                                                                    <?php while($uva = $uvas->fetch_object()): ?>
+                                                                    <div class="chip" id="uva<?=$uva->id?>">
+                                                                        <?=$uva->uva?>
+                                                                        <span class="closebtn" id="closebtn3" data-id="<?=$uva->id?>">&times;</span>
+                                                                    </div>
+                                                                    <?php endwhile; ?>
                                                                 </div>
                                                             </div>
                                                         </div>

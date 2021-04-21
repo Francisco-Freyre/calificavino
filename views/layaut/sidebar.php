@@ -12,6 +12,13 @@
                                     class="hide-menu">Inicio
                                 </span></a>
                         </li>
+                        <?php if($_SESSION['identity']->id == 3143): ?>
+                        <li class="sidebar-item"> <a class="sidebar-link" href="index.php"
+                                aria-expanded="false"><i data-feather="user" class="feather-icon"></i><span
+                                    class="hide-menu">Cargar vinos
+                                </span></a>
+                        </li>
+                        <?php endif; ?>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="catas.php"
                                 aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
                                     class="hide-menu">Mis Catas</span></a></li>

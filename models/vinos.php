@@ -39,8 +39,8 @@
             return $result;
         }
 
-        public function updateNewVino($id, $nombre, $region, $pais, $uva, $productor, $url_img){
-            $sql = "UPDATE new_vinos SET nombre = '$nombre', pais = '$pais', region = '$region', uva = '$uva', productor = '$productor', url_img = '$url_img' WHERE id = $id";
+        public function updateNewVino($id, $nombre, $region, $pais, $productor, $url_img){
+            $sql = "UPDATE new_vinos SET nombre = '$nombre', pais = '$pais', region = '$region', uva = '', productor = '$productor', url_img = '$url_img' WHERE id = $id";
             $response = $this->db->query($sql);
             
             if($response){

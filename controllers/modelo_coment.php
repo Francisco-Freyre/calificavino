@@ -21,7 +21,8 @@ if(isset($_GET['accion'])){
                             "id_usuario" => $comment->id_user,
                             "id_comentario" => $comment->id,
                             "nombre_usuario" => $user->nombre,
-                            "contenido" => $comment->contenido
+                            "contenido" => $comment->contenido,
+                            "img" => $user->imagen
                         );
                         array_push($result, $AComent);
                     }

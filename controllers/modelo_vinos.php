@@ -61,7 +61,6 @@ if(isset($_POST)){
                 $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
                 $region = isset($_POST['region']) ? $_POST['region'] : false;
                 $pais = isset($_POST['pais']) ? $_POST['pais'] : false;
-                $uva = isset($_POST['uva']) ? $_POST['uva'] : false;
                 $productor = isset($_POST['productor']) ? $_POST['productor'] : false;
                 
                 $file = $_FILES['img'];
@@ -77,13 +76,13 @@ if(isset($_POST)){
                     $url_img = 'uploads/images/'.$filename;
                 }
 
-                if($nombre && $region && $pais && $uva && $productor && $url_img){
+                if($nombre && $region && $pais && $productor && $url_img){
                     $vino = new vinos();
-                    $id = $vino->updateNewVino($_GET['id'], $nombre, $region, $pais, $uva, $productor, $url_img);
+                    $id = $vino->updateNewVino($_GET['id'], $nombre, $region, $pais, $productor, $url_img);
                     if($id){
                         echo "<script>";
                         echo "alert('Se actualizo correctamente el vino');";
-                        echo "window.location.replace('".base_url."cargar-vinos.php');";
+                        echo "window.location.replace('".base_url."uva-edit.php?id=".$_GET['id']."');";
                         echo "</script>";
                     }
                 }

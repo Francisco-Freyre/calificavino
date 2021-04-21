@@ -44,6 +44,7 @@
                                         <fieldset class="form-group">
                                             <input type="file" name="img" class="form-control-file" id="exampleInputFile" required>
                                         </fieldset>
+                                        <p>El nombre de la imagen no debe tener espacios</p>
                                 </div>
                             </div>
                         </div>
@@ -278,63 +279,6 @@
                                                                 <option value="ZACATECAS"></option>
                                                             </datalist>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <input list="uvas" type="text" name="uva" class="form-control"
-                                                                placeholder="Uva" value="<?=$vin->uva?>" required>
-                                                            <datalist id="uvas">
-                                                                <option value="CHARDONNAY"></option>
-                                                                <option value="SAUVIGNON BLANC"></option>
-                                                                <option value="TORRONTES"></option>
-                                                                <option value="PINOT GRIGIO"></option>
-                                                                <option value="PINOT GRIS"></option>
-                                                                <option value="RIESLING"></option>
-                                                                <option value="GEWÜRZTRAMINER"></option>
-                                                                <option value="ALBARIÑO"></option>
-                                                                <option value="PALOMINO"></option>
-                                                                <option value="MACABEO"></option>
-                                                                <option value="VERDEJO"></option>
-                                                                <option value="VIOGNER"></option>
-                                                                <option value="CHENIN BLANC"></option>
-                                                                <option value="MOSCATEL"></option>
-                                                                <option value="SEMILLÓN"></option>
-                                                                <option value="PARELLADA"></option>
-                                                                <option value="XARELLO"></option>
-                                                                <option value="AGLIÁNICO"></option>
-                                                                <option value="BARBERA"></option>
-                                                                <option value="BONARDA"></option>
-                                                                <option value="CABERNET FRANC"></option>
-                                                                <option value="CABERNET SAUVIGNON"></option>
-                                                                <option value="CARMENERE"></option>
-                                                                <option value="CARIGNAN"></option>
-                                                                <option value="CORVINA"></option>
-                                                                <option value="DOLCETTO"></option>
-                                                                <option value="GAMAY"></option>
-                                                                <option value="GARNACHA"></option>
-                                                                <option value="GRACIANO"></option>
-                                                                <option value="MALBEC"></option>
-                                                                <option value="MERLOT"></option>
-                                                                <option value="MISIÓN"></option>
-                                                                <option value="MOURVEDRE"></option>
-                                                                <option value="NEBBIOLO"></option>
-                                                                <option value="NERO D' AVOLA"></option>
-                                                                <option value="PETIT SYRAH"></option>
-                                                                <option value="PETIT VERDOT"></option>
-                                                                <option value="PINOT NOIR"></option>
-                                                                <option value="PINOTAGE"></option>
-                                                                <option value="PRIMITIVO"></option>
-                                                                <option value="SANGIOVESE"></option>
-                                                                <option value="SYRAH"></option>
-                                                                <option value="TANNAT"></option>
-                                                                <option value="TEMPRANILLO"></option>
-                                                                <option value="TINTA DE TORO"></option>
-                                                                <option value="TINTA FINA"></option>
-                                                                <option value="ZINFANDEL"></option>
-                                                            </datalist>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-5">
                                                         <div class="form-group">
                                                             <input type="text" name="productor" class="form-control"
                                                                 placeholder="Productor" value="<?=$vin->productor?>" required>

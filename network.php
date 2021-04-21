@@ -42,7 +42,11 @@ $publicaciones = $networks->getCompartidos();
                     <div class="card-header">
                         <div class="row text-center">
                             <div class="col-md-1">
-                                <img src="assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle" width="30" height="30">
+                                <?php if($us->imagen == ""): ?>
+                                    <img src="assets/images/usuariodefault.jpg" alt="user" class="rounded-circle" width="30" height="30">
+                                <?php else: ?>
+                                    <img src="<?=$us->imagen?>" alt="user" class="rounded-circle" width="30" height="30">
+                                <?php endif; ?>
                             </div>
                             <div class="col-md-8">
                                 <p class="card-text"><?=$us->nombre?></p>
@@ -105,7 +109,7 @@ $publicaciones = $networks->getCompartidos();
 
                 </div>
                 <div class="modal-footer">
-                <textarea class="form-control" id="add-coment" data-iduser="<?=$_SESSION['identity']->id?>" data-name="<?=$_SESSION['identity']->nombre?>" placeholder="Escribe aqui un nuevo comentario"  cols="49" rows="2"></textarea>
+                <textarea class="form-control" id="add-coment" data-iduser="<?=$_SESSION['identity']->id?>" data-name="<?=$_SESSION['identity']->nombre?>" data-img="<?=$_SESSION['identity']->imagen?>" placeholder="Escribe aqui un nuevo comentario"  cols="49" rows="2"></textarea>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

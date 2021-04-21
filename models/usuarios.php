@@ -7,7 +7,7 @@ class usuarios{
     }
 
     public function getUser($id_user){
-        $sql = "SELECT id, nombre, correo FROM clientes WHERE id = $id_user";
+        $sql = "SELECT id, nombre, correo, imagen FROM clientes WHERE id = $id_user";
         return $result = $this->db->query($sql);
     }
 }
