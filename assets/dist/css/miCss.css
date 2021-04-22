@@ -96,3 +96,10 @@
     color: #000;
 }
 
+.btn-like {
+    cursor: pointer;
+}
+
+.btn-dislike {
+    cursor: pointer;
+}

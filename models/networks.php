@@ -20,5 +20,31 @@ class networks{
         $sql = "SELECT * FROM comentarios WHERE id_public = $id_pubic";
         return $result = $this->db->query($sql);
     }
+
+    public function getLike($id_user, $id_public){
+        $sql = "SELECT * FROM likes WHERE id_usuario = $id_user AND id_public = $id_public";
+        return $result = $this->db->query($sql);
+    }
+
+    public function saveLike($id_user, $id_public){
+        $sql = "INSERT INTO likes VALUES (NULL, '$id_user', $id_public, CURTIME(), CURTIME());";
+        return $result = $this->db->query($sql);
+    }
+
+    public function deleteLike($id){
+        $sql = "DELETE FROM likes WHERE id = $id";
+        return $respuesta = $this->db->query($sql);
+    }
+
+    public function contarLikes($id_public){
+        $sql = "SELECT COUNT(id) AS cantidad FROM likes WHERE id_public = 6 $id_public";
+        $respuesta = $this->db->query($sql);
+        if($respuesta){
+            return $respuesta->cantidad;
+        }
+        else{
+            return 0;
+        }
+    }
 }
 ?>

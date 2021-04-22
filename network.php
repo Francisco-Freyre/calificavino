@@ -38,6 +38,8 @@ $publicaciones = $networks->getCompartidos();
                         $cose = $cosechas->fetch_object();
                         $personal = $vinos->getPersonal($cat->id);
                         $perso = $personal->fetch_object();
+                        $like = $networks->getLike($_SESSION['identity']->id, $public->id);
+                        //$numlikes = $networks->contarLikes($public->id);
                     ?>
                     <div class="card-header">
                         <div class="row text-center">
@@ -80,9 +82,13 @@ $publicaciones = $networks->getCompartidos();
                     <div class="card-footer text-muted">
                         <div class="row">
                             <div class="col-md-12">
-                                <button class="btn btn-light waves-effect waves-light"><img src="assets/images/dislike.png" alt="" srcset=""> Like</button>
-                                <button data-id="<?=$public->id?>" class="btn btn-light waves-effect waves-light btncoment" data-toggle="modal" data-target="#myModal"><i class="far fa-comment"></i> Comentar</button>
-                                <button class="btn btn-light waves-effect waves-light"><i class="far fa-share-square"></i> Compartir</button>
+                                <?php if($like->num_rows == 1): ?>
+                                    <img src="assets/images/like-24.png" class="btn-dislike" data-id="<?=$public->id?>"> 
+                                <?php else: ?>
+                                    <img src="assets/images/dislike-24.png" class="btn-like" data-id="<?=$public->id?>">
+                                <?php endif; ?>
+                                <button data-id="<?=$public->id?>" class="btn btn-light btncoment" data-toggle="modal" data-target="#myModal"><i class="far fa-comment"></i> Comentar</button>
+                                <button class="btn btn-light"><i class="far fa-share-square"></i> Compartir</button>
                             </div>
                         </div>
                     </div>

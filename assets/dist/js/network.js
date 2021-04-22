@@ -140,4 +140,56 @@ $(document).ready(function() {
             }); 
         }
     });
+    
+    $(document).on('click', '.btn-like', function(){
+        $(this).addClass('btn-dislike').removeClass('btn-like');
+        $(this).attr('src', 'assets/images/like-24.png');
+        let id = $(this).data('id');
+        let formdata = new FormData();
+        formdata.append('accion', 'like');
+        formdata.append('id_public', id);
+        $.ajax({
+            type: 'POST',
+            url: 'controllers/modelo_coment.php',
+            data: formdata,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
+            success:function(respuesta){
+                let resp = respuesta;
+                console.log(resp);
+            },
+            error:function(respuesta){
+                console.log(respuesta);
+            }   
+        }); 
+    });
+
+    $(document).on('click', '.btn-dislike', function(){
+        $(this).addClass('btn-like').removeClass('btn-dislike');
+        $(this).attr('src', 'assets/images/dislike-24.png');
+        let id = $(this).data('id');
+        let formdata = new FormData();
+        formdata.append('accion', 'dislike');
+        formdata.append('id_public', id);
+        $.ajax({
+            type: 'POST',
+            url: 'controllers/modelo_coment.php',
+            data: formdata,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
+            success:function(respuesta){
+                let resp = respuesta;
+                console.log(resp);
+            },
+            error:function(respuesta){
+                console.log(respuesta);
+            }   
+        }); 
+    });
 });

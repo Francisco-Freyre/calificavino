@@ -65,5 +65,54 @@ if(isset($_POST['accion'])){
             die(json_encode($response));
         }
     }
+
+    if($_POST['accion'] == 'like'){
+        $red = new networks();
+        $existe = $red->getLike($_SESSION['identity']->id, $_POST['id_public']);
+        if($existe->num_rows == 0){
+            $like = $red->saveLike($_SESSION['identity']->id, $_POST['id_public']);
+            if($like){
+                $lik = $like->fetch_object();
+                $response = array(
+                    'respuesta' => 'exito',
+                    'like' => $lik
+                );
+            }
+            else{
+                $response = array(
+                    'respuesta' => 'error',
+                    'like' => 'insercion fallida'
+                );
+            }
+            die(json_encode($response));
+        }
+        else{
+            $response = array(
+                'respuesta' => 'error',
+                'like' => 'El like ya existe'
+            );
+            die(json_encode($response));
+        }
+    }
+
+    if($_POST['accion'] == 'dislike'){
+        $red = new networks();
+        $existe = $red->getLike($_SESSION['identity']->id, $_POST['id_public']);
+        if($existe->num_rows == 1){
+            $exis = $existe->fetch_object();
+            $like = $red->deleteLike($exis->id);
+            $response = array(
+                'respuesta' => 'exito',
+            );
+            die(json_encode($response));
+        }
+        else{
+            $response = array(
+                'respuesta' => 'error',
+                'like' => 'El like no existe'
+            );
+            die(json_encode($response));
+        }
+    }
 }
 ?>
