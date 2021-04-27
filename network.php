@@ -39,7 +39,7 @@ $publicaciones = $networks->getCompartidos();
                         $personal = $vinos->getPersonal($cat->id);
                         $perso = $personal->fetch_object();
                         $like = $networks->getLike($_SESSION['identity']->id, $public->id);
-                        //$numlikes = $networks->contarLikes($public->id);
+                        $numlikes = $networks->contarLikes($public->id);
                     ?>
                     <div class="card-header">
                         <div class="row text-center">
@@ -83,12 +83,12 @@ $publicaciones = $networks->getCompartidos();
                         <div class="row">
                             <div class="col-md-12">
                                 <?php if($like->num_rows == 1): ?>
-                                    <img src="assets/images/like-24.png" class="btn-dislike" data-id="<?=$public->id?>"> 
+                                    <button class="btn btn-light" ><img src="assets/images/like-24.png" class="btn-dislike fixed" data-id="<?=$public->id?>"> <?=$numlikes?></button> 
                                 <?php else: ?>
-                                    <img src="assets/images/dislike-24.png" class="btn-like" data-id="<?=$public->id?>">
+                                    <button class="btn btn-light" ><img src="assets/images/dislike-24.png" class="btn-like fixed" data-id="<?=$public->id?>"> <?=$numlikes?></button>
                                 <?php endif; ?>
                                 <button data-id="<?=$public->id?>" class="btn btn-light btncoment" data-toggle="modal" data-target="#myModal"><i class="far fa-comment"></i> Comentar</button>
-                                <button class="btn btn-light"><i class="far fa-share-square"></i> Compartir</button>
+                                <button class="btn btn-light comp" data-id="<?=$public->id_cata?>" data-toggle="modal" data-target="#myModal2"><i class="far fa-share-square"></i> Compartir</button>
                             </div>
                         </div>
                     </div>
@@ -107,11 +107,11 @@ $publicaciones = $networks->getCompartidos();
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Comentarios (0)</h4>
+                    <h4 class="modal-title modaltitulo" id="myModalLabel">Comentarios (0)</h4>
                     <button type="button" class="close" data-dismiss="modal"
                         aria-hidden="true">×</button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body modalbody">
 
                 </div>
                 <div class="modal-footer">
@@ -119,6 +119,32 @@ $publicaciones = $networks->getCompartidos();
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- sample modal content -->
+    <div id="myModal2" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <form action="controllers/modelo_compartir.php" id="compcata" data-id="<?=$_SESSION['identity']->id?>" data-idcata="-1" method="post">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Compartir esta cata en el muro...</h4>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>¿Tienes algo mas que decir acerca de esta cata?</h6>
+                        <p>Compartelo con nosotros.</p>
+                        <hr>
+                        <textarea class="form-control" name="contenido" id="contenido" cols="49" rows="10"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light"
+                            data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Compartir</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
     </div><!-- /.modal -->
 </div>
 <!-- ============================================================== -->

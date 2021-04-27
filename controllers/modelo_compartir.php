@@ -13,7 +13,7 @@ if(isset($_POST)){
                 echo "<script>";
                 echo "alert('Tu cata fue compartida!!');";
                 echo "</script>";
-                header('Location:../catas.php');
+                header('Location:../network.php');
                 exit();
             }
             else{

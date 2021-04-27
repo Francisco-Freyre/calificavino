@@ -37,10 +37,11 @@ class networks{
     }
 
     public function contarLikes($id_public){
-        $sql = "SELECT COUNT(id) AS cantidad FROM likes WHERE id_public = 6 $id_public";
+        $sql = "SELECT COUNT(id) AS cantidad FROM likes WHERE id_public = $id_public";
         $respuesta = $this->db->query($sql);
         if($respuesta){
-            return $respuesta->cantidad;
+            $resp = $respuesta->fetch_object();
+            return $resp->cantidad;
         }
         else{
             return 0;

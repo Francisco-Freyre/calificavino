@@ -12,7 +12,7 @@ $(document).ready(function() {
             success:function(respuesta){
                 let resp = respuesta;
                 if(resp[0].respuesta === "sincomen"){
-                    $('.modal-body').empty();
+                    $('.modalbody').empty();
                     let comment = $(`
                             <div class="sincomentario">
                                 <div class="row">
@@ -22,10 +22,10 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         `);
-                    $('.modal-body').append(comment);
+                    $('.modalbody').append(comment);
                 }
                 else{
-                    $('.modal-body').empty();
+                    $('.modalbody').empty();
                     for(data of resp){
                         let comment = "";
                         if(data.img === ""){
@@ -57,9 +57,9 @@ $(document).ready(function() {
                                 </div>
                             `);
                         }
-                        $('.modal-body').append(comment);
+                        $('.modalbody').append(comment);
                     }
-                    $('.modal-title').text('Comentarios ('+ $('.comentario').length +')');
+                    $('.modaltitulo').text('Comentarios ('+ $('.comentario').length +')');
                 }
                 
             },
@@ -126,8 +126,8 @@ $(document).ready(function() {
                             `);
                         }
                         
-                        $('.modal-body').append(comment);
-                        $('.modal-title').text('Comentarios ('+ $('.comentario').length +')');
+                        $('.modalbody').append(comment);
+                        $('.modaltitulo').text('Comentarios ('+ $('.comentario').length +')');
                         $('#add-coment').val("");
                     }
                     else if(resp.respuesta === "error"){
@@ -191,5 +191,40 @@ $(document).ready(function() {
                 console.log(respuesta);
             }   
         }); 
+    });
+
+    $('.comp').on('click', function(){
+        let idCata = $(this).data('id');
+        console.log(idCata);
+        $('#compcata').data('idcata', idCata);
+    });
+
+    $('#compcata').on('submit', function(e){
+        let id = $(this).data('id');
+        let id_cata = $(this).data('idcata');
+        let contenido = $('#contenido').val();
+        e.preventDefault();
+        let formdata = new FormData();
+            formdata.append('accion', 'compartir-cata');
+            formdata.append('id_user', id);
+            formdata.append('id_cata', id_cata);
+            formdata.append('contenido', contenido);
+        $.ajax({
+            type: 'POST',
+            data: formdata,
+            url: 'controllers/modelo_compartir.php',
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
+            success: function(data){
+                let result = data;
+                console.log(result);
+            },
+            error:function(respuesta){
+                $(location).attr('href','network.php');
+            }   
+        });
     });
 });
