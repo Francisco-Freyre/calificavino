@@ -89,25 +89,11 @@
                     <!-- ============================================================== -->
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
-                    <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
+                    <ul class="navbar-nav mr-auto ml-3 pl-1">
                         <!-- ============================================================== -->
                         <!-- Right side toggle and nav items -->
                         <!-- ============================================================== -->
-                        <ul class="navbar-nav float-right">
-                            <!-- ============================================================== -->
-                            <!-- Search -->
-                            <!-- ============================================================== -->
-                            <li class="nav-item d-none d-md-block">
-                                <a class="nav-link" href="javascript:void(0)">
-                                    <form>
-                                        <div class="customize-input">
-                                            <input class="form-control custom-shadow custom-radius border-0 bg-white"
-                                                type="search" placeholder="Search" aria-label="Search">
-                                            <i class="form-control-icon" data-feather="search"></i>
-                                        </div>
-                                    </form>
-                                </a>
-                            </li>
+                        <ul class="navbar-nav">
                             <!-- ============================================================== -->
                             <!-- User profile and search -->
                             <!-- ============================================================== -->

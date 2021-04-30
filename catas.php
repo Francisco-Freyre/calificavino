@@ -35,6 +35,19 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Search -->
+                <!-- ============================================================== -->
+                <li class="nav-item d-none d-md-block">
+                    <a class="nav-link" href="javascript:void(0)">
+                        <form>
+                            <div class="customize-input">
+                                <input id="buscar" class="form-control custom-shadow custom-radius border-0 bg-white"
+                                    type="search" placeholder="Search" aria-label="Search">
+                            </div>
+                        </form>
+                    </a>
+                </li>
                 <?php if($tamaño > 0): ?>
                     <!-- basic table -->
                     <div class="row">

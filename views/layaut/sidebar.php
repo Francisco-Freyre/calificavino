@@ -13,7 +13,7 @@
                                 </span></a>
                         </li>
                         <?php if($_SESSION['identity']->id == 3143): ?>
-                        <li class="sidebar-item"> <a class="sidebar-link" href="index.php"
+                        <li class="sidebar-item"> <a class="sidebar-link" href="cargar-vinos.php"
                                 aria-expanded="false"><i data-feather="user" class="feather-icon"></i><span
                                     class="hide-menu">Cargar vinos
                                 </span></a>
