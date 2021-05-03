@@ -72,10 +72,9 @@ if(isset($_POST['accion'])){
         if($existe->num_rows == 0){
             $like = $red->saveLike($_SESSION['identity']->id, $_POST['id_public']);
             if($like){
-                $lik = $like->fetch_object();
                 $response = array(
                     'respuesta' => 'exito',
-                    'like' => $lik
+                    'like' => $like
                 );
             }
             else{

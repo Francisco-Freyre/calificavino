@@ -83,9 +83,9 @@ $publicaciones = $networks->getCompartidos();
                         <div class="row">
                             <div class="col-md-12">
                                 <?php if($like->num_rows == 1): ?>
-                                    <button class="btn btn-light" ><img src="assets/images/like-24.png" class="btn-dislike fixed" data-id="<?=$public->id?>"> <?=$numlikes?></button> 
+                                    <button class="btn btn-light" data-id="<?=$public->id?>"><img src="assets/images/like-24.png" class="btn-dislike fixed"> <?=$numlikes?></button> 
                                 <?php else: ?>
-                                    <button class="btn btn-light" ><img src="assets/images/dislike-24.png" class="btn-like fixed" data-id="<?=$public->id?>"> <?=$numlikes?></button>
+                                    <button class="btn btn-light" data-id="<?=$public->id?>"><img src="assets/images/dislike-24.png" class="btn-like fixed"> <?=$numlikes?></button>
                                 <?php endif; ?>
                                 <button data-id="<?=$public->id?>" class="btn btn-light btncoment" data-toggle="modal" data-target="#myModal"><i class="far fa-comment"></i> Comentar</button>
                                 <button class="btn btn-light comp" data-id="<?=$public->id_cata?>" data-toggle="modal" data-target="#myModal2"><i class="far fa-share-square"></i> Compartir</button>

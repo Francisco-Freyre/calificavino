@@ -142,9 +142,8 @@ $(document).ready(function() {
     });
     
     $(document).on('click', '.btn-like', function(){
-        $(this).addClass('btn-dislike').removeClass('btn-like');
-        $(this).attr('src', 'assets/images/like-24.png');
-        let id = $(this).data('id');
+        let btn = $(this).parent();
+        let id = btn.data('id');
         let formdata = new FormData();
         formdata.append('accion', 'like');
         formdata.append('id_public', id);
@@ -160,6 +159,16 @@ $(document).ready(function() {
             success:function(respuesta){
                 let resp = respuesta;
                 console.log(resp);
+                if(resp.respuesta == "exito"){
+                    let likes = btn.text();
+                    btn.empty();
+                    let imagen = $(`
+                        <img src="assets/images/like-24.png" class="btn-dislike fixed">
+                    `);
+                    let newlike = parseInt(likes.replace(/ /g, "")) + 1;
+                    btn.text(" "+newlike);
+                    btn.prepend(imagen);
+                }
             },
             error:function(respuesta){
                 console.log(respuesta);
@@ -168,9 +177,8 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.btn-dislike', function(){
-        $(this).addClass('btn-like').removeClass('btn-dislike');
-        $(this).attr('src', 'assets/images/dislike-24.png');
-        let id = $(this).data('id');
+        let btn = $(this).parent();
+        let id = btn.data('id');
         let formdata = new FormData();
         formdata.append('accion', 'dislike');
         formdata.append('id_public', id);
@@ -186,6 +194,16 @@ $(document).ready(function() {
             success:function(respuesta){
                 let resp = respuesta;
                 console.log(resp);
+                if(resp.respuesta == "exito"){
+                    let likes = btn.text();
+                    btn.empty();
+                    let imagen = $(`
+                        <img src="assets/images/dislike-24.png" class="btn-like fixed">
+                    `);
+                    let newlike = parseInt(likes.replace(/ /g, "")) - 1;
+                    btn.text(" "+newlike);
+                    btn.prepend(imagen);
+                }
             },
             error:function(respuesta){
                 console.log(respuesta);
