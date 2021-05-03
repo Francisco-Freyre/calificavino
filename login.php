@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label class="text-dark" for="password">Contraseñña</label>
+                                        <label class="text-dark" for="password">Contraseña</label>
                                         <input class="form-control" id="password" name="password" type="password"
                                             placeholder="Contraseña">
                                     </div>

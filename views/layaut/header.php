@@ -110,7 +110,7 @@
                                             class="svg-icon"></i></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                    <a class="dropdown-item" href="<?=base_url_tienda?>usuario/cuenta"><i data-feather="user"
+                                    <a class="dropdown-item" href="perfil.php"><i data-feather="user"
                                             class="svg-icon mr-2 ml-1"></i>
                                         Mi perfil</a>
                                     <a class="dropdown-item" href="<?=base_url_tienda?>usuario/logout"><i data-feather="power"

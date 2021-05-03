@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     $('#pregunta').hide();
     $('#guardar-vino-imagen').hide();
+    $('#guardar-perfil-imagen').hide();
     $('#existe-vino').hide();
     $('#aromatico').hide();
     $('#gustativo').hide();
@@ -330,6 +331,11 @@ $(document).ready(function() {
                 console.log(respuesta);
             }   
         }); 
+    });
+
+    $('#editar_perfil').on('click', function(){
+        $('#perfil').hide();
+        $('#guardar-perfil-imagen').show();
     });
 
     /*$('#guardar-vino-').on('submit', function(e) {
