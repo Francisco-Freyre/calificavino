@@ -103,3 +103,8 @@
 .btn-dislike {
     cursor: pointer;
 }
+
+.calificacion-final{
+    font-size: 89px;
+    color: #bf315f;
+}

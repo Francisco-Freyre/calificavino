@@ -1,7 +1,7 @@
 <?php
     function usuario_autenticado(){
         if(revisar_usuario() == false){
-            header('Location:'.base_url_tienda);
+            header('Location:login.php');
             exit();
         }
     }

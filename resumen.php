@@ -32,7 +32,7 @@
 <!-- ============================================================== -->
 <div class="page-breadcrumb">
     <div class="row">
-        <div class="col-7 align-self-center">
+        <div class="col-5 align-self-center">
             <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Cata</h4>
             <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
@@ -42,20 +42,32 @@
                     </ol>
                 </nav>
             </div>
-
+        </div>
+        <div class="col-7">
             <div class="text-right">
-                <a href="#" class="btn waves-effect waves-light btn-info" data-toggle="modal" data-target="#myModal">
-                    <i class="far fa-share-square"></i>
-                    Compartir
-                </a>
-                <a href="editCalif.php?id=<?=$OCata->id?>" class="btn waves-effect waves-light btn-success">
-                    <i class="far fa-edit"></i>    
-                    Editar
-                </a>
-                <a href="controllers/obtener_vino.php?id_catado=<?=$OCata->id?>" class="btn waves-effect waves-light btn-danger">
-                    <i class="fas fa-trash"></i>
-                    Eliminar
-                </a>
+                <div class="row text-right">
+                    <div class="col-md-3 text-right">
+                        <a href="#" class="btn waves-effect waves-light btn-info" data-toggle="modal" data-target="#myModal">
+                            <i class="far fa-share-square"></i>
+                            Compartir
+                        </a>
+                    </div>
+                    <div class="col-md-3 text-right">
+                        <div class="fb-share-button" data-href="<?=base_url?>inv.php?id=<?=$_GET['id']?>" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="btn waves-effect waves-light btn-info" style="background-color: #4267b2; border-color: #4267b2;"><i class="fab fa-facebook"></i> Compartir</a></div>
+                    </div>
+                    <div class="col-md-3 text-right">
+                        <a href="editCalif.php?id=<?=$OCata->id?>" class="btn waves-effect waves-light btn-success">
+                            <i class="far fa-edit"></i>    
+                            Editar
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="controllers/obtener_vino.php?id_catado=<?=$OCata->id?>" class="btn waves-effect waves-light btn-danger">
+                            <i class="fas fa-trash"></i>
+                            Eliminar
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -82,7 +94,11 @@
                         <div class="col-md-2">
                             <img class="img-fluid" src="<?= base_url ?><?= $vin->url_img ?>" alt="">
                         </div>
-                        <div class="col-md-10">
+                        <div class="col-md-5 text-center">
+                            <h3 class="card-title">Calificación final:</h3>
+                            <h3 class="calificacion-final"> <?= $vino->calificacionCata($OCata->id) ?></h3>
+                        </div>
+                        <div class="col-md-5">
                             <h3 class="card-title"><?= $vin->nombre ?> - <?= $cos->cosecha ?></h3>
                             <p class="card-text">Uva: <?php while($uva = $uvas->fetch_object()){ echo $uva->uva.' - ';} ?> </p>
                             <p class="card-text">Productor: <?= $vin->productor ?></p>
@@ -100,21 +116,16 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Visual</h4>
+                        <div class="col-md-12">
+                            <h4 class="card-title">Visual: Calificación - <?= $vis->calificacion ?></h4>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-
-
-                    <h3 class="card-title">Calificación - <?= $vis->calificacion ?></h3>
                     <p class="card-text">Capa: <?= $vis->capa ?></p>
                     <p class="card-text">Color: <?= $vis->color ?></p>
                     <p class="card-text">Brillo: <?= $vis->brillo ?></p>
                     <p class="card-text">Viscocidad: <?= $vis->viscosidad ?></p>
-
-
                 </div>
 
             </div>
@@ -123,15 +134,14 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Aromatico</h4>
+                        <div class="col-md-12">
+                            <h4 class="card-title">Aromático: Calificación - <?= $aro->calificacion ?></h4>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
 
                     <div class="col-md-6">
-                        <h3 class="card-title">Calificación - <?= $aro->calificacion ?></h3>
                         <p class="card-text">Intensidad: <?= $aro->intensidad ?></p>
                         <p class="card-text">Complejidad: <?= $aro->complejidad ?></p>
                         <p class="card-text">Aromas: <?= $aro->aromas ?></p>
@@ -154,13 +164,12 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Gusto</h4>
+                        <div class="col-md-12">
+                            <h4 class="card-title">Gusto: Calificación - <?= $gus->calificacion ?></h4>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Calificación - <?= $gus->calificacion ?></h3>
                     <p class="card-text">Dulce: <?= $gus->dulce ?></p>
                     <p class="card-text">Acidez: <?= $gus->acidez ?></p>
                     <p class="card-text">Tanino: <?= $gus->tanino ?></p>
@@ -180,15 +189,14 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Apreciacion personal</h4>
+                        <div class="col-md-12">
+                            <h4 class="card-title">Apreciación personal: Calificación - <?= $perso->calificacion ?></h4>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Calificación - <?= $perso->calificacion ?></h3>
                     <p class="card-text">Comentarios: <?= $perso->comentario ?></p>
-                    <p class="card-text">Meridaje: <?= $perso->meridaje ?></p>
+                    <p class="card-text">Maridaje: <?= $perso->meridaje ?></p>
                 </div>
             </div>
         </div>
@@ -196,15 +204,8 @@
     <!-- End Row -->
     <!-- Row -->
     <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title text-center">Calificación final - <?= $vino->calificacionCata($OCata->id) ?></h3>
-                </div>
-            </div>
-        </div>
         <div class="col-md-12 text-center">
-            <div class="fb-share-button" data-href="<?=base_url?>inv.php?id=<?=$_GET['id']?>" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
+            
         </div>
     </div>
     <!-- End Row -->

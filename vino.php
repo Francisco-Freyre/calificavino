@@ -624,8 +624,8 @@
                                     </div>
                                     <div class="form-actions">
                                         <div class="text-right" id="pregunta">
-                                            <span>¿Encontraste el vino que deseas catar?   </span>
-                                            <button id="si" class="btn btn-info">Si</button>
+                                            <span>¿Encontraste el vino que deseas catar?</span>
+                                            <a href="#existe-vino" id="si" class="btn btn-info">Si</a>
                                             <button id="no" class="btn btn-info">No</button>
                                         </div>
                                     </div>
