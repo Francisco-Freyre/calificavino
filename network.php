@@ -51,7 +51,7 @@ $publicaciones = $networks->getCompartidos();
                                 <?php endif; ?>
                             </div>
                             <div class="col-md-8">
-                                <p class="card-text"><?=$us->nombre?></p>
+                                <a href="usuario.php?id=<?=$public->id_usuario?>" style="color: black;"><p class="card-text"><?=$us->nombre?></p></a>
                             </div>
                             <div class="col-md-3">
                                 <p class="card-text time"><?=$public->creado?></p>
@@ -69,11 +69,11 @@ $publicaciones = $networks->getCompartidos();
                         <?php endif; ?>
                         <div class="row">
                             <div class="col-md-2">
-                                <img class="img-fluid" src="<?=$vine->url_img?>" alt="">
+                                <a href="resumen.php?id=<?=$public->id_cata?>"><img class="img-fluid" src="<?=$vine->url_img?>" alt=""></a>
                             </div>
                             <div class="col-md-6">
                                 <h3 class="card-title"></h3>
-                                <p class="card-text"><?=$vine->nombre?> - <?=$cose->cosecha?></p>
+                                <p class="card-text"> <a href="resumen.php?id=<?=$public->id_cata?>" style="color: #ba2e53;"><?=$vine->nombre?> - <?=$cose->cosecha?></a></p>
                                 <p class="card-text">Calificación final - <?=$cat->calificacion?> </p>
                                 <p class="card-text"><?=$perso->comentario?></p>
                             </div>
@@ -127,7 +127,7 @@ $publicaciones = $networks->getCompartidos();
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Compartir esta cata en el muro...</h4>
+                        <h4 class="modal-title" id="myModalLabel">Compartir esta cata en Wine Comunity...</h4>
                         <button type="button" class="close" data-dismiss="modal"
                             aria-hidden="true">×</button>
                     </div>

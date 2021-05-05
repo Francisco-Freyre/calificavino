@@ -306,7 +306,7 @@
                                             <div class="form-actions">
                                                 <div class="text-right">
                                                     <input type="text" value="vino-nuevo" name="accion" style="display: none;">
-                                                    <button type="submit" class="btn btn-info">Guardar</button>
+                                                    <button type="submit" class="btn btn-info" id="cargar-vinos">Guardar</button>
                                                 </div>
                                             </div>                                      
                                     </div>

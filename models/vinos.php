@@ -73,6 +73,11 @@
             return $response = $this->db->query($sql);
         }
 
+        public function getMejorCata($id){
+            $sql = "SELECT * FROM `catas` WHERE id_user = $id ORDER BY calificacion DESC LIMIT 1";
+            return $response = $this->db->query($sql);
+        }
+
         public function getCosechas($id_vino, $id_cata){
             $sql = "SELECT * FROM cosechas WHERE id_vino = $id_vino AND id_cata = $id_cata;";
             return $response = $this->db->query($sql);
