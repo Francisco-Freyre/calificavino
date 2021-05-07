@@ -33,10 +33,10 @@ class usuarios{
     public function updatePerfil($id, $nombre, $edad, $sexo, $dom, $cp, $cel, $correo, $imagen){
         $sql = "";
         if($imagen != ""){
-            $sql = "UPDATE clientes SET nombre = '$nombre', edad = '$edad', sexo = '$sexo', domicilio = '$dom', cp = '$cp', cel = '$cel', correo = '$correo', user = '$correo', imagen = '$imagen' WHERE id = $id";
+            $sql = "UPDATE clientes SET nombre = '$nombre', edad = '$edad', sexo = '$sexo', domicilio = '$dom', cp = '$cp', cel = '$cel', correo = '$correo', imagen = '$imagen' WHERE id = $id";
         }
         else{
-            $sql = "UPDATE clientes SET nombre = '$nombre', edad = '$edad', sexo = '$sexo', domicilio = '$dom', cp = '$cp', cel = '$cel', correo = '$correo', user = '$correo' WHERE id = $id";
+            $sql = "UPDATE clientes SET nombre = '$nombre', edad = '$edad', sexo = '$sexo', domicilio = '$dom', cp = '$cp', cel = '$cel', correo = '$correo' WHERE id = $id";
         }
         $response = $this->db->query($sql);
         $result = false;

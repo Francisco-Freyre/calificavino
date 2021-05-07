@@ -36,11 +36,23 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Search -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <form>
+                        <div class="customize-input">
+                            <input id="buscarvino" class="form-control custom-shadow custom-radius border-0 bg-white"
+                                type="search" placeholder="Search" aria-label="Search">
+                        </div>
+                    </form>
+                </div>
+                <br>
                 <!-- Row -->
                 <div class="row">
                     <div class="col-12">
                         <!-- Row -->
-                        <div class="row">
+                        <div class="row" id="conenido">
                             <!-- column -->
                             <?php while($vin = $vinos->fetch_object()): ?>
                                 <div class="col-lg-3 col-md-6">

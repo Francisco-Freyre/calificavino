@@ -28,6 +28,12 @@
             return $result;
         }
 
+        public function buscadorVinos($nombre){
+            $sql = "SELECT * FROM new_vinos WHERE id IN (SELECT id_vino FROM catas) AND nombre LIKE '%$nombre%' ORDER BY id DESC;";
+            $result = $this->db->query($sql);
+            return $result;
+        }
+
         public function saveNewVinos($nombre, $region, $pais, $productor, $url_img){
             $sql = "INSERT INTO new_vinos VALUES (null, '$nombre', '$pais', '$region', '', '$productor', '$url_img');";
             $save = $this->db->query($sql);
@@ -161,6 +167,21 @@
 
         public function compartirCata($id_usuario, $id_cata, $contenido){
             $sql = "INSERT INTO publication VALUES (null, $id_usuario, $id_cata, '$contenido', CURTIME(), CURTIME());";
+            return $respuesta = $this->db->query($sql);
+        }
+
+        public function obtenerPublic($id){
+            $sql = "SELECT * FROM publication WHERE id = $id";
+            return $respuesta = $this->db->query($sql);
+        }
+
+        public function editarPublic($id, $contenido){
+            $sql = "UPDATE publication SET contenido = '$contenido', actualizado = CURTIME() WHERE id = $id";
+            return $respuesta = $this->db->query($sql);
+        }
+
+        public function eliminarPublic($id){
+            $sql = "DELETE FROM publication WHERE id = $id";
             return $respuesta = $this->db->query($sql);
         }
 

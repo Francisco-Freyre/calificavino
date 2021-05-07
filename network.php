@@ -50,12 +50,29 @@ $publicaciones = $networks->getCompartidos();
                                     <img src="<?=$us->imagen?>" alt="user" class="rounded-circle" width="30" height="30">
                                 <?php endif; ?>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <a href="usuario.php?id=<?=$public->id_usuario?>" style="color: black;"><p class="card-text"><?=$us->nombre?></p></a>
                             </div>
                             <div class="col-md-3">
                                 <p class="card-text time"><?=$public->creado?></p>
                             </div>
+                            <?php if($public->id_usuario == $_SESSION['identity']->id): ?>
+                                <div class="col-md-1">
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <span class="ml-2 d-none d-lg-inline-block"><span
+                                                class="text-dark"></span> <i class="fas fa-ellipsis-v"></i></span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                        <a class="dropdown-item editar" href="#" data-id="<?=$public->id?>" data-toggle="modal" data-target="#myModal3"><i data-feather="edit-3"
+                                                class="svg-icon mr-2 ml-1"></i>
+                                            Editar</a>
+                                        <a class="dropdown-item" href="controllers/modelo_compartir.php?accion=borrar&id=<?=$public->id?>"><i data-feather="trash-2"
+                                                class="svg-icon mr-2 ml-1"></i>
+                                            Eliminar</a>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="card-body">
@@ -136,6 +153,34 @@ $publicaciones = $networks->getCompartidos();
                         <p>Compartelo con nosotros.</p>
                         <hr>
                         <textarea class="form-control" name="contenido" id="contenido" cols="49" rows="10"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light"
+                            data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Compartir</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
+    <!-- sample modal content -->
+    <div id="myModal3" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <form action="controllers/modelo_compartir.php" id="editPublic" data-id="<?=$_SESSION['identity']->id?>" data-idcata="-1" method="post">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Editar esta publicacion</h4>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>¿Tienes algo mas que decir acerca de esta cata?</h6>
+                        <p>Compartelo con nosotros.</p>
+                        <hr>
+                        <textarea class="form-control" name="contenido" id="contenido2" cols="49" rows="10"></textarea>
+                        <input type="text" name="id" id="id_public" style="display: none;">
+                        <input type="text" value="editar" name="accion"  style="display: none;">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light"

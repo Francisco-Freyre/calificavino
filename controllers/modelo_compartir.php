@@ -22,6 +22,65 @@ if(isset($_POST)){
                 echo "</script>";
             }
         }
+
+        if($_POST['accion'] == "editar"){
+            $vinos = new vinos();
+            $borrado = $vinos->editarPublic($_POST['id'], $_POST['contenido']);
+            if($borrado){
+                echo "<script>";
+                echo "alert('Post actualizado!!');";
+                echo "</script>";
+                header('Location:../network.php');
+                exit();
+            }else{
+                echo "<script>";
+                echo "alert('No fue posible actualizar el post!!');";
+                echo "</script>";
+                header('Location:../network.php');
+                exit();
+            }
+        }
+    }
+}
+if(isset($_GET)){
+    if(isset($_GET['accion'])){
+        if($_GET['accion'] == 'borrar'){
+            $vinos = new vinos();
+            $borrado = $vinos->eliminarPublic($_GET['id']);
+            if($borrado){
+                echo "<script>";
+                echo "alert('Post eliminado!!');";
+                echo "</script>";
+                header('Location:../network.php');
+                exit();
+            }else{
+                echo "<script>";
+                echo "alert('No fue posible eliminar el post!!');";
+                echo "</script>";
+                header('Location:../network.php');
+                exit();
+            }
+        }
+
+        if($_GET['accion'] == 'obtener'){
+            $vinos = new vinos();
+            $public = $vinos->obtenerPublic($_GET['id']);
+            if($public){
+                $publication = $public->fetch_object();
+                $response = array(
+                    'respuesta' => 'exito',
+                    'public' => $publication
+                );
+                die(json_encode($response));
+            }
+            else{
+                $response = array(
+                    'respuesta' => 'fallo',
+                    'public' => 'No existe'
+                );
+                die(json_encode($response));
+            }
+        }
     }
 }
 ?>

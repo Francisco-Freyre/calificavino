@@ -245,4 +245,83 @@ $(document).ready(function() {
             }   
         });
     });
+
+    $('.editar').on('click', function(){
+        let id = $(this).data('id');
+        $.ajax({
+            type:'GET',
+            url:'controllers/modelo_compartir.php',
+            data:'accion=obtener&&id='+id,
+            dataType: 'json',
+            success:function(respuesta){
+                let resp = respuesta;
+                if(resp.respuesta == 'exito'){
+                    $('#contenido2').text(resp.public.contenido);
+                    $('#id_public').val(resp.public.id);
+                }
+                else{
+                    alert("No se pudieron obtener datos");
+                }
+            },
+            error: function(respuesta){
+                console.log(respuesta);
+                alert("La comunicacion fallo");
+            }
+        });
+    });
+
+    $('#buscarvino').on('input', function(){
+        let nombre = $(this).val();
+        let formdata = new FormData();
+            formdata.append('accion', 'buscar_vino');
+            formdata.append('nombre', nombre);
+            $.ajax({
+                type: 'POST',
+                url: 'controllers/modelo_buscar.php',
+                data: formdata,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                async: true,
+                cache: false,
+                success:function(respuesta){
+                    let resp = respuesta;
+                    console.log(resp);
+                    if(resp.resultado === "Fallo"){
+                        $('#conenido').empty();
+                        let comment = $(`
+                                <div class="col-md-12">
+                                    <p><span>No se encontraron vinos que coincidan con la busqueda</span></p>
+                                </div>
+                            `);
+                        $('#conenido').append(comment);
+                    }else{
+                        $('#conenido').empty();
+                        for(data of resp){
+                            let uvas = "";
+                            for(datos of data.uvas){
+                                uvas += datos + ' - ';
+                            }
+                            let vino = $(`
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="card vinos" style="width: 232px; height: 550px;">
+                                        <img class="card-img-top img-fluid" width="232" height="288" src="`+data.imagen+`" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h4 class="card-title">`+data.nombre+` - `+uvas+`</h4>
+                                            <p class="card-text">Calificación: `+data.promedio+`</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `);
+                            uvas = "";
+                            $('#conenido').append(vino);
+                        }
+                    }
+                },
+                error:function(respuesta){
+                    console.log(respuesta);
+                    alert("Fallo la conexion");
+                }   
+            }); 
+    });
 });
