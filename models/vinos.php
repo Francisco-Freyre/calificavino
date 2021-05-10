@@ -69,6 +69,18 @@
             return $respuesta = $this->db->query($sql);
         }
 
+        public function contCatas($id_vino){
+            $sql = "SELECT id FROM catas WHERE id_vino = $id_vino";
+            $respuesta = $this->db->query($sql);
+
+            if($respuesta){
+                return $respuesta->num_rows;
+            }
+            else{
+                return false;
+            }  
+        }   
+
         public function getNewVinoId($id){
             $sql = "SELECT * FROM new_vinos WHERE id = $id";
             return $response = $this->db->query($sql);
@@ -79,6 +91,22 @@
             return $response = $this->db->query($sql);
         }
 
+        public function getCosechasVino($id){
+            $sql = "SELECT DISTINCT cosecha FROM cosechas WHERE id_vino = $id ORDER BY cosecha DESC";
+            return $response = $this->db->query($sql);
+        }
+
+        public function getCosechasAnio($id_vino, $cosecha){
+            $sql = "SELECT * FROM cosechas WHERE id_vino = $id_vino AND cosecha = $cosecha";
+            $response = $this->db->query($sql);
+            return $response->num_rows;
+        }
+
+        public function promedioCataCosecha($id_vino, $cosecha){
+            $sql = "SELECT AVG(calificacion) AS promedio FROM catas WHERE id IN (SELECT id_cata FROM cosechas WHERE id_vino = $id_vino AND cosecha = $cosecha)";
+            return $response = $this->db->query($sql);
+        }
+
         public function getMejorCata($id){
             $sql = "SELECT * FROM `catas` WHERE id_user = $id ORDER BY calificacion DESC LIMIT 1";
             return $response = $this->db->query($sql);
@@ -86,6 +114,11 @@
 
         public function getCosechas($id_vino, $id_cata){
             $sql = "SELECT * FROM cosechas WHERE id_vino = $id_vino AND id_cata = $id_cata;";
+            return $response = $this->db->query($sql);
+        }
+
+        public function getComentarios($id_vino){
+            $sql = "SELECT * FROM catas, apreciacion_personal WHERE catas.id_vino = $id_vino AND catas.id = apreciacion_personal.id_cata AND apreciacion_personal.comentario != '' LIMIT 6";
             return $response = $this->db->query($sql);
         }
 

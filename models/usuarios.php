@@ -6,6 +6,11 @@ class usuarios{
         $this->db = Database::connect();
     }
 
+    public function getFriends($id_user){
+        $sql = "SELECT id, nombre FROM clientes WHERE calificaciones = 'on' AND id != $id_user";
+        return $result = $this->db->query($sql);
+    }
+
     public function getUser($id_user){
         $sql = "SELECT id, nombre, correo, imagen FROM clientes WHERE id = $id_user";
         return $result = $this->db->query($sql);

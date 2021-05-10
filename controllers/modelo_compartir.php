@@ -12,9 +12,8 @@ if(isset($_POST)){
             if($compartido){
                 echo "<script>";
                 echo "alert('Tu cata fue compartida!!');";
+                echo "window.location.replace('../network.php');";
                 echo "</script>";
-                header('Location:../network.php');
-                exit();
             }
             else{
                 echo "<script>";
@@ -29,15 +28,13 @@ if(isset($_POST)){
             if($borrado){
                 echo "<script>";
                 echo "alert('Post actualizado!!');";
+                echo "window.location.replace('../network.php');";
                 echo "</script>";
-                header('Location:../network.php');
-                exit();
             }else{
                 echo "<script>";
                 echo "alert('No fue posible actualizar el post!!');";
+                echo "window.location.replace('../network.php');";
                 echo "</script>";
-                header('Location:../network.php');
-                exit();
             }
         }
     }
@@ -50,15 +47,13 @@ if(isset($_GET)){
             if($borrado){
                 echo "<script>";
                 echo "alert('Post eliminado!!');";
+                echo "window.location.replace('../network.php');";
                 echo "</script>";
-                header('Location:../network.php');
-                exit();
             }else{
                 echo "<script>";
                 echo "alert('No fue posible eliminar el post!!');";
+                echo "window.location.replace('../network.php');";
                 echo "</script>";
-                header('Location:../network.php');
-                exit();
             }
         }
 

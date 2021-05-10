@@ -40,6 +40,7 @@ $publicaciones = $networks->getCompartidos();
                         $perso = $personal->fetch_object();
                         $like = $networks->getLike($_SESSION['identity']->id, $public->id);
                         $numlikes = $networks->contarLikes($public->id);
+                        $comentarios = $networks->getComents($public->id);
                     ?>
                     <div class="card-header">
                         <div class="row text-center">
@@ -104,7 +105,7 @@ $publicaciones = $networks->getCompartidos();
                                 <?php else: ?>
                                     <button class="btn btn-light" data-id="<?=$public->id?>"><img src="assets/images/dislike-24.png" class="btn-like fixed"> <?=$numlikes?></button>
                                 <?php endif; ?>
-                                <button data-id="<?=$public->id?>" class="btn btn-light btncoment" data-toggle="modal" data-target="#myModal"><i class="far fa-comment"></i> Comentar</button>
+                                <button data-id="<?=$public->id?>" class="btn btn-light btncoment" data-toggle="modal" data-target="#myModal"><i class="far fa-comment"></i> Comentarios (<?=$comentarios->num_rows?>)</button>
                                 <button class="btn btn-light comp" data-id="<?=$public->id_cata?>" data-toggle="modal" data-target="#myModal2"><i class="far fa-share-square"></i> Compartir</button>
                             </div>
                         </div>

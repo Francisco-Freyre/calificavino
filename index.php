@@ -16,8 +16,7 @@
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb m-0 p-0">
-                                    <li class="breadcrumb-item"><a href="index.html" class="text-muted">Inicio</a></li>
-                                    <li class="breadcrumb-item text-muted active" aria-current="page">Lista de vinos</li>
+                                    <li class="breadcrumb-item"><a href="#" class="text-muted">Inicio</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -62,13 +61,12 @@
                                             alt="Card image cap">
                                         <div class="card-body">
                                             <?php $uvas = $vino->getUvas($vin->id); ?>
-                                            <h4 class="card-title"><?=$vin->nombre?> - <?php while($uva = $uvas->fetch_object()){ echo $uva->uva.' - ';} ?></h4>
+                                            <h4 class="card-title"><a href="stats.php?id=<?=$vin->id?>" style="color: #ba2e53;"><?=$vin->nombre?> - <?php while($uva = $uvas->fetch_object()){ echo $uva->uva.' - ';} ?></a></h4>
                                             <?php 
                                                 $promedio = $vino->promedioCataVino($vin->id);
                                                 $prom = $promedio->fetch_object();
                                             ?>
                                             <p class="card-text">Calificación: <?= bcdiv($prom->promedio, '1', 2);?></p>
-                                            <!--<a href="javascript:void(0)" class="btn btn-primary">Go somewhere</a>-->
                                         </div>
                                     </div>
                                     <!-- Card -->

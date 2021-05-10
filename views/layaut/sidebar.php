@@ -1,4 +1,13 @@
-<!-- ============================================================== -->
+<?php 
+    include_once 'config/parameters.php';
+    include_once 'helpers/session.php';
+    require_once 'models/usuarios.php';
+    require_once 'config/db.php';
+    $usuarios = new usuarios();
+
+    $users = $usuarios->getFriends($_SESSION['identity']->id);
+?>
+        <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
         <aside class="left-sidebar" data-sidebarbg="skin6">
@@ -8,7 +17,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="sidebar-item"> <a class="sidebar-link" href="index.php"
-                                aria-expanded="false"><i data-feather="user" class="feather-icon"></i><span
+                                aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
                                     class="hide-menu">Inicio
                                 </span></a>
                         </li>
@@ -26,8 +35,20 @@
                                 aria-expanded="false"><i data-feather="check" class="feather-icon"></i><span
                                     class="hide-menu">Nueva Cata</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="network.php"
-                                aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                                aria-expanded="false"><i data-feather="user" class="feather-icon"></i><span
                                     class="hide-menu">Wine Comunity</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                            aria-expanded="false"><i data-feather="user" class="feather-icon"></i><span
+                                class="hide-menu">Friend Zone</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <?php while($user = $users->fetch_object()): ?>
+                                <li class="sidebar-item"><a href="usuario.php?id=<?=$user->id?>" class="sidebar-link"><span
+                                            class="hide-menu"> <?=$user->nombre?>
+                                        </span></a>
+                                </li>
+                                <?php endwhile; ?>
+                            </ul>
+                        </li>
                         <!-- End Sidebar navigation -->
             </div>
             <!-- End Sidebar scroll-->
