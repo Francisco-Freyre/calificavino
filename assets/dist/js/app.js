@@ -338,17 +338,6 @@ $(document).ready(function() {
         $('#guardar-perfil-imagen').show();
     });
 
-    $('#exampleInputFile').on('change', function(){
-        let nombre = $(this).val();
-        let noValido = /\s/;
-        if(noValido.test(nombre)){
-            $('#cargar-vinos').prop('disabled', true);
-            alert("El nombre de la imagen no debe contener espacios, cambie el nombre y suba la imagen de nuevo!");
-        }else{
-            $('#cargar-vinos').prop('disabled', false);
-        }
-    });
-
     /*$('#guardar-vino-').on('submit', function(e) {
         e.preventDefault();
 
