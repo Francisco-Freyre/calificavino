@@ -50,13 +50,13 @@
             <div class="text-right">
                 <div class="row text-right">
                     <div class="col-md-3 text-right">
+                        <div class="fb-share-button" data-href="<?=base_url?>inv.php?id=<?=$_GET['id']?>" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
+                    </div>
+                    <div class="col-md-3 text-right">
                         <a href="#" class="btn waves-effect waves-light btn-info" data-toggle="modal" data-target="#myModal">
                             <i class="far fa-share-square"></i>
                             Compartir
                         </a>
-                    </div>
-                    <div class="col-md-3 text-right">
-                        <div class="fb-share-button" data-href="<?=base_url?>inv.php?id=<?=$_GET['id']?>" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="btn waves-effect waves-light btn-info" style="background-color: #4267b2; border-color: #4267b2;"><i class="fab fa-facebook"></i> Compartir</a></div>
                     </div>
                     <?php if($_SESSION['identity']->id == $OCata->id_user): ?>
                         <div class="col-md-3 text-right">
