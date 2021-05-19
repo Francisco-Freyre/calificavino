@@ -112,7 +112,11 @@
                         $user = $usuario->fetch_object();
                     ?>
                     <li class="media">
-                        <img class="d-flex mr-3" src="<?=$user->imagen?>" width="60" alt="Generic placeholder image">
+                        <?php if($user->imagen == ''): ?>
+                            <img class="d-flex mr-3" src="assets/images/usuariodefault.jpg" width="60" alt="User">
+                        <?php else: ?>
+                            <img class="d-flex mr-3" src="<?=$user->imagen?>" width="60" alt="User">
+                        <?php endif; ?>
                         <div class="media-body">
                             <h5 class="mt-0 mb-1"><?=$user->nombre?> - <?=$comentario->total?></h5>
                             <?=$comentario->comentario?>

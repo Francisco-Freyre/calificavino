@@ -62,7 +62,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-2">
-                            <img class="img-fluid" src="<?= base_url ?><?= $user->imagen ?>" alt="">
+                            <?php if($user->imagen == ''): ?>
+                                <img class="img-fluid" src="assets/images/usuariodefault.jpg" alt="">
+                            <?php else: ?>
+                                <img class="img-fluid" src="<?= base_url ?><?= $user->imagen ?>" alt="">
+                            <?php endif; ?>
                         </div>
                         <div class="col-md-5 text-center">
                             <h3 class="card-title">Catas hechas: </h3>
@@ -113,7 +117,7 @@
                                             <tbody>
                                             <?php foreach($cata as $indice => $dato): ?>   
                                                 <tr class="text-center">
-                                                    <td><img  src="<?=base_url.$dato['img']?>" alt="imagen" class="rounded-circle" width="50" height="50"></td>
+                                                    <td><img  src="<?=base_url.$dato['img']?>" alt="imagen" class="rounded-circle" width="100" height="100"></td>
                                                     <td><a href="resumen.php?id=<?=$dato['id_cata']?>" style="color: #ba2e53;"><?=$dato['nombre']?></a></td>
                                                     <td><?=$dato['cosecha']?></td>
                                                     <td><?=$dato['calif']?></td>
