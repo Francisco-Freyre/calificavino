@@ -29,7 +29,7 @@
             <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb m-0 p-0">
-                        <li class="breadcrumb-item"><a href="index.html" class="text-muted">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="index.php" class="text-muted">Inicio</a></li>
                         <li class="breadcrumb-item text-muted active" aria-current="page">Estadisticas</li>
                     </ol>
                 </nav>
@@ -114,7 +114,7 @@
                     <li class="media">
                         <img class="d-flex mr-3" src="<?=$user->imagen?>" width="60" alt="Generic placeholder image">
                         <div class="media-body">
-                            <h5 class="mt-0 mb-1"><?=$user->nombre?> - <?=$comentario->calificacion?></h5>
+                            <h5 class="mt-0 mb-1"><?=$user->nombre?> - <?=$comentario->total?></h5>
                             <?=$comentario->comentario?>
                         </div>
                     </li>

@@ -118,7 +118,7 @@
         }
 
         public function getComentarios($id_vino){
-            $sql = "SELECT * FROM catas, apreciacion_personal WHERE catas.id_vino = $id_vino AND catas.id = apreciacion_personal.id_cata AND apreciacion_personal.comentario != '' LIMIT 6";
+            $sql = "SELECT *, catas.calificacion AS total FROM catas, apreciacion_personal WHERE catas.id_vino = $id_vino AND catas.id = apreciacion_personal.id_cata AND apreciacion_personal.comentario != '' LIMIT 6";
             return $response = $this->db->query($sql);
         }
 

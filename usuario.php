@@ -8,16 +8,20 @@
     require_once 'config/db.php';
     $vino = new vinos();
     $cata = $vino->getCatasUser($_GET['id']);
-    $tamaño = count($cata);
-    $usuarios = new usuarios();
-    $usuario = $usuarios->getPerfil($_GET['id']);
-    $user = $usuario->fetch_object();
-    $Mcata = $vino->getMejorCata($_GET['id']);
-    $OMcata = $Mcata->fetch_object();
-    $vine = $vino->getNewVinoId($OMcata->id_vino);
-    $vin = $vine->fetch_object();
-    $cosecha = $vino->getCosecha($OMcata->id_vino);
-    $cos = $cosecha->fetch_object();
+    if($cata){
+        $tamaño = count($cata);
+        $usuarios = new usuarios();
+        $usuario = $usuarios->getPerfil($_GET['id']);
+        $user = $usuario->fetch_object();
+        $Mcata = $vino->getMejorCata($_GET['id']);
+        $OMcata = $Mcata->fetch_object();
+        $vine = $vino->getNewVinoId($OMcata->id_vino);
+        $vin = $vine->fetch_object();
+        $cosecha = $vino->getCosecha($OMcata->id_vino);
+        $cos = $cosecha->fetch_object();
+    }else{
+        $tamaño = 0;
+    }
 ?>
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
@@ -48,6 +52,7 @@
     <!-- Start Page Content -->
     <!-- ============================================================== -->
     <!-- Row -->
+    <?php if($tamaño > 0): ?>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -88,7 +93,7 @@
                         </form>
                     </a>
                 </li>
-                <?php if($tamaño > 0): ?>
+                
                     <!-- basic table -->
                     <div class="row">
                         <div class="col-12">

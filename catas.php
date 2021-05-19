@@ -68,7 +68,7 @@
                                             <tbody>
                                             <?php foreach($cata as $indice => $dato): ?>   
                                                 <tr class="text-center">
-                                                    <td><img  src="<?=base_url.$dato['img']?>" alt="imagen" class="rounded-circle" width="50" height="50"></td>
+                                                    <td><img  src="<?=base_url.$dato['img']?>" alt="imagen" class="rounded-circle" width="100" height="100"></td>
                                                     <td><a href="resumen.php?id=<?=$dato['id_cata']?>" style="color: #ba2e53;"><?=$dato['nombre']?></a></td>
                                                     <td><?=$dato['cosecha']?></td>
                                                     <td><?=$dato['calif']?></td>
