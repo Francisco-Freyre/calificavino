@@ -240,7 +240,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light"
                             data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Compartir</button>
+                        <button type="submit" class="btn btn-primary" id="compartir-cata" data-name="<?=$_SESSION['identity']->nombre?>" onclick="showNotification()">Compartir</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

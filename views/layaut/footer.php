@@ -41,6 +41,33 @@
                         <script src="assets/dist/js/network.js"></script>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es-mx.min.js" integrity="sha512-Qy4cmZ6v7vnVEc0cn/BIj9q15eB98do4hMvu8xtc/H+v+YYpdpDrB35flHS3NPLbZUpe1npSYY/u+Gi3UB61vw==" crossorigin="anonymous"></script>
                         <script src="assets/dist/js/horas.js"></script>
-                        </body>
 
-                        </html>
+                        <script>
+                            if(Notification.permission !== 'granted'){
+                                Notification.requestPermission().then(permission => {
+                                    if(permission === 'granted'){
+                                        alert('Empezaras a recibir notificaciones.');
+                                    }else if(permission === 'denied'){
+                                        alert('No recibiras notificaciones y te perderas de la experiencia de la red social de Decimo Escalon');
+                                    }
+                                });
+                            }
+                                
+                            function showNotification(){
+                                let boton = document.getElementById('compartir-cata');
+                                let nombre = boton.dataset.name; 
+                                if(Notification.permission === 'granted'){
+                                    const notification = new Notification(nombre + ' acaba de compartir una nueva cata!!', {
+                                        body: 'Puedes ver la cata dando click en esta notificacion, no olvides iniciar sesion.',
+                                        icon: 'http://localhost:8080/segundapuesta.shop/decimoescalon/assets/images/fondo.jpg'
+                                    });
+
+                                    notification.onclick = (e) => {
+                                        window.location.href = 'https://www.decimoescalon.club/calificavino/network.php';
+                                    }
+                                }
+                            }
+                        </script>
+                    </body>
+
+                </html>
