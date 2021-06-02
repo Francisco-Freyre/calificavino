@@ -35,7 +35,7 @@
     if(isset($_POST)){
         if($_POST['accion'] == "vino-existe"){
             $vinos = new vinos();
-            $cata = $vinos->saveCata($_POST['id_vino'], $_SESSION['identity']->id);
+            $cata = $vinos->saveCata($_POST['id_vino'], $_SESSION['identity']->id, 0);
             $insert_cosecha = $vinos->saveCosecha($_POST['cosecha'], $_POST['alcohol'], $_POST['id_vino'], $cata);
             if($cata != false && $insert_cosecha){
                 echo "<script>";
@@ -84,7 +84,7 @@
                 $vino = new vinos();
                 $id = $vino->saveNewVinos($nombre, $region, $pais, $productor, $url_img);
                 if ($id != false) {
-                    $save = $vino->saveCata($id, $_SESSION['identity']->id);
+                    $save = $vino->saveCata($id, $_SESSION['identity']->id, 0);
                     $saveCos = $vino->saveCosecha($cosecha, $alcohol, $id, $save);
                 }
                 else{
@@ -119,20 +119,20 @@
             $brillo = $_POST['brillo'];
             $viscosidad = $_POST['viscocidad'];
             $calificacion = $_POST['calificacion1'];
+            $idcata = $_POST['cata'];
 
             $vino = new vinos();
             if($capa == 0){ $capa = "baja"; } elseif ($capa == 1) {$capa = "media";} elseif ($capa == 2) { $capa = "media-alta"; } elseif ($capa == 3) {$capa = "alta";}
             if($brillo == 0){ $brillo = "escaso";} elseif ($brillo == 1) {$brillo = "brillante";} elseif($brillo == 2) {$brillo = "muy brillante";}
             if($viscosidad == 0) {$viscosidad = "fluido";} elseif($viscosidad == 1) {$viscosidad = "concistente";} elseif($viscosidad = 2) {$viscosidad = "muy concistente";}
 
-            $cata = $vino->getCata($_SESSION['identity']->id);
-            $OCata = $cata->fetch_object();
-
             if($color){
-                $save = $vino->saveVisual($OCata->id, $capa, $color, $brillo, $viscosidad, $calificacion);
+                $save = $vino->saveVisual($idcata, $capa, $color, $brillo, $viscosidad, $calificacion);
+                $updatepaso = $vino->updatePaso($idcata, 1);
             }
             else{
-                $save = $vino->saveVisual($OCata->id, $capa, "", $brillo, $viscosidad, $calificacion);
+                $save = $vino->saveVisual($idcata, $capa, "", $brillo, $viscosidad, $calificacion);
+                $updatepaso = $vino->updatePaso($idcata, 1);
             }
 
             if($save){
@@ -155,16 +155,17 @@
             $intensidad = $_POST['intensisdad'];
             $complejidad = $_POST['complejidad'];
             $calificacion2 = $_POST['calificacion2'];
+            $idcata = $_POST['cata'];
 
             $vino = new vinos();
 
             if($intensidad == 0){ $intensidad = "baja"; } elseif ($intensidad == 1) {$intensidad = "media";} elseif ($intensidad == 2) { $intensidad = "media-alta"; } elseif ($intensidad == 3) {$intensidad = "alta";}
             if($complejidad == 0){ $complejidad = "baja"; } elseif ($complejidad == 1) {$complejidad = "media";} elseif ($complejidad == 2) { $complejidad = "media-alta"; } elseif ($complejidad == 3) {$complejidad = "alta";}
 
-            $cata = $vino->getCata($_SESSION['identity']->id);
-            $OCata = $cata->fetch_object();
 
-            $save2 = $vino->saveAroma($OCata->id, $intensidad, $complejidad, $calificacion2);
+            $save2 = $vino->saveAroma($idcata, $intensidad, $complejidad, $calificacion2);
+
+            $updatepaso = $vino->updatePaso($idcata, 2);
 
             if($save2){
                 $respuesta = array(
@@ -191,6 +192,7 @@
             $cuerpo = $_POST['cuerpo'];
             $permanencia = $_POST['permanencia'];
             $calificacion3 = $_POST['calificacion3'];
+            $idcata = $_POST['cata'];
 
             if($dulce == 0){ $dulce = "seco"; } elseif ($dulce == 1) {$dulce = "semiseco";} elseif ($dulce == 2) { $dulce = "semidulce"; } elseif ($dulce == 3) {$dulce = "dulce";} elseif ($dulce == 4) {$dulce = "muy dulce";}
             if($acidez == 0){ $acidez = "baja"; } elseif ($acidez == 1) {$acidez = "media";} elseif ($acidez == 2) { $acidez = "media-alta"; } elseif ($acidez == 3) {$acidez = "alta";}
@@ -201,10 +203,9 @@
 
             $vino = new vinos();
 
-            $cata = $vino->getCata($_SESSION['identity']->id);
-            $OCata = $cata->fetch_object();
+            $save3 = $vino->saveGusto($idcata, $dulce, $acidez, $tanino, $alcohol, $cuerpo, $permanencia, $calificacion3);
 
-            $save3 = $vino->saveGusto($OCata->id, $dulce, $acidez, $tanino, $alcohol, $cuerpo, $permanencia, $calificacion3);
+            $updatepaso = $vino->updatePaso($idcata, 3);
 
             if($save3){
                 $respuesta = array(
@@ -226,18 +227,17 @@
             $comentario = $_POST['comentarios'];
             $meridaje = $_POST['meridaje'];
             $calificacion4 = $_POST['calificacion4'];
+            $idcata = $_POST['cata'];
 
             $vino = new vinos();
 
-            $cata = $vino->getCata($_SESSION['identity']->id);
-            $OCata = $cata->fetch_object();
-
-            $save4 = $vino->saveApreciacion($OCata->id, $comentario, $meridaje, $calificacion4);
+            $save4 = $vino->saveApreciacion($idcata, $comentario, $meridaje, $calificacion4);
+            $updatepaso = $vino->updatePaso($idcata, 4);
 
             if($save4){
-                $calificacion = $vino->calificacionCata($OCata->id);
+                $calificacion = $vino->calificacionCata($idcata);
 
-                $save5 = $vino->updateCata($OCata->id, $calificacion);
+                $save5 = $vino->updateCata($idcata, $calificacion);
 
                 if($save5){
                     echo "<script>";

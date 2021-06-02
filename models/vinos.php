@@ -243,8 +243,8 @@
             return $result;
         }
 
-        public function saveCata($id_vino, $id_user){
-            $sql = "INSERT INTO catas VALUES (null, $id_vino, $id_user, 0);";
+        public function saveCata($id_vino, $id_user, $paso){
+            $sql = "INSERT INTO catas VALUES (null, $id_vino, $id_user, 0, $paso);";
             $save = $this->db->query($sql);
             $result = false;
             if($save){
@@ -291,6 +291,30 @@
             }
             else{
                 return false;
+            }
+        }
+
+        public function getPasoCata($id_cata){
+            $sql = "SELECT paso FROM catas WHERE id = $id_cata";
+            $response = $this->db->query($sql);
+
+            if($response){
+                return $response->fetch_object();
+            }
+            else{
+                return $response;
+            }
+        }
+
+        public function updatePaso($id_cata, $paso){
+            $sql = "UPDATE catas SET paso = $paso WHERE id = $id_cata";
+            $response = $this->db->query($sql);
+            
+            if($response){
+                return $response;
+            }
+            else{
+                return $response;
             }
         }
 

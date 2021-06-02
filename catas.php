@@ -68,10 +68,15 @@
                                             <tbody>
                                             <?php foreach($cata as $indice => $dato): ?>   
                                                 <tr class="text-center">
-                                                    <td><img  src="<?=base_url.$dato['img']?>" alt="imagen" class="rounded-circle" width="100" height="100"></td>
+                                                    <td><img  src="<?=base_url.$dato['img']?>" alt="imagen" class="rounded-circle" width="70" height="70"></td>
                                                     <td><a href="resumen.php?id=<?=$dato['id_cata']?>" style="color: #ba2e53;"><?=$dato['nombre']?></a></td>
                                                     <td><?=$dato['cosecha']?></td>
-                                                    <td><?=$dato['calif']?></td>
+                                                    <?php $paso = $vino->getPasoCata($dato['id_cata']) ?>
+                                                    <?php if(is_object($paso) && $paso->paso == 4): ?>
+                                                        <td><?=$dato['calif']?></td>
+                                                    <?php else: ?>
+                                                        <td><a href="calificacion.php?id_cata=<?=$dato['id_cata']?>">Tienes datos pendientes por catar</a></td>
+                                                    <?php endif; ?>
                                                 </tr>
                                             <?php endforeach; ?>
                                             </tbody>

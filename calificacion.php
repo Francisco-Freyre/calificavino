@@ -2,7 +2,11 @@
     include_once 'config/parameters.php';
     include_once 'helpers/session.php';
     include_once 'views/layaut/header.php';
-    include_once 'views/layaut/sidebar.php'
+    include_once 'views/layaut/sidebar.php';
+    require_once 'models/vinos.php';
+    require_once 'config/db.php';
+    $_vinos = new vinos();
+    $paso = $_vinos->getPasoCata($_GET['id_cata']);
 ?>
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
@@ -33,7 +37,7 @@
     <!-- ============================================================== -->
     <!-- Start Page Content -->
     <!-- ============================================================== -->
-    <form action="controllers/obtener_vino.php" method="POST" id="visual">
+    <form action="controllers/obtener_vino.php" method="POST" id="visual" <?php if($paso->paso == 0): ?> style="display: block;" <?php else: ?> style="display: none;" <?php endif;?>>
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -333,6 +337,7 @@
                                             valores decimales)</h6>
                                         <div class="form-group">
                                             <input type="range" class="form-control" min="0" max="1" step="0.1" id="calif1" name="calificacion1">
+                                            <input type="text" value="<?=$_GET['id_cata']?>" name="cata" style="display: none;">
                                             <div class="text-center" id="select1">0</div>
                                         </div>
                                     </div>
@@ -354,7 +359,7 @@
             </div>
         </div>
     </form>
-    <form action="controllers/obtener_vino.php" method="POST" id="aromatico">
+    <form action="controllers/obtener_vino.php" method="POST" id="aromatico" <?php if($paso->paso == 1): ?> style="display: block;" <?php else: ?> style="display: none;" <?php endif;?>>
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -428,6 +433,7 @@
                                             incluyen valores decimales)</h6>
                                         <div class="form-group">
                                             <input type="range" class="form-control" min="0" max="2" step="0.1" id="calif2" name="calificacion2">
+                                            <input type="text" value="<?=$_GET['id_cata']?>" name="cata" style="display: none;">
                                             <div class="text-center" id="select2">0</div>
                                         </div>
                                     </div>
@@ -446,7 +452,7 @@
             </div>
         </div>
     </form>
-    <form action="controllers/obtener_vino.php" method="POST" id="gustativo">
+    <form action="controllers/obtener_vino.php" method="POST" id="gustativo" <?php if($paso->paso == 2): ?> style="display: block;" <?php else: ?> style="display: none;" <?php endif;?>>
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -538,6 +544,7 @@
                                             incluyen valores decimales)</h6>
                                         <div class="form-group">
                                             <input type="range" class="form-control" min="0" max="3" step="0.1" id="calif3" name="calificacion3">
+                                            <input type="text" value="<?=$_GET['id_cata']?>" name="cata" style="display: none;">
                                             <div class="text-center" id="select3">0</div>
                                         </div>
                                     </div>
@@ -560,7 +567,7 @@
             </div>
         </div>
     </form>
-    <form action="controllers/obtener_vino.php?id_cata=<?=$_GET['id_cata']?>" method="POST" id="personal">
+    <form action="controllers/obtener_vino.php?id_cata=<?=$_GET['id_cata']?>" method="POST" id="personal" <?php if($paso->paso == 3): ?> style="display: block;" <?php else: ?> style="display: none;" <?php endif;?>>
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -599,6 +606,7 @@
                                             incluyen valores decimales)</h6>
                                         <div class="form-group">
                                             <input type="range" class="form-control" min="0" max="4" step="0.1" id="calif4" name="calificacion4">
+                                            <input type="text" value="<?=$_GET['id_cata']?>" name="cata" style="display: none;">
                                             <div class="text-center" id="select4">0</div>
                                         </div>
                                     </div>

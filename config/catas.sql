@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-04-2021 a las 18:20:45
+-- Tiempo de generación: 03-06-2021 a las 01:15:54
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.5
 
@@ -24,15 +24,15 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `likes`
+-- Estructura de tabla para la tabla `catas`
 --
 
-CREATE TABLE `likes` (
-  `id` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `id_public` int(11) NOT NULL,
-  `creado` datetime NOT NULL,
-  `actualizado` datetime NOT NULL
+CREATE TABLE `catas` (
+  `id` int(10) NOT NULL,
+  `id_vino` int(10) NOT NULL,
+  `id_user` int(10) NOT NULL,
+  `calificacion` decimal(10,2) NOT NULL,
+  `paso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -40,31 +40,31 @@ CREATE TABLE `likes` (
 --
 
 --
--- Indices de la tabla `likes`
+-- Indices de la tabla `catas`
 --
-ALTER TABLE `likes`
+ALTER TABLE `catas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_public` (`id_public`);
+  ADD KEY `id_vino` (`id_vino`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `likes`
+-- AUTO_INCREMENT de la tabla `catas`
 --
-ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `catas`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `likes`
+-- Filtros para la tabla `catas`
 --
-ALTER TABLE `likes`
-  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`id_public`) REFERENCES `publication` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE `catas`
+  ADD CONSTRAINT `catas_ibfk_1` FOREIGN KEY (`id_vino`) REFERENCES `new_vinos` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

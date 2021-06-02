@@ -4,9 +4,6 @@ $(document).ready(function() {
     $('#guardar-vino-imagen').hide();
     $('#guardar-perfil-imagen').hide();
     $('#existe-vino').hide();
-    $('#aromatico').hide();
-    $('#gustativo').hide();
-    $('#personal').hide();
 
     $('#nombre').on('change', function(){
         let seleccion = $(this).val();
@@ -62,7 +59,7 @@ $(document).ready(function() {
     $('#aromas').keypress(function(e){
         let contenido = $('#aromas').val();
         let id = $('#aromas').data('id');
-        if(e.which == 13){
+        if(e.which == 13 || e.which == 44){
             e.preventDefault();
             $.ajax({
                 type:'GET',
@@ -131,7 +128,7 @@ $(document).ready(function() {
     $('#sabores').keypress(function(e){
         let contenido = $('#sabores').val();
         let id = $(this).data('id');
-        if(e.which == 13){
+        if(e.which == 13 || e.which == 44){
             e.preventDefault();
             $.ajax({
                 type:'GET',

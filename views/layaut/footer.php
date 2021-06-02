@@ -2,7 +2,7 @@
                                 <!-- ============================================================== -->
                                 <footer class="footer text-center text-muted">
                                     All Rights Reserved by Decimo Escalón. Designed and Developed by <a href="https://www.bithives.com/">Bithives Technologies</a>.
-                                    <div id="resultado"></div>
+                                    <div id="resultado" style="display: none;"></div>
                                 </footer>
                                 <!-- ============================================================== -->
                                 <!-- End footer -->
@@ -43,6 +43,9 @@
                         <script src="assets/dist/js/horas.js"></script>
 
                         <script>
+
+                            const url = "http://localhost:8080/segundapuesta.shop/decimoescalon";
+
                             if(Notification.permission !== 'granted'){
                                 Notification.requestPermission().then(permission => {
                                     if(permission === 'granted'){
@@ -59,7 +62,23 @@
                                 if(Notification.permission === 'granted'){
                                     const notification = new Notification(nombre + ' acaba de compartir una nueva cata!!', {
                                         body: 'Puedes ver la cata dando click en esta notificacion, no olvides iniciar sesion.',
-                                        icon: 'http://localhost:8080/segundapuesta.shop/decimoescalon/assets/images/fondo.jpg'
+                                        icon: url + '/assets/images/fondo.jpg'
+                                    });
+
+                                    notification.onclick = (e) => {
+                                        window.location.href = 'https://www.decimoescalon.club/calificavino/network.php';
+                                    }
+                                }
+                            }
+
+                            function showNotificationDos(){
+                                let boton = document.getElementById('btn-like');
+                                let userPublic = boton.dataset.uspu;
+                                let user = boton.dataset.user;
+                                if(Notification.permission === 'granted'){
+                                    const notification = new Notification(user + ' acaba de dar like a la publicacion de ' + userPublic, {
+                                        body: 'Puedes ver la cata dando click en esta notificacion, no olvides iniciar sesion.',
+                                        icon: url + '/assets/images/fondo.jpg'
                                     });
 
                                     notification.onclick = (e) => {
