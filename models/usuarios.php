@@ -18,13 +18,16 @@ class usuarios{
 
     public function logueo($password, $email){
         $result = false;
-        $sql = "SELECT id, nombre, pass, imagen, calificaciones FROM clientes WHERE correo = '$email'";
+        $sql = "SELECT id, nombre, pass, califcar, correo, imagen FROM clientes WHERE correo = '$email'";
         $login = $this->db->query($sql);
         if($login && $login->num_rows == 1){
             $cliente = $login->fetch_object();
             
             if(password_verify($password, $cliente->pass)){
                 $result = $cliente;
+            }
+            else{
+                $result = $this->db->error;
             }
         }
         return $result;
@@ -49,6 +52,22 @@ class usuarios{
             $result = true;
         }
         return $result;
+    }
+
+    public function create($nombre, $correo, $password){
+        $opciones = array(
+            'cost' => 12
+        );
+        $password_hashed = password_hash($password, PASSWORD_BCRYPT, $opciones);
+        $sql = "INSERT INTO clientes VALUES(null, '$nombre', '', '', '', '', '', '$correo', '', '$password_hashed', null, 'on', '')";
+        $save = $this->db->query($sql);
+        if($save){
+            return $this->db->insert_id;
+        }
+        else{
+            return $this->db->error;
+        }
+        
     }
 }
 ?>
