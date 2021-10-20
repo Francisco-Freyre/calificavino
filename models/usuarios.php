@@ -18,7 +18,7 @@ class usuarios{
 
     public function logueo($password, $email){
         $result = false;
-        $sql = "SELECT id, nombre, pass, califcar, correo, imagen FROM clientes WHERE correo = '$email'";
+        $sql = "SELECT id_paciente, nombre_p, pass, calificaciones, correo, imagen FROM clientes WHERE correo = '$email'";
         $login = $this->db->query($sql);
         if($login && $login->num_rows == 1){
             $cliente = $login->fetch_object();
@@ -34,17 +34,17 @@ class usuarios{
     }
 
     public function getPerfil($id_user){
-        $sql = "SELECT * FROM clientes WHERE id = $id_user";
+        $sql = "SELECT * FROM clientes WHERE id_paciente = $id_user";
         return $result = $this->db->query($sql);
     }
 
     public function updatePerfil($id, $nombre, $edad, $sexo, $dom, $cp, $cel, $correo, $imagen){
         $sql = "";
         if($imagen != ""){
-            $sql = "UPDATE clientes SET nombre = '$nombre', edad = '$edad', sexo = '$sexo', domicilio = '$dom', cp = '$cp', cel = '$cel', correo = '$correo', imagen = '$imagen' WHERE id = $id";
+            $sql = "UPDATE clientes SET nombre_p = '$nombre', edad_p = '$edad', sexo_p = '$sexo', domicilio_p = '$dom', cp_p = '$cp', cel_pac = '$cel', correo = '$correo', imagen = '$imagen' WHERE id_paciente = $id";
         }
         else{
-            $sql = "UPDATE clientes SET nombre = '$nombre', edad = '$edad', sexo = '$sexo', domicilio = '$dom', cp = '$cp', cel = '$cel', correo = '$correo' WHERE id = $id";
+            $sql = "UPDATE clientes SET nombre_p = '$nombre', edad_p = '$edad', sexo_p = '$sexo', domicilio_p = '$dom', cp_p = '$cp', cel_pac = '$cel', correo = '$correo' WHERE id_paciente = $id";
         }
         $response = $this->db->query($sql);
         $result = false;
@@ -59,7 +59,7 @@ class usuarios{
             'cost' => 12
         );
         $password_hashed = password_hash($password, PASSWORD_BCRYPT, $opciones);
-        $sql = "INSERT INTO clientes VALUES(null, '$nombre', '', '', '', '', '', '$correo', '', '$password_hashed', null, 'on', '')";
+        $sql = "INSERT INTO clientes VALUES(null, '$nombre', null, '', '', '', '', '', '', '$correo','', null, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DE1871', 'DE1871', '', 79, '', '', '', 0, '','$password_hashed', '', null, 'T', 'on', 'precio1', null, null)";
         $save = $this->db->query($sql);
         if($save){
             return $this->db->insert_id;

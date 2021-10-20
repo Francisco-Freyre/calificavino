@@ -15,8 +15,8 @@ switch($_SERVER['REQUEST_METHOD']){
                 $response = array(
                     'resultado' => true,
                     'usuario' => array(
-                        'id' => $us->id,
-                        'nombre' => $us->nombre,
+                        'id' => $us->id_paciente,
+                        'nombre' => $us->nombre_p,
                         'correo' => $us->correo,
                     )
                 );
@@ -36,8 +36,8 @@ switch($_SERVER['REQUEST_METHOD']){
                 die(json_encode(array(
                     'resultado' => true,
                     'usuario' => array(
-                        'id' => $usuario->id,
-                        'nombre' => $usuario->nombre,
+                        'id' => $usuario->id_paciente,
+                        'nombre' => $usuario->nombre_p,
                         'correo' => $usuario->correo
                     )
                 )));
@@ -70,9 +70,20 @@ switch($_SERVER['REQUEST_METHOD']){
             if($_GET['usuario'] == 1){
                 $usuario = $_usuarios->getPerfil($_GET['id_usuario']);
                 if($usuario){
+                    $user = $usuario->fetch_object();
                     die(json_encode(array(
                         'resultado' => true,
-                        'usuario' => $usuario->fetch_object()
+                        'usuario' => array(
+                            'id' => $user->id_paciente,
+                            'nombre' => $user->nombre_p,
+                            'edad' => $user->edad_p,
+                            'sexo' => $user->sexo_p,
+                            'domicilio' => $user->domicilio_p,
+                            'cp' => $user->cp_p,
+                            'cel' => $user->cel_pac,
+                            'correo' => $user->correo,
+                            'imagen' => $user->imagen
+                        )
                     )));
                 }else{
                     die(json_encode(array(
