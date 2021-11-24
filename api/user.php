@@ -1,6 +1,6 @@
 <?php
-require_once '../models/usuarios.php';
-require_once '../config/db.php';
+require_once '../decimoescalon.club/calificavino/models/usuarios.php';
+require_once '../decimoescalon.club/calificavino/config/db.php';
 
 $_usuarios = new usuarios();
 

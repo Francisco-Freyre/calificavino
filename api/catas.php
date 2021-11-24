@@ -1,15 +1,77 @@
 <?php
-require_once '../models/vinos.php';
-require_once '../config/db.php';
+require_once '../decimoescalon.club/calificavino/models/vinos.php';
+require_once '../decimoescalon.club/calificavino/config/db.php';
 
 $_vinos = new vinos();
 
 switch($_SERVER['REQUEST_METHOD']){
     case 'POST':
         $_POST = json_decode(file_get_contents('php://input'), true);
-        if(isset($_POST['registro'])){
+        if(isset($_POST['calificar'])){
+            if($_POST['calificar'] == true){
+                $saveVisual = $_vinos->saveVisual($_POST['idcata'], $_POST['capa'], $_POST['color'], $_POST['brillo'], $_POST['viscosidad'], $_POST['califVisual']);
+                if($saveVisual){
+                    $saveAroma = $_vinos->saveAroma($_POST['idcata'], $_POST['intensidad'], $_POST['complejidad'], $_POST['califAroma']);
+                    if($saveAroma){
+                        $saveGusto = $_vinos->saveGusto($_POST['idcata'], $_POST['dulce'], $_POST['acidez'], $_POST['tanino'], $_POST['alcohol'], $_POST['cuerpo'], $_POST['permanencia'], $_POST['califGusto']);
+                        if($saveGusto){
+                            $savePersonal = $_vinos->saveApreciacion($_POST['idcata'], $_POST['comentario'], $_POST['meridaje'], $_POST['califPersonal']);
+                            if($savePersonal){
+                                $saveCosecha = $_vinos->saveCosecha($_POST['cosecha'], $_POST['porAlcohol'], $_POST['idvino'], $_POST['idcata']);
+                                die(json_encode(array(
+                                    'resultado' => true
+                                )));
+                            }
+                            else{
+                                die(json_encode(array(
+                                    'resultado' => false,
+                                    'message' => 'Alguna opcion de la calificacion personal no pudo ser guardada'
+                                )));
+                            }
+                        }
+                        else{
+                            die(json_encode(array(
+                                'resultado' => false,
+                                'message' => 'Alguna opcion de la calificacion del gusto no pudo ser guardada'
+                            )));
+                        }
+                    }
+                    else{
+                        die(json_encode(array(
+                            'resultado' => false,
+                            'message' => 'Alguna opcion de la calificacion aromatica no pudo ser guardada'
+                        )));
+                    }
+                }
+                else{
+                    die(json_encode(array(
+                        'resultado' => false,
+                        'message' => 'Alguna opcion de la calificacion visual no pudo ser guardada'
+                    )));
+                }
+            }
         }
+
+        if(isset($_POST['create'])){
+            if($_POST['create'] == true){
+                $saveCata = $_vinos->saveCata($_POST['idvino'], $_POST['iduser'], 0);
+                if($saveCata != false){
+                    die(json_encode(array(
+                        'resultado' => true,
+                        'idcata' => $saveCata
+                    )));
+                }
+                else{
+                    die(json_encode(array(
+                        'resultado' => false
+                    )));
+                }
+            }
+        }
+
         if(isset($_POST['update'])){
+            if($_POST['update'] == true){
+            }
         }
         break;
     case 'GET':
@@ -80,6 +142,21 @@ switch($_SERVER['REQUEST_METHOD']){
                     'resultado' => false,
                     'message' => 'Error de procesamiento'
                 )));
+            }
+        }
+
+        if(isset($_GET['delete'])){
+            if($_GET['delete'] == 1){
+                $deleted = $_vinos->deleteCata($_GET['cataId']);
+                if($deleted){
+                    die(json_encode(array(
+                        'resultado' => true
+                    )));
+                }else{
+                    die(json_encode(array(
+                        'resultado' => false
+                    )));
+                }
             }
         }
         break;
