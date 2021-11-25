@@ -13,11 +13,13 @@ switch($_SERVER['REQUEST_METHOD']){
                 if($saveVisual){
                     $saveAroma = $_vinos->saveAroma($_POST['idcata'], $_POST['intensidad'], $_POST['complejidad'], $_POST['califAroma']);
                     if($saveAroma){
-                        $saveGusto = $_vinos->saveGusto($_POST['idcata'], $_POST['dulce'], $_POST['acidez'], $_POST['tanino'], $_POST['alcohol'], $_POST['cuerpo'], $_POST['permanencia'], $_POST['califGusto']);
+                        $saveGusto = $_vinos->saveGusto($_POST['idcata'], $_POST['dulce'], $_POST['acidez'], $_POST['tanino'], $_POST['alcohol'], $_POST['cuerpo'], $_POST['sapidez'] , $_POST['permanencia'], $_POST['califGusto']);
                         if($saveGusto){
                             $savePersonal = $_vinos->saveApreciacion($_POST['idcata'], $_POST['comentario'], $_POST['meridaje'], $_POST['califPersonal']);
                             if($savePersonal){
-                                $saveCosecha = $_vinos->saveCosecha($_POST['cosecha'], $_POST['porAlcohol'], $_POST['idvino'], $_POST['idcata']);
+                                foreach ($_POST['aromas'] as $value) {
+                                    $palabra = $_vinos->savePalabraAromas($value, $_POST['idcata']);
+                                }
                                 die(json_encode(array(
                                     'resultado' => true
                                 )));
@@ -47,6 +49,33 @@ switch($_SERVER['REQUEST_METHOD']){
                     die(json_encode(array(
                         'resultado' => false,
                         'message' => 'Alguna opcion de la calificacion visual no pudo ser guardada'
+                    )));
+                }
+            }
+        }
+
+        if(isset($_POST['anio'])){
+            if($_POST['anio'] == true){
+                $catas = $_vinos->getCataId($_POST['idcata']);
+                if($catas->num_rows > 0){
+                    $cata = $catas->fetch_object();
+                    $saveCosecha = $_vinos->saveCosecha($_POST['cosecha'], $_POST['alcohol'], $cata->id_vino, $_POST['idcata']);
+                    if($saveCosecha){
+                        die(json_encode(array(
+                            'resultado' => true
+                        )));
+                    }
+                    else{
+                        die(json_encode(array(
+                            'resultado' => false,
+                            'message' => 'No se pudo guardar los datos, intenta de nuevo'
+                        )));
+                    }
+                }
+                else{
+                    die(json_encode(array(
+                        'resultado' => false,
+                        'message' => 'La cata no existe'
                     )));
                 }
             }

@@ -419,8 +419,8 @@
             return $response = $this->db->query($sql);
         }
 
-        public function saveGusto($id, $dulce, $acidez, $tanino, $alcohol, $cuerpo, $permanencia, $calificacion){
-            $sql = "INSERT INTO gustativo VALUES (NULL, $id, '$dulce', '$acidez', '$tanino', '$alcohol', '$cuerpo', '$permanencia', '', '$calificacion');";
+        public function saveGusto($id, $dulce, $acidez, $tanino, $alcohol, $cuerpo, $sapidez , $permanencia, $calificacion){
+            $sql = "INSERT INTO gustativo VALUES (NULL, $id, '$dulce', '$acidez', '$tanino', '$alcohol', '$cuerpo', '$permanencia', '$sapidez', '$calificacion');";
             $save = $this->db->query($sql);
 
             $result = false;
