@@ -30,7 +30,7 @@ switch($_SERVER['REQUEST_METHOD']){
                             'pais' => $vino->pais,
                             'region' => $vino->region,
                             'productor' => $vino->productor,
-                            'img' => $vino->url_img,
+                            'img' => 'https://www.decimoescalon.club/calificavino/'.$vino->url_img,
                             'uvas' => $AUvas
                         );
                         array_push($AVinos, $AVino);
