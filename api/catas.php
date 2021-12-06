@@ -108,11 +108,14 @@ switch($_SERVER['REQUEST_METHOD']){
             if($_GET['catas'] == 1){
                 $catas = $_vinos->getCatasUser($_GET['id']);
                 if(count($catas) > 0){
-                    die(json_encode($catas));
+                    die(json_encode(array(
+                        'resultado' => true,
+                        'catas' => $catas
+                    )));
                 }else{
                     die(json_encode(array(
                         'resultado' => false,
-                        'message' => 'No hay catas'
+                        'catas' => []
                     )));
                 }
             }else{
