@@ -6,7 +6,7 @@
     require_once 'models/vinos.php';
     require_once 'config/db.php';
     $vino = new vinos();
-    $cata = $vino->getCatasUser($_SESSION['identity']->id);
+    $cata = $vino->getCatasUser($_SESSION['identity']->id_paciente);
     $tamaño = count($cata);
 ?>
 

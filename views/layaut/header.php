@@ -105,7 +105,7 @@
                                     <?php else: ?>
                                         <img src="<?=$_SESSION['identity']->imagen?>" alt="user" class="rounded-circle" width="40" height="40">
                                     <?php endif; ?>
-                                    <span class="ml-2 d-none d-lg-inline-block"><span>Hola, <?=$_SESSION['identity']->nombre?></span> <span
+                                    <span class="ml-2 d-none d-lg-inline-block"><span>Hola, <?=$_SESSION['identity']->nombre_p?></span> <span
                                             class="text-dark"></span> <i data-feather="chevron-down"
                                             class="svg-icon"></i></span>
                                 </a>

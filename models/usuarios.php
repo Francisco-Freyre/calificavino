@@ -7,12 +7,12 @@ class usuarios{
     }
 
     public function getFriends($id_user){
-        $sql = "SELECT id, nombre FROM clientes WHERE calificaciones = 'on' AND id != $id_user";
+        $sql = "SELECT id_paciente, nombre_p FROM d_paciente WHERE calificaciones = 'on' AND id_paciente != $id_user";
         return $result = $this->db->query($sql);
     }
 
     public function getUser($id_user){
-        $sql = "SELECT id, nombre, correo, imagen FROM clientes WHERE id = $id_user";
+        $sql = "SELECT id_paciente, nombre_p, correo, imagen FROM d_paciente WHERE id_paciente = $id_user";
         return $result = $this->db->query($sql);
     }
 

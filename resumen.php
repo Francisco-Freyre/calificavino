@@ -36,7 +36,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-5 align-self-center">
-            <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Cata hecha por <?=$usuario->nombre?></h4>
+            <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Cata hecha por <?=$usuario->nombre_p?></h4>
             <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb m-0 p-0">
@@ -58,7 +58,7 @@
                             Compartir
                         </a>
                     </div>
-                    <?php if($_SESSION['identity']->id == $OCata->id_user): ?>
+                    <?php if($_SESSION['identity']->id_paciente == $OCata->id_user): ?>
                         <div class="col-md-3 text-right">
                             <a href="editCalif.php?id=<?=$OCata->id?>" class="btn waves-effect waves-light btn-success">
                                 <i class="far fa-edit"></i>    

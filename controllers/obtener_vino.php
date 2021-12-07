@@ -35,7 +35,7 @@
     if(isset($_POST)){
         if($_POST['accion'] == "vino-existe"){
             $vinos = new vinos();
-            $cata = $vinos->saveCata($_POST['id_vino'], $_SESSION['identity']->id, 0);
+            $cata = $vinos->saveCata($_POST['id_vino'], $_SESSION['identity']->id_paciente, 0);
             $insert_cosecha = $vinos->saveCosecha($_POST['cosecha'], $_POST['alcohol'], $_POST['id_vino'], $cata);
             if($cata != false && $insert_cosecha){
                 echo "<script>";
@@ -84,7 +84,7 @@
                 $vino = new vinos();
                 $id = $vino->saveNewVinos($nombre, $region, $pais, $productor, $url_img);
                 if ($id != false) {
-                    $save = $vino->saveCata($id, $_SESSION['identity']->id, 0);
+                    $save = $vino->saveCata($id, $_SESSION['identity']->id_paciente, 0);
                     $saveCos = $vino->saveCosecha($cosecha, $alcohol, $id, $save);
                 }
                 else{
@@ -203,7 +203,7 @@
 
             $vino = new vinos();
 
-            $save3 = $vino->saveGusto($idcata, $dulce, $acidez, $tanino, $alcohol, $cuerpo, $permanencia, $calificacion3);
+            $save3 = $vino->saveGusto($idcata, $dulce, $acidez, $tanino, $alcohol, $cuerpo, '', $permanencia, $calificacion3);
 
             $updatepaso = $vino->updatePaso($idcata, 3);
 
