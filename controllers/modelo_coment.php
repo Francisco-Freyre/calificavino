@@ -20,7 +20,7 @@ if(isset($_GET['accion'])){
                         $AComent = array(
                             "id_usuario" => $comment->id_user,
                             "id_comentario" => $comment->id,
-                            "nombre_usuario" => $user->nombre,
+                            "nombre_usuario" => $user->nombre_p,
                             "contenido" => $comment->contenido,
                             "img" => $user->imagen
                         );
@@ -68,9 +68,9 @@ if(isset($_POST['accion'])){
 
     if($_POST['accion'] == 'like'){
         $red = new networks();
-        $existe = $red->getLike($_SESSION['identity']->id, $_POST['id_public']);
+        $existe = $red->getLike($_SESSION['identity']->id_paciente, $_POST['id_public']);
         if($existe->num_rows == 0){
-            $like = $red->saveLike($_SESSION['identity']->id, $_POST['id_public']);
+            $like = $red->saveLike($_SESSION['identity']->id_paciente, $_POST['id_public']);
             if($like){
                 $response = array(
                     'respuesta' => 'exito',
@@ -96,7 +96,7 @@ if(isset($_POST['accion'])){
 
     if($_POST['accion'] == 'dislike'){
         $red = new networks();
-        $existe = $red->getLike($_SESSION['identity']->id, $_POST['id_public']);
+        $existe = $red->getLike($_SESSION['identity']->id_paciente, $_POST['id_public']);
         if($existe->num_rows == 1){
             $exis = $existe->fetch_object();
             $like = $red->deleteLike($exis->id);

@@ -235,12 +235,12 @@
                         <textarea class="form-control" name="contenido" id="" cols="49" rows="10"></textarea>
                         <input type="text" value="compartir-cata" name="accion" style="display: none;">
                         <input type="text" value="<?=$_GET['id']?>" name="id_cata" style="display: none;">
-                        <input type="text" value="<?=$_SESSION['identity']->id?>" name="id_user" style="display: none;">
+                        <input type="text" value="<?=$_SESSION['identity']->id_paciente?>" name="id_user" style="display: none;">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light"
                             data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" id="compartir-cata" data-name="<?=$_SESSION['identity']->nombre?>" onclick="showNotification()">Compartir</button>
+                        <button type="submit" class="btn btn-primary" id="compartir-cata" data-name="<?=$_SESSION['identity']->nombre_p?>" onclick="showNotification()">Compartir</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

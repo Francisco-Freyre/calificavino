@@ -52,12 +52,12 @@ $publicaciones = $networks->getCompartidos();
                                 <?php endif; ?>
                             </div>
                             <div class="col-md-7">
-                                <a href="usuario.php?id=<?=$public->id_usuario?>" style="color: black;"><p class="card-text"><?=$us->nombre?></p></a>
+                                <a href="usuario.php?id=<?=$public->id_usuario?>" style="color: black;"><p class="card-text"><?=$us->nombre_p?></p></a>
                             </div>
                             <div class="col-md-3">
                                 <p class="card-text time"><?=$public->creado?></p>
                             </div>
-                            <?php if($public->id_usuario == $_SESSION['identity']->id): ?>
+                            <?php if($public->id_usuario == $_SESSION['identity']->id_paciente): ?>
                                 <div class="col-md-1">
                                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
@@ -103,7 +103,7 @@ $publicaciones = $networks->getCompartidos();
                                 <?php if($like->num_rows == 1): ?>
                                     <button class="btn btn-light" data-id="<?=$public->id?>"><img src="assets/images/like-24.png" class="btn-dislike fixed"> <?=$numlikes?></button> 
                                 <?php else: ?>
-                                    <button class="btn btn-light" data-id="<?=$public->id?>"><img src="assets/images/dislike-24.png" class="btn-like fixed" id="btn-like" data-uspu="<?=$us->nombre?>" data-user="<?=$_SESSION['identity']->nombre?>" onclick="showNotificationDos()" > <?=$numlikes?></button>
+                                    <button class="btn btn-light" data-id="<?=$public->id?>"><img src="assets/images/dislike-24.png" class="btn-like fixed" id="btn-like" data-uspu="<?=$us->nombre?>" data-user="<?=$_SESSION['identity']->nombre_p?>" onclick="showNotificationDos()" > <?=$numlikes?></button>
                                 <?php endif; ?>
                                 <button data-id="<?=$public->id?>" class="btn btn-light btncoment" data-toggle="modal" data-target="#myModal"><i class="far fa-comment"></i> Comentarios (<?=$comentarios->num_rows?>)</button>
                                 <button class="btn btn-light comp" data-id="<?=$public->id_cata?>" data-toggle="modal" data-target="#myModal2"><i class="far fa-share-square"></i> Compartir</button>
@@ -133,7 +133,7 @@ $publicaciones = $networks->getCompartidos();
 
                 </div>
                 <div class="modal-footer">
-                <textarea class="form-control" id="add-coment" data-iduser="<?=$_SESSION['identity']->id?>" data-name="<?=$_SESSION['identity']->nombre?>" data-img="<?=$_SESSION['identity']->imagen?>" placeholder="Escribe aqui un nuevo comentario"  cols="49" rows="2"></textarea>
+                <textarea class="form-control" id="add-coment" data-iduser="<?=$_SESSION['identity']->id_paciente?>" data-name="<?=$_SESSION['identity']->nombre_p?>" data-img="<?=$_SESSION['identity']->imagen?>" placeholder="Escribe aqui un nuevo comentario"  cols="49" rows="2"></textarea>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -141,7 +141,7 @@ $publicaciones = $networks->getCompartidos();
     <!-- sample modal content -->
     <div id="myModal2" class="modal fade" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel" aria-hidden="true">
-        <form action="controllers/modelo_compartir.php" id="compcata" data-id="<?=$_SESSION['identity']->id?>" data-idcata="-1" method="post">
+        <form action="controllers/modelo_compartir.php" id="compcata" data-id="<?=$_SESSION['identity']->id_paciente?>" data-idcata="-1" method="post">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -167,7 +167,7 @@ $publicaciones = $networks->getCompartidos();
     <!-- sample modal content -->
     <div id="myModal3" class="modal fade" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel" aria-hidden="true">
-        <form action="controllers/modelo_compartir.php" id="editPublic" data-id="<?=$_SESSION['identity']->id?>" data-idcata="-1" method="post">
+        <form action="controllers/modelo_compartir.php" id="editPublic" data-id="<?=$_SESSION['identity']->id_paciente?>" data-idcata="-1" method="post">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
