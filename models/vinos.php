@@ -328,7 +328,7 @@
                 $vi = $vino->fetch_object();
                 $AVino = array(
                     "id_cata" => $cat->id,
-                    "img" => $vi->url_img,
+                    "img" => 'https://www.decimoescalon.club/calificavino/'.$vi->url_img,
                     "nombre" => $vi->nombre,
                     "cosecha" => $vi->cosecha,
                     "calif" => $cat->calificacion,

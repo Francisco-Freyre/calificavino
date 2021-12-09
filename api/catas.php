@@ -100,6 +100,48 @@ switch($_SERVER['REQUEST_METHOD']){
 
         if(isset($_POST['update'])){
             if($_POST['update'] == true){
+                $saveVisual = $_vinos->updateVisual($_POST['idcata'], $_POST['capa'], $_POST['color'], $_POST['brillo'], $_POST['viscosidad'], $_POST['califVisual']);
+                if($saveVisual){
+                    $saveAroma = $_vinos->updateAroma($_POST['idcata'], $_POST['intensidad'], $_POST['complejidad'], $_POST['califAroma']);
+                    if($saveAroma){
+                        $saveGusto = $_vinos->updateGusto($_POST['idcata'], $_POST['dulce'], $_POST['acidez'], $_POST['tanino'], $_POST['alcohol'], $_POST['cuerpo'], $_POST['sapidez'] , $_POST['permanencia'], $_POST['califGusto']);
+                        if($saveGusto){
+                            $savePersonal = $_vinos->saveApreciacion($_POST['idcata'], $_POST['comentario'], $_POST['meridaje'], $_POST['califPersonal']);
+                            if($savePersonal){
+                                foreach ($_POST['aromas'] as $value) {
+                                    $palabra = $_vinos->savePalabraAromas($value, $_POST['idcata']);
+                                }
+                                die(json_encode(array(
+                                    'resultado' => true
+                                )));
+                            }
+                            else{
+                                die(json_encode(array(
+                                    'resultado' => false,
+                                    'message' => 'Alguna opcion de la calificacion personal no pudo ser guardada'
+                                )));
+                            }
+                        }
+                        else{
+                            die(json_encode(array(
+                                'resultado' => false,
+                                'message' => 'Alguna opcion de la calificacion del gusto no pudo ser guardada'
+                            )));
+                        }
+                    }
+                    else{
+                        die(json_encode(array(
+                            'resultado' => false,
+                            'message' => 'Alguna opcion de la calificacion aromatica no pudo ser guardada'
+                        )));
+                    }
+                }
+                else{
+                    die(json_encode(array(
+                        'resultado' => false,
+                        'message' => 'Alguna opcion de la calificacion visual no pudo ser guardada'
+                    )));
+                }
             }
         }
         break;
@@ -159,7 +201,15 @@ switch($_SERVER['REQUEST_METHOD']){
                 }
                 die(json_encode(array(
                     'resultado' => true,
-                    'vino' => $vin,
+                    'vino' => array(
+                        'id' => $vin->id,
+                        'nombre' => $vin->nombre,
+                        'pais' => $vin->pais,
+                        'region' => $vin->region,
+                        'uva' => $vin->uva,
+                        'productor' => $vin->productor,
+                        'url_img' => 'https://www.decimoescalon.club/calificavino/'.$vin->url_img
+                    ),
                     'cosecha' => $cos,
                     'visual' => $vis,
                     'aroma' => $aro,
