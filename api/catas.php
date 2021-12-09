@@ -17,6 +17,7 @@ switch($_SERVER['REQUEST_METHOD']){
                         if($saveGusto){
                             $savePersonal = $_vinos->saveApreciacion($_POST['idcata'], $_POST['comentario'], $_POST['meridaje'], $_POST['califPersonal']);
                             if($savePersonal){
+                                $updateCalif = $_vinos->updateCata($_POST['idcata'], $_POST['califVisual'] + $_POST['califAroma'] + $_POST['califGusto'] + $_POST['califPersonal']);
                                 foreach ($_POST['aromas'] as $value) {
                                     $palabra = $_vinos->savePalabraAromas($value, $_POST['idcata']);
                                 }
