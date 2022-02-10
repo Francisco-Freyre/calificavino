@@ -1,6 +1,6 @@
 <?php
-require_once '../decimoescalon.club/calificavino/models/vinos.php';
-require_once '../decimoescalon.club/calificavino/config/db.php';
+require_once '../models/vinos.php';
+require_once '../config/db.php';
 
 $_vinos = new vinos();
 
