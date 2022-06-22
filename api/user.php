@@ -64,6 +64,64 @@ switch($_SERVER['REQUEST_METHOD']){
                 )));
             }
         }
+
+        if(isset($_POST['recuperar'])){
+            if($_POST['recuperar'] == true){
+                // El correo estan en $_POST['correo']
+                // Si existe el correo crear el codigo y guardarlo.
+                $usuario = $_usuarios->readOne($_POST['correo']);
+                if($usuario->num_rows == 1){
+                    $user = $usuario->fetch_object();
+                    // actualizar codigo $update = $_usuarios->UpdateCodigo($codigo, $user->id);
+                    // $update sera true si se actualiza correcto y si falla algo sera false
+                    // Devolver
+                    die(json_encode(array(
+                        'resultado' => true
+                    )));
+                }
+                // Si no existe el correo o no se puede crear y guardar el codigo
+                else{
+                    // Devolver
+                    die(json_encode(array(
+                        'resultado' => false
+                    )));
+                }
+            }
+        }
+
+        if(isset($_POST['codigo'])){
+            if($_POST['codigo'] == true){
+                $codigo = $_usuarios->readByCodigo($_POST['cod']);
+                if($codigo->num_rows == 1){
+                    $cod = $codigo->fetch_object();
+                    die(json_encode(array(
+                        'resultado' => true,
+                        'id' => $cod->id
+                    )));
+                }
+                else{
+                    die(json_encode(array(
+                        'resultado' => false
+                    )));
+                }
+            }
+        }
+
+        if(isset($_POST['nuevaPassword'])){
+            if($_POST['nuevaPassword'] == true){
+                $user = $_usuarios->updatePass($_POST['password'], $_POST['id']);
+                if($user){
+                    die(json_encode(array(
+                        'resultado' => true
+                    )));
+                }
+                else{
+                    die(json_encode(array(
+                        'resultado' => false
+                    )));
+                }
+            }
+        }
         break;
     case 'GET':
         if(isset($_GET['usuario'])){

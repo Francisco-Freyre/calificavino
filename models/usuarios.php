@@ -16,6 +16,44 @@ class usuarios{
         return $result = $this->db->query($sql);
     }
 
+    public function readOne($correo){
+        $sql = "SELECT * FROM d_paciente WHERE correo = $correo";
+        return $result = $this->db->query($sql);
+    }
+
+    public function UpdateCodigo($codigo, $id){
+        $result = $this->db->query("UPDATE d_paciente SET codigo = '$codigo' WHERE id_paciente = $id");
+
+        if($this->db->affected_rows > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function readByCodigo($codigo){
+        $sql = "SELECT * FROM d_paciente WHERE codigo = '$codigo'";
+        return $response = $this->db->query($sql);
+    }
+
+    public function updatePass($password, $id){
+        $opciones = array(
+            'cost' => 12
+        );
+        $password_hashed = password_hash($password, PASSWORD_BCRYPT, $opciones);
+
+        $result = $this->db->query("UPDATE d_paciente SET pass = '$password_hashed' WHERE id = $id");
+
+        if($this->db->affected_rows > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
     public function logueo($password, $email){
         $result = false;
         $sql = "SELECT id_paciente, nombre_p, pass, calificaciones, correo, imagen FROM d_paciente WHERE correo = '$email'";
