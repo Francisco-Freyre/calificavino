@@ -17,7 +17,7 @@ class usuarios{
     }
 
     public function readOne($correo){
-        $sql = "SELECT * FROM d_paciente WHERE correo = $correo";
+        $sql = "SELECT * FROM d_paciente WHERE correo = '$correo's";
         return $result = $this->db->query($sql);
     }
 
