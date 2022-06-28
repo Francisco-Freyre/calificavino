@@ -96,7 +96,7 @@ switch($_SERVER['REQUEST_METHOD']){
                     $cod = $codigo->fetch_object();
                     die(json_encode(array(
                         'resultado' => true,
-                        'id' => $cod->id
+                        'id' => $cod->id_paciente
                     )));
                 }
                 else{
