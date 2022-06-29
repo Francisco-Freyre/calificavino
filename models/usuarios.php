@@ -43,7 +43,7 @@ class usuarios{
         );
         $password_hashed = password_hash($password, PASSWORD_BCRYPT, $opciones);
 
-        $result = $this->db->query("UPDATE d_paciente SET pass = '$password_hashed' WHERE id = $id");
+        $result = $this->db->query("UPDATE d_paciente SET pass = '$password_hashed' WHERE id_paciente = $id");
 
         if($this->db->affected_rows > 0){
             return true;
