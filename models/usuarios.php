@@ -97,7 +97,7 @@ class usuarios{
             'cost' => 12
         );
         $password_hashed = password_hash($password, PASSWORD_BCRYPT, $opciones);
-        $sql = "INSERT INTO d_paciente VALUES(null, '$nombre', null, '', '', '', '', '', '', '$correo','', null, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DE1871', 'DE1871', '', 79, '', '', '', 0, '','$password_hashed', '', null, 'T', 'on', 'precio1', null, null)";
+        $sql = "INSERT INTO d_paciente VALUES(null, '$nombre', null, '', '', '', '', '', '', '$correo','', null, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DE1871', 'DE1871', '', 79, '', '', '', 0, '','$password_hashed', '', null, 'T', 'on', 'precio1', null, null,0,0,'')";
         $save = $this->db->query($sql);
         if($save){
             return $this->db->insert_id;
